@@ -1,8 +1,9 @@
 import React from 'react'
 import Button from './components/Button'
 import { useState } from 'react'
+import { CSSProperties } from 'react'
 
-const App = () => {
+const App: React.FC = () => {
   const isBrowserDarkModeOn = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
@@ -27,7 +28,7 @@ const App = () => {
       <Button
         label='Click Me Outline'
         onClick={handleButtonClick}
-        buttonRole='outline'
+        buttonRole = 'outline'
       />
       <Button
         label='Click Me Text'
@@ -42,7 +43,7 @@ const App = () => {
   )
 }
 
-const styles = {
+const styles: { container: CSSProperties } = {
   container: {
     textAlign: 'center',
     padding: '50px',

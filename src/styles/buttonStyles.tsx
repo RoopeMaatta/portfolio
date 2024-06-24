@@ -33,8 +33,7 @@ const StyledButtonFilled = styled(ButtonBase)``
 const StyledButtonOutline = styled(ButtonBase)`
   ${({ theme: { colors } }) => `
     background-color: transparent;
-    color: ${colors.primary};
-    border: 4px solid ${colors.primary};
+    border: 2px solid ${colors.primary};
   `}
 `
 
@@ -42,7 +41,6 @@ const StyledButtonOutline = styled(ButtonBase)`
 const StyledButtonText = styled(ButtonBase)`
   ${({ theme: { colors } }) => `
     background-color: transparent;
-    color: ${colors.primary};
     border: none;
   `}
 `

@@ -7,21 +7,24 @@ import {
   StyledButtonText,
 } from '../styles/buttonStyles'
 
-const buttonRoleMap = {
+type ButtonVariant = 'filled' | 'outline' | 'text'
+
+const variantMap = {
   filled: StyledButtonFilled,
   outline: StyledButtonOutline,
   text: StyledButtonText,
 }
 
+interface ButtonProps {
+  label: string;
+  onClick?: () => void
+  buttonRole?: ButtonVariant
+}
+
 // Functional component using styled button
-const Button = ({
-  label,
-  onClick,
-  buttonRole,
-}) => {
-  const StyledButton =
-    buttonRoleMap[buttonRole] ||
-    StyledButtonFilled
+const Button: React.FC<ButtonProps> = ({ label, onClick = () => {}, buttonRole = 'filled' }) => {
+  const StyledButton = variantMap[buttonRole];
+
   return (
     <StyledButton onClick={onClick}>
       {label}

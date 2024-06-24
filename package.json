@@ -14,12 +14,13 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0",
     "react-select": "^5.8.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "typescript": "^5.5.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.7",
-    "@types/react": "^18.2.56",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",
     "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^8.57.0",

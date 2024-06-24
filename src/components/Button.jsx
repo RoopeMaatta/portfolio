@@ -1,35 +1,42 @@
 // src/components/Button.jsx
 import React from 'react'
 import PropTypes from 'prop-types'
+import {
+  StyledButtonFilled,
+  StyledButtonOutline,
+  StyledButtonText,
+} from '../styles/buttonStyles'
 
-const Button = ({ label, onClick }) => {
-  return (
-    <button onClick={onClick} style={styles.button}>
-      {label}
-    </button>
-  )
+const buttonRoleMap = {
+  filled: StyledButtonFilled,
+  outline: StyledButtonOutline,
+  text: StyledButtonText,
 }
 
-// Inline styles for simplicity
-const styles = {
-  button: {
-    padding: '10px 20px',
-    fontSize: '16px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  },
+// Functional component using styled button
+const Button = ({
+  label,
+  onClick,
+  buttonRole,
+}) => {
+  const StyledButton =
+    buttonRoleMap[buttonRole] ||
+    StyledButtonFilled
+  return (
+    <StyledButton onClick={onClick}>
+      {label}
+    </StyledButton>
+  )
 }
 
 Button.propTypes = {
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-}
-
-Button.defaultProps = {
-  onClick: () => {},
+  buttonRole: PropTypes.oneOf([
+    'filled',
+    'outline',
+    'text',
+  ]),
 }
 
 export default Button

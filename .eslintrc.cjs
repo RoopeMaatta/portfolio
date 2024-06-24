@@ -5,12 +5,31 @@ module.exports = {
     es2020: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended', // Ensure this is last to override conflicting rules
+  ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
-  plugins: ['node'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    requireConfigFile: false, // For babel-eslint
+    babelOptions: {
+      presets: ['@babel/preset-react'],
+    },
+  },
+  settings: {
+    react: { version: 'detect' }, // Auto-detect React version
+  },
+  plugins: [
+    'node',
+    'react',
+    'styled-components-a11y', // Use the correct styled-components plugin
+    'prettier',
+  ],
   rules: {
+    'prettier/prettier': 'error',
     indent: ['error', 2, { SwitchCase: 1 }],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
@@ -18,7 +37,10 @@ module.exports = {
     eqeqeq: 'error',
     'no-trailing-spaces': 'error',
     'object-curly-spacing': ['error', 'always'],
-    'arrow-spacing': ['error', { before: true, after: true }],
+    'arrow-spacing': [
+      'error',
+      { before: true, after: true },
+    ],
     'no-console': 0,
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 0,

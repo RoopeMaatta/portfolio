@@ -21,6 +21,7 @@ interface ButtonProps {
   buttonRole?: ButtonVariant
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
+  fullWidth?: boolean
 }
 
 // Functional component using styled button
@@ -30,11 +31,12 @@ const Button: React.FC<ButtonProps> = ({
   buttonRole = 'filled',
   icon,
   iconPosition = 'left',
+  fullWidth = false,
 }) => {
   const StyledButton = variantMap[buttonRole]
 
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={onClick} fullWidth={fullWidth}>
       {icon && iconPosition === 'left' && <span className='icon'>{icon}</span>}
       <span className='label'>{label}</span>
       {icon && iconPosition === 'right' && <span className='icon'>{icon}</span>}

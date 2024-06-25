@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { getTheme, Theme } from './globalVariables'
-import { useDarkMode } from './useDarkMode'
+import { getTheme, Theme } from './globalThemeVariables'
+import { useDarkMode } from '../hooks'
 
 interface ThemeProviderProps {
   children: ReactNode;

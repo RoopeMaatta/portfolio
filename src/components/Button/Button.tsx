@@ -5,7 +5,7 @@ import {
   StyledButtonFilled,
   StyledButtonOutline,
   StyledButtonText,
-} from '../styles/buttonStyles'
+} from './buttonStyles'
 
 type ButtonVariant = 'filled' | 'outline' | 'text'
 

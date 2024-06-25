@@ -31,3 +31,5 @@ export const getTheme = (isDarkMode: boolean) => {
     },
   }
 }
+
+export type Theme = ReturnType<typeof getTheme>;

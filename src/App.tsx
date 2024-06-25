@@ -2,6 +2,8 @@ import React from 'react'
 import { Button } from './components'
 import { useState } from 'react'
 import { CSSProperties } from 'react'
+import CheckIcon from '@mui/icons-material/Check'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 
 const App: React.FC = () => {
   const isBrowserDarkModeOn = window.matchMedia(
@@ -21,24 +23,37 @@ const App: React.FC = () => {
     <div style={styles.container}>
       <h1>Wuf Wuf {counter} </h1>
       <Button
-        label='Click Me Fill'
+        label='Click Me, Fill'
         onClick={handleButtonClick}
         buttonRole='filled'
       />
       <Button
-        label='Click Me Outline'
+        label='Click Me, Outline'
         onClick={handleButtonClick}
-        buttonRole = 'outline'
+        buttonRole='outline'
       />
       <Button
-        label='Click Me Text'
+        label='Click Me, Text'
         onClick={handleButtonClick}
         buttonRole='text'
       />
-      <h3>
-        Darkmode is:{' '}
-        {isBrowserDarkModeOn ? 'on' : 'off'}
-      </h3>
+      <br></br>
+      <Button
+        label='Fill, icon left'
+        onClick={handleButtonClick}
+        buttonRole='filled'
+        icon={<CheckIcon />}
+        iconPosition='left'
+      />
+      <Button
+        label='Outline, icon right'
+        onClick={handleButtonClick}
+        buttonRole='outline'
+        icon={<ChevronRightIcon />}
+        iconPosition='right'
+      />
+      <Button label='Click' onClick={handleButtonClick} buttonRole='outline' />
+      <h3>Darkmode is: {isBrowserDarkModeOn ? 'on' : 'off'}</h3>
     </div>
   )
 }

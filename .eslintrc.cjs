@@ -8,9 +8,11 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended', // Ensure this is last to override conflicting rules
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -37,13 +39,11 @@ module.exports = {
     eqeqeq: 'error',
     'no-trailing-spaces': 'error',
     'object-curly-spacing': ['error', 'always'],
-    'arrow-spacing': [
-      'error',
-      { before: true, after: true },
-    ],
+    'arrow-spacing': ['error', { before: true, after: true }],
     'no-console': 0,
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 0,
-    'no-unused-vars': 0,
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'no-unused-vars': 'off',
   },
 }

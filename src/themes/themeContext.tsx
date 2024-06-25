@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { getTheme, Theme } from './globalThemeVariables'
 import { useDarkMode } from '../hooks'
 
 interface ThemeProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 declare module 'styled-components' {
@@ -18,5 +18,5 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     <StyledThemeProvider theme={getTheme(isDarkMode)}>
       {children}
     </StyledThemeProvider>
-  );
-};
+  )
+}

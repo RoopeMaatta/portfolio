@@ -2,13 +2,17 @@ import styled from 'styled-components'
 
 // Styled component using destructuring
 const ButtonBase = styled.button`
-  ${({
-    theme: { colors, spacing, fontSize },
-  }) => {
-    return `
+  ${({ theme: { colors, spacing, fontSize } }) => {
+    return `    
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  
+    padding-left: ${spacing.xs};
+    padding-right: ${spacing.xs};
+
     background-color: ${colors.primary};
     color: ${colors.text};
-    padding: ${spacing.xs} ${spacing.m} ;
     font-size: ${fontSize.medium};
     transition: background-color 0.3s;
   
@@ -22,6 +26,18 @@ const ButtonBase = styled.button`
     &:active {
       background-color: ${colors.primaryDark};
     }
+
+    .icon {
+       display: inline-flex;
+    }
+  
+
+    .label {
+      padding: ${spacing.xs};
+    }
+    
+
+    
   `
   }}
 `
@@ -39,14 +55,10 @@ const StyledButtonOutline = styled(ButtonBase)`
 
 // StyledButtonText: Inherits from ButtonBase and changes to text button style
 const StyledButtonText = styled(ButtonBase)`
-  ${({ theme: { colors } }) => `
+  ${() => `
     background-color: transparent;
     border: none;
   `}
 `
 
-export {
-  StyledButtonFilled,
-  StyledButtonOutline,
-  StyledButtonText,
-}
+export { StyledButtonFilled, StyledButtonOutline, StyledButtonText }

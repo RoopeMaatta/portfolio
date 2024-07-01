@@ -19,6 +19,12 @@ const App: React.FC = () => {
     <div style={styles.container}>
       <h1>Wuf Wuf {counter} </h1>
       <Button
+        onClick={handleButtonClick}
+        buttonRole='outline'
+        icon={<ChevronRightIcon />}
+      />
+      <br></br>
+      <Button
         label='Click Me, Fill'
         onClick={handleButtonClick}
         buttonRole='filled'
@@ -75,6 +81,12 @@ const App: React.FC = () => {
         icon={<ChevronRightIcon />}
         iconPosition='right'
         fullWidth={true}
+      />
+      <br></br>
+      <Button
+        onClick={handleButtonClick}
+        buttonRole='outline'
+        icon={<ChevronRightIcon />}
       />
       <h3>Darkmode is: {isDarkMode ? 'on' : 'off'}</h3>
     </div>

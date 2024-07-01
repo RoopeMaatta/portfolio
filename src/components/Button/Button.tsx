@@ -16,7 +16,7 @@ const variantMap = {
 }
 
 interface ButtonProps {
-  label: string
+  label?: string
   onClick?: () => void
   buttonRole?: ButtonVariant
   icon?: React.ReactNode
@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <StyledButton onClick={onClick} fullWidth={fullWidth}>
       {icon && iconPosition === 'left' && <span className='icon'>{icon}</span>}
-      <span className='label'>{label}</span>
+      {label && <span className='label'>{label}</span>}
       {icon && iconPosition === 'right' && <span className='icon'>{icon}</span>}
     </StyledButton>
   )

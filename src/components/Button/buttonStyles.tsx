@@ -3,7 +3,7 @@ import styled from 'styled-components'
 // Styled component using destructuring
 const ButtonBase = styled.button<{ fullWidth: boolean }>`
   ${({ theme: { colors, spacing, fontSize }, fullWidth }) => {
-    return `    
+    return `
     display: inline-flex;
     align-items: center;
     vertical-align: middle;

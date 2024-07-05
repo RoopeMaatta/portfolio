@@ -45,7 +45,7 @@ const Button: React.FC<ButtonProps> = ({
 }
 
 Button.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onClick: PropTypes.func,
   buttonRole: PropTypes.oneOf(['filled', 'outline', 'text']),
   icon: PropTypes.node,

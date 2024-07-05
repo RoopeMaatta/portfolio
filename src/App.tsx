@@ -5,10 +5,23 @@ import { CSSProperties } from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useDarkMode } from './hooks'
+import { useTheme } from 'styled-components'
+import StyleGuide from './components/StyleGuide/StyleGuide'
 
 const App: React.FC = () => {
   const [counter, setCounter] = useState(0)
   const isDarkMode = useDarkMode()
+
+  const theme = useTheme()
+
+  const styles: { container: CSSProperties } = {
+    container: {
+      textAlign: 'center',
+      padding: '50px',
+      border: `${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong}`,
+    },
+  }
+  console.log(theme)
 
   // Function to increment the counter
   const handleButtonClick = () => {
@@ -17,8 +30,10 @@ const App: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <h1>Wuf Wuf {counter} </h1>
-      <Button
+      <StyleGuide />
+      <h1 style={theme.typography.h1}>Wuf Wuf {counter} </h1>
+
+      {/* <Button
         onClick={handleButtonClick}
         buttonRole='outline'
         icon={<ChevronRightIcon />}
@@ -82,7 +97,8 @@ const App: React.FC = () => {
         iconPosition='right'
         fullWidth={true}
       />
-      <br></br>
+      <br></br> */}
+
       <Button
         onClick={handleButtonClick}
         buttonRole='outline'
@@ -91,13 +107,6 @@ const App: React.FC = () => {
       <h3>Darkmode is: {isDarkMode ? 'on' : 'off'}</h3>
     </div>
   )
-}
-
-const styles: { container: CSSProperties } = {
-  container: {
-    textAlign: 'center',
-    padding: '50px',
-  },
 }
 
 export default App

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 // Styled component using destructuring
 const ButtonBase = styled.button<{ fullWidth: boolean }>`
-  ${({ theme: { colors, spacing, fontSize }, fullWidth }) => {
+  ${({ theme: { colors, spacing, radius, typography }, fullWidth }) => {
     return `
     display: inline-flex;
     align-items: center;
@@ -12,23 +12,24 @@ const ButtonBase = styled.button<{ fullWidth: boolean }>`
     padding-left: ${spacing.xs};
     padding-right: ${spacing.xs};
 
-    background-color: ${colors.primary};
-    color: ${colors.text};
-    font-size: ${fontSize.medium};
+    background-color: ${colors.fill.neutral.weak};
+    color: ${colors.text.neutral.strong};
     
+    ${typography.h1}
+
     transition: background-color 0.3s;
   
-    border-radius: 16px;
+    border-radius: ${radius.m};
     cursor: pointer;
 
     width: ${fullWidth ? '100%' : 'auto'};
 
     &:hover {
-      background-color: ${colors.secondary};
+      background-color: ${colors.background.raised};
     }
 
     &:active {
-      background-color: ${colors.primaryDark};
+      background-color: ${colors.background.overlay};
     }
 
     .icon {
@@ -46,9 +47,11 @@ const ButtonBase = styled.button<{ fullWidth: boolean }>`
 const StyledButtonFilled = styled(ButtonBase)``
 
 const StyledButtonOutline = styled(ButtonBase)`
-  ${({ theme: { colors } }) => `
+  ${({ theme: { colors, stroke } }) => `
     background-color: transparent;
-    border: 2px solid ${colors.primary};
+    border: ${stroke.strong} solid ${colors.stroke.neutral.strong};
+    
+
   `}
 `
 const StyledButtonText = styled(ButtonBase)`

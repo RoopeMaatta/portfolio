@@ -44,7 +44,8 @@ const typography = {
 const { family, weights, size, lineheight, letterSpacing } = typography
 
 // Styles object
-export const styles = {
+
+export const typographyStyles = {
   h1: {
     fontFamily: family.primary,
     fontSize: size.xxxxl,
@@ -135,4 +136,4 @@ export const styles = {
   },
 } as const
 
-export type StyleKeys = keyof typeof styles
+// export type StyleKeys = keyof typeof typographyStyles

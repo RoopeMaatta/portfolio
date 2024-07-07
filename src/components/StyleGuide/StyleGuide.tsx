@@ -1,8 +1,19 @@
 import React from 'react'
 import { useTheme } from 'styled-components'
 
-const renderColorBlocks = (colors: any, path: string[] = []) =>
-  Object.entries(colors).map(([key, value]) => {
+interface Theme {
+  colors: Record<string, string | Record<string, string>>
+  typography: Record<string, React.CSSProperties>
+  spacing: Record<string, string>
+  radius: Record<string, string>
+}
+
+const renderColorBlocks = (
+  colors: Record<string, string | Record<string, string>>,
+  path: string[] = []
+) =>
+  Object.keys(colors).map(key => {
+    const value = colors[key]
     const newPath = [...path, key]
 
     return typeof value === 'object' && value !== null ? (
@@ -16,7 +27,7 @@ const renderColorBlocks = (colors: any, path: string[] = []) =>
         style={{
           margin: '10px 0',
           display: 'grid',
-          gridTemplateColumns: '200px auto 100px',
+          gridTemplateColumns: '200px 50px auto',
           alignItems: 'center',
           textAlign: 'left',
         }}
@@ -30,85 +41,94 @@ const renderColorBlocks = (colors: any, path: string[] = []) =>
             border: '1px solid #000',
           }}
         ></div>
-        <span>{value}</span>
+        <span style={{ marginLeft: '10px' }}>{value}</span>
       </div>
     )
   })
 
-const renderTypography = (typography: any) =>
-  Object.entries(typography).map(([key, style]) => (
-    <div
-      key={key}
-      style={{
-        margin: '10px 0',
-        display: 'grid',
-        gridTemplateColumns: '200px auto',
-        alignItems: 'center',
-        textAlign: 'left',
-      }}
-    >
-      <span>{key}:</span>
-      <p style={{ ...style, margin: 0 }}>
-        The quick brown fox jumps over the lazy dog.
-      </p>
-    </div>
-  ))
-
-const renderSpacing = (spacing: any) =>
-  Object.entries(spacing).map(([key, value]) => (
-    <div
-      key={key}
-      style={{
-        margin: '10px 0',
-        display: 'grid',
-        gridTemplateColumns: '200px auto 100px',
-        alignItems: 'center',
-        textAlign: 'left',
-      }}
-    >
-      <span>Spacing {key}:</span>
+const renderTypography = (typography: Record<string, React.CSSProperties>) =>
+  Object.keys(typography).map(key => {
+    const style = typography[key]
+    return (
       <div
+        key={key}
         style={{
-          borderLeft: '2px solid #000',
-          borderRight: '2px solid #000',
-          height: '20px',
-          width: value,
+          margin: '10px 0',
+          display: 'grid',
+          gridTemplateColumns: '200px auto',
+          alignItems: 'center',
+          textAlign: 'left',
         }}
-      ></div>
-      <span>{value}</span>
-    </div>
-  ))
+      >
+        <span>{key}:</span>
+        <p style={{ ...style, margin: 0 }}>
+          The quick brown fox jumps over the lazy dog.
+        </p>
+      </div>
+    )
+  })
 
-const renderRadius = (radius: any) =>
-  Object.entries(radius).map(([key, value]) => (
-    <div
-      key={key}
-      style={{
-        margin: '10px 0',
-        display: 'grid',
-        gridTemplateColumns: '200px auto 100px',
-        alignItems: 'center',
-        textAlign: 'left',
-      }}
-    >
-      <span>Radius {key}:</span>
+const renderSpacing = (spacing: Record<string, string>) =>
+  Object.keys(spacing).map(key => {
+    const value = spacing[key]
+    return (
       <div
+        key={key}
         style={{
-          width: '75px',
-          height: '75px',
-          backgroundColor: '#ddd',
-          borderRadius: value,
-          border: '1px solid #000',
+          margin: '10px 0',
+          display: 'grid',
+          gridTemplateColumns: '200px auto 100px',
+          alignItems: 'center',
+          textAlign: 'left',
         }}
-      ></div>
-      <span>{value}</span>
-    </div>
-  ))
+      >
+        <span>Spacing {key}:</span>
+        <div
+          style={{
+            borderLeft: '2px solid #000',
+            borderRight: '2px solid #000',
+            height: '20px',
+            width: value,
+          }}
+        ></div>
+        <span style={{ marginLeft: '10px' }}>{value}</span>
+      </div>
+    )
+  })
+
+const renderRadius = (radius: Record<string, string>) =>
+  Object.keys(radius).map(key => {
+    const value = radius[key]
+    return (
+      <div
+        key={key}
+        style={{
+          margin: '10px 0',
+          display: 'grid',
+          gridTemplateColumns: '200px 75px auto',
+          alignItems: 'center',
+          textAlign: 'left',
+        }}
+      >
+        <span>Radius {key}:</span>
+        <div
+          style={{
+            width: '75px',
+            height: '75px',
+            backgroundColor: '#ddd',
+            borderRadius: value,
+            border: '1px solid #000',
+          }}
+        ></div>
+        <span style={{ marginLeft: '10px' }}>{value}</span>
+      </div>
+    )
+  })
 
 const StyleGuide: React.FC = () => {
-  const theme = useTheme()
+  const theme = useTheme() as unknown as Theme
 
-  const headingStyle = {
+  const headingStyle: React.CSSProperties = {
     borderBottom: '2px solid #000',
     paddingBottom: '5px',
     textAlign: 'left',

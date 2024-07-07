@@ -33,7 +33,7 @@ const App: React.FC = () => {
       <StyleGuide />
       <h1 style={theme.typography.h1}>Wuf Wuf {counter} </h1>
 
-      {/* <Button
+      <Button
         onClick={handleButtonClick}
         buttonRole='outline'
         icon={<ChevronRightIcon />}
@@ -97,7 +97,7 @@ const App: React.FC = () => {
         iconPosition='right'
         fullWidth={true}
       />
-      <br></br> */}
+      <br></br>
 
       <Button
         onClick={handleButtonClick}

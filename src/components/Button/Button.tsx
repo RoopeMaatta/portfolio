@@ -3,15 +3,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   StyledButtonFilled,
-  StyledButtonOutline,
+  StyledButtonTonal,
+  StyledButtonStroke,
   StyledButtonText,
 } from './buttonStyles'
 
-type ButtonVariant = 'filled' | 'outline' | 'text'
+type ButtonVariant = 'filled' | 'tonal' | 'outline' | 'text'
 
 const variantMap = {
   filled: StyledButtonFilled,
-  outline: StyledButtonOutline,
+  tonal: StyledButtonTonal,
+  outline: StyledButtonStroke,
   text: StyledButtonText,
 }
 
@@ -47,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
 Button.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
-  buttonRole: PropTypes.oneOf(['filled', 'outline', 'text']),
+  buttonRole: PropTypes.oneOf(['filled', 'tonal', 'outline', 'text']),
   icon: PropTypes.node,
   iconPosition: PropTypes.oneOf(['left', 'right']),
 }

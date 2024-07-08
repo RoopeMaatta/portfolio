@@ -5,20 +5,26 @@ export const getTheme = (isDarkMode: boolean) => {
 
   const palette = {
     neutral: {
-      100: D ? 'hwb(0 0% 100%)' : 'hwb(212 100% 15% / 90%)',
-      70: D ? 'hwb(0 0% 100% / 78%)' : 'hwb(212 100% 20% / 65%)',
-      50: D ? 'hwb(0 0% 100% / 60%)' : 'hwb(212 100% 30% / 45%)',
-      10: D ? 'hwb(0 0% 100% / 12%)' : 'hwb(212 100% 40% / 8%)',
-      5: D ? 'hwb(0 0% 100% / 6%)' : 'hwb(212 100% 50% / 4%)',
+      100: D ? 'hsl(0 0% 100%)' : 'hsl(212 100% 8% / 90%)',
+      70: D ? 'hsl(0 0% 100% / 78%)' : 'hsl(212 100% 10% / 65%)',
+      50: D ? 'hsl(0 0% 100% / 60%)' : 'hsl(212 100% 15% / 45%)',
+      10: D ? 'hsl(0 0% 100% / 12%)' : 'hsl(212 100% 20% / 8%)',
+      5: D ? 'hsl(0 0% 100% / 6%)' : 'hsl(212 100% 25% / 4%)',
+      inverted100: D ? 'hsl(212 100% 8% / 90%)' : 'hsl(0 0% 100%)',
     },
-    brand: {},
+    brand: {
+      100: D ? 'hsl(212 100% 71% / 100%)' : 'hsl(212 100% 45% / 100%)',
+      80: D ? 'hsl(212 100% 71% / 80%)' : 'hsl(212 100% 45% / 80%)',
+      20: D ? 'hsl(212 100% 71% / 20%)' : 'hsl(212 100% 45% / 20%)',
+      5: D ? 'hsl(212 100% 71% / 5%)' : 'hsl(212 100% 45% / 5%)',
+    },
     red: {},
     amber: {},
     green: {},
   }
 
   // deconstruct for easier use
-  const { neutral } = palette // , brand, red, amber, green
+  const { neutral, brand } = palette // , brand, red, amber, green
   const {
     h1,
     h2,
@@ -40,8 +46,11 @@ export const getTheme = (isDarkMode: boolean) => {
         neutral: {
           strong: neutral[100],
           weak: neutral[70],
+          invert: neutral.inverted100,
         },
-        // brand: {},
+        brand: {
+          strong: brand[100],
+        },
         // error: {},
         // warning: {},
         // succes: {},
@@ -51,17 +60,30 @@ export const getTheme = (isDarkMode: boolean) => {
           strong: neutral[50],
           weak: neutral[10],
         },
+        brand: {
+          strong: brand[80],
+          weak: brand[20],
+        },
       },
       fill: {
         neutral: {
           strong: neutral[100],
           weak: neutral[5],
         },
-      },
-      background: {
-        base: D ? 'hwb(212 30% 10%)' : 'hwb(0 0% 100%)',
-        raised: D ? 'hwb(212 25% 15%)' : 'hwb(0 0% 100%)',
-        overlay: D ? 'hwb(212 20% 20%)' : 'hwb(0 0% 100%)',
+        background: {
+          base: D ? 'hsl(212 18% 9%)' : 'hsl(0 0% 100%)',
+          raised: D ? 'hsl(212 14% 13%)' : 'hsl(0 0% 100%)',
+          overlay: D ? 'hsl(212 11% 18%)' : 'hsl(0 0% 100%)',
+        },
+        state: {
+          hover: neutral[5],
+          press: neutral[10],
+          disabled: neutral[10],
+        },
+        brand: {
+          strong: brand[100],
+          weak: brand[5],
+        },
       },
     },
 
@@ -101,6 +123,13 @@ export const getTheme = (isDarkMode: boolean) => {
       m: '16px',
       l: '24px',
       xl: '32px',
+    },
+
+    shadow: {
+      raised:
+        '0 2px 4px 0 rgba(0, 18, 38, 8%), 0 0px 1px 0 rgba(0, 18, 38, 16%)',
+      overlay:
+        '0 4px 12px 0 rgba(0, 18, 38, 16%), 0 0px 1px 0 rgba(0, 18, 38, 16%)',
     },
   }
 }

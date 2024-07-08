@@ -21,9 +21,10 @@ const App: React.FC = () => {
       padding: '50px',
       border: `${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong}`,
       gridColumn: 'span 12',
+      backgroundColor: `${theme.colors.fill.background.base}`,
+      color: `${theme.colors.text.neutral.strong}`,
     },
   }
-  console.log(theme)
 
   // Function to increment the counter
   const handleButtonClick = () => {
@@ -78,8 +79,7 @@ const App: React.FC = () => {
         Box 5
       </div>
 
-      {/* <div style={styles.container}>
-        <StyleGuide />
+      <div style={styles.container}>
         <h1 style={theme.typography.h1}>Wuf Wuf {counter} </h1>
 
         <Button
@@ -150,6 +150,14 @@ const App: React.FC = () => {
           iconPosition='right'
           fullWidth={true}
         />
+        <Button
+          label='Tonal, icon right, fullWidth'
+          onClick={handleButtonClick}
+          buttonRole='tonal'
+          icon={<ChevronRightIcon />}
+          iconPosition='right'
+          fullWidth={true}
+        />
         <br></br>
 
         <Button
@@ -157,8 +165,10 @@ const App: React.FC = () => {
           buttonRole='outline'
           icon={<ChevronRightIcon />}
         />
+
         <h3>Darkmode is: {isDarkMode ? 'on' : 'off'}</h3>
-      </div> */}
+        <StyleGuide />
+      </div>
     </AppWrapper>
   )
 }

@@ -1,13 +1,11 @@
 import React from 'react'
-import { Button } from './components'
 import { useState } from 'react'
 import { CSSProperties } from 'react'
-import CheckIcon from '@mui/icons-material/Check'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useDarkMode } from './hooks'
 import { useTheme } from 'styled-components'
-import StyleGuide from './components/StyleGuide/StyleGuide'
+import StyleGuide from './views/StyleGuide'
 import AppWrapper from './components/gridContainer/gridContainer'
+import ButtonVariations from './views/ButtonVariations'
 
 const App: React.FC = () => {
   const [counter, setCounter] = useState(0)
@@ -24,11 +22,6 @@ const App: React.FC = () => {
       backgroundColor: `${theme.colors.fill.background.base}`,
       color: `${theme.colors.text.neutral.strong}`,
     },
-  }
-
-  // Function to increment the counter
-  const handleButtonClick = () => {
-    setCounter(counter + 1)
   }
 
   return (
@@ -82,89 +75,7 @@ const App: React.FC = () => {
       <div style={styles.container}>
         <h1 style={theme.typography.h1}>Wuf Wuf {counter} </h1>
 
-        <Button
-          onClick={handleButtonClick}
-          buttonRole='outline'
-          icon={<ChevronRightIcon />}
-        />
-        <br></br>
-        <Button
-          label='Click Me, Fill'
-          onClick={handleButtonClick}
-          buttonRole='filled'
-        />
-        <Button
-          label='Click Me, Outline'
-          onClick={handleButtonClick}
-          buttonRole='outline'
-        />
-        <Button
-          label='Click Me, Text'
-          onClick={handleButtonClick}
-          buttonRole='text'
-        />
-
-        <br></br>
-
-        <Button
-          label='Fill, icon left'
-          onClick={handleButtonClick}
-          buttonRole='filled'
-          icon={<CheckIcon />}
-          iconPosition='left'
-        />
-        <Button
-          label='Outline, icon right'
-          onClick={handleButtonClick}
-          buttonRole='outline'
-          icon={<ChevronRightIcon />}
-          iconPosition='right'
-        />
-        <Button
-          label='Click'
-          onClick={handleButtonClick}
-          buttonRole='outline'
-        />
-
-        <br></br>
-
-        <Button
-          label='Fill, fullWidth'
-          onClick={handleButtonClick}
-          buttonRole='filled'
-          fullWidth={true}
-        />
-        <Button
-          label='Fill, icon left, fullWidth'
-          onClick={handleButtonClick}
-          buttonRole='filled'
-          icon={<CheckIcon />}
-          iconPosition='left'
-          fullWidth={true}
-        />
-        <Button
-          label='Outline, icon right, fullWidth'
-          onClick={handleButtonClick}
-          buttonRole='outline'
-          icon={<ChevronRightIcon />}
-          iconPosition='right'
-          fullWidth={true}
-        />
-        <Button
-          label='Tonal, icon right, fullWidth'
-          onClick={handleButtonClick}
-          buttonRole='tonal'
-          icon={<ChevronRightIcon />}
-          iconPosition='right'
-          fullWidth={true}
-        />
-        <br></br>
-
-        <Button
-          onClick={handleButtonClick}
-          buttonRole='outline'
-          icon={<ChevronRightIcon />}
-        />
+        <ButtonVariations setCounter={setCounter} />
 
         <h3>Darkmode is: {isDarkMode ? 'on' : 'off'}</h3>
         <StyleGuide />

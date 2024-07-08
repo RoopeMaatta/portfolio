@@ -20,7 +20,7 @@ const variantMap = {
 interface ButtonProps {
   label?: string
   onClick?: () => void
-  buttonRole?: ButtonVariant
+  buttonStyle?: ButtonVariant
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
   fullWidth?: boolean
@@ -30,12 +30,12 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
   label,
   onClick = () => {},
-  buttonRole = 'filled',
+  buttonStyle = 'filled',
   icon,
   iconPosition = 'left',
   fullWidth = false,
 }) => {
-  const StyledButton = variantMap[buttonRole]
+  const StyledButton = variantMap[buttonStyle]
 
   return (
     <StyledButton onClick={onClick} fullWidth={fullWidth}>
@@ -49,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
 Button.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
-  buttonRole: PropTypes.oneOf(['filled', 'tonal', 'outline', 'text']),
+  buttonStyle: PropTypes.oneOf(['filled', 'tonal', 'outline', 'text']),
   icon: PropTypes.node,
   iconPosition: PropTypes.oneOf(['left', 'right']),
 }

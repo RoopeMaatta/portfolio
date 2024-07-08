@@ -7,6 +7,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useDarkMode } from './hooks'
 import { useTheme } from 'styled-components'
 import StyleGuide from './components/StyleGuide/StyleGuide'
+import AppWrapper from './components/gridContainer/gridContainer'
 
 const App: React.FC = () => {
   const [counter, setCounter] = useState(0)
@@ -19,6 +20,7 @@ const App: React.FC = () => {
       textAlign: 'center',
       padding: '50px',
       border: `${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong}`,
+      gridColumn: 'span 12',
     },
   }
   console.log(theme)
@@ -29,83 +31,135 @@ const App: React.FC = () => {
   }
 
   return (
-    <div style={styles.container}>
-      <StyleGuide />
-      <h1 style={theme.typography.h1}>Wuf Wuf {counter} </h1>
+    <AppWrapper>
+      <div
+        style={{
+          border: '1px solid black',
+          padding: '20px',
+          gridColumn: 'span 3',
+        }}
+      >
+        Box 1
+      </div>
+      <div
+        style={{
+          border: '1px solid black',
+          padding: '20px',
+          gridColumn: 'span 6',
+        }}
+      >
+        Box 2
+      </div>
+      <div
+        style={{
+          border: '1px solid black',
+          padding: '20px',
+          gridColumn: 'span 3',
+        }}
+      >
+        Box 3
+      </div>
+      <div
+        style={{
+          border: '1px solid black',
+          padding: '20px',
+          gridColumn: 'span 4',
+        }}
+      >
+        Box 4
+      </div>
+      <div
+        style={{
+          border: '1px solid black',
+          padding: '20px',
+          gridColumn: 'span 8',
+        }}
+      >
+        Box 5
+      </div>
 
-      <Button
-        onClick={handleButtonClick}
-        buttonRole='outline'
-        icon={<ChevronRightIcon />}
-      />
-      <br></br>
-      <Button
-        label='Click Me, Fill'
-        onClick={handleButtonClick}
-        buttonRole='filled'
-      />
-      <Button
-        label='Click Me, Outline'
-        onClick={handleButtonClick}
-        buttonRole='outline'
-      />
-      <Button
-        label='Click Me, Text'
-        onClick={handleButtonClick}
-        buttonRole='text'
-      />
+      {/* <div style={styles.container}>
+        <StyleGuide />
+        <h1 style={theme.typography.h1}>Wuf Wuf {counter} </h1>
 
-      <br></br>
+        <Button
+          onClick={handleButtonClick}
+          buttonRole='outline'
+          icon={<ChevronRightIcon />}
+        />
+        <br></br>
+        <Button
+          label='Click Me, Fill'
+          onClick={handleButtonClick}
+          buttonRole='filled'
+        />
+        <Button
+          label='Click Me, Outline'
+          onClick={handleButtonClick}
+          buttonRole='outline'
+        />
+        <Button
+          label='Click Me, Text'
+          onClick={handleButtonClick}
+          buttonRole='text'
+        />
 
-      <Button
-        label='Fill, icon left'
-        onClick={handleButtonClick}
-        buttonRole='filled'
-        icon={<CheckIcon />}
-        iconPosition='left'
-      />
-      <Button
-        label='Outline, icon right'
-        onClick={handleButtonClick}
-        buttonRole='outline'
-        icon={<ChevronRightIcon />}
-        iconPosition='right'
-      />
-      <Button label='Click' onClick={handleButtonClick} buttonRole='outline' />
+        <br></br>
 
-      <br></br>
+        <Button
+          label='Fill, icon left'
+          onClick={handleButtonClick}
+          buttonRole='filled'
+          icon={<CheckIcon />}
+          iconPosition='left'
+        />
+        <Button
+          label='Outline, icon right'
+          onClick={handleButtonClick}
+          buttonRole='outline'
+          icon={<ChevronRightIcon />}
+          iconPosition='right'
+        />
+        <Button
+          label='Click'
+          onClick={handleButtonClick}
+          buttonRole='outline'
+        />
 
-      <Button
-        label='Fill, fullWidth'
-        onClick={handleButtonClick}
-        buttonRole='filled'
-        fullWidth={true}
-      />
-      <Button
-        label='Fill, icon left, fullWidth'
-        onClick={handleButtonClick}
-        buttonRole='filled'
-        icon={<CheckIcon />}
-        iconPosition='left'
-        fullWidth={true}
-      />
-      <Button
-        label='Outline, icon right, fullWidth'
-        onClick={handleButtonClick}
-        buttonRole='outline'
-        icon={<ChevronRightIcon />}
-        iconPosition='right'
-        fullWidth={true}
-      />
-      <br></br>
+        <br></br>
 
-      <Button
-        onClick={handleButtonClick}
-        buttonRole='outline'
-        icon={<ChevronRightIcon />}
-      />
-      <h3>Darkmode is: {isDarkMode ? 'on' : 'off'}</h3>
-    </div>
+        <Button
+          label='Fill, fullWidth'
+          onClick={handleButtonClick}
+          buttonRole='filled'
+          fullWidth={true}
+        />
+        <Button
+          label='Fill, icon left, fullWidth'
+          onClick={handleButtonClick}
+          buttonRole='filled'
+          icon={<CheckIcon />}
+          iconPosition='left'
+          fullWidth={true}
+        />
+        <Button
+          label='Outline, icon right, fullWidth'
+          onClick={handleButtonClick}
+          buttonRole='outline'
+          icon={<ChevronRightIcon />}
+          iconPosition='right'
+          fullWidth={true}
+        />
+        <br></br>
+
+        <Button
+          onClick={handleButtonClick}
+          buttonRole='outline'
+          icon={<ChevronRightIcon />}
+        />
+        <h3>Darkmode is: {isDarkMode ? 'on' : 'off'}</h3>
+      </div> */}
+    </AppWrapper>
   )
 }
 

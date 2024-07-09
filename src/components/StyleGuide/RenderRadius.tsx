@@ -26,7 +26,7 @@ const RenderRadius: React.FC<RenderRadiusProps> = ({ radius }) => {
         style={{
           width: '75px',
           height: '75px',
-          backgroundColor: '#ddd',
+          backgroundColor: 'white',
           borderRadius: value,
           border: '1px solid #000',
         }}

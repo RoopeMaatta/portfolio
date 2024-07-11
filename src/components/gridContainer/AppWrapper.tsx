@@ -1,4 +1,10 @@
-import React, { useState, useEffect, ReactNode, cloneElement } from 'react'
+import React, {
+  useState,
+  useEffect,
+  ReactNode,
+  cloneElement,
+  useCallback,
+} from 'react'
 import { GridContainer } from './GridContainerStyle'
 import GridVisualization from './GridVisualization'
 
@@ -12,21 +18,23 @@ interface GridChildProps {
 }
 
 const AppWrapper: React.FC<AppWrapperProps> = ({ children, gridGap = 20 }) => {
-  const getColumns = () => {
+  const getColumns = useCallback((): number => {
     if (window.innerWidth <= 599) return 4
     if (window.innerWidth <= 899) return 8
     return 12
-  }
+  }, [])
 
   const [showGrid, setShowGrid] = useState(true)
   const [columns, setColumns] = useState(getColumns)
 
   useEffect(() => {
-    const handleResize = () => setColumns(getColumns())
+    const handleResize = () => {
+      setColumns(getColumns())
+    }
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  }, [getColumns])
 
   const adjustedChildren = React.Children.map(children, child => {
     if (React.isValidElement<GridChildProps>(child)) {

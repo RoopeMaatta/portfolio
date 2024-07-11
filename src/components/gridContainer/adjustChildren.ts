@@ -4,59 +4,65 @@ interface GridChildProps {
   gridColumn?: string
 }
 
+const handleSpanPattern = (gridColumn: string, columns: number): string => {
+  const match = gridColumn.match(/^span\s(\d+)$/)
+  if (match) {
+    const spanValue = parseInt(match[1], 10)
+    return spanValue > columns ? `span ${columns}` : gridColumn
+  }
+  return gridColumn
+}
+
+const handleStartSpanPattern = (
+  gridColumn: string,
+  columns: number
+): string => {
+  const match = gridColumn.match(/^(\d+)\s*\/\s*span\s(\d+)$/)
+  if (match) {
+    const start = parseInt(match[1], 10)
+    const spanValue = parseInt(match[2], 10)
+    return start + spanValue - 1 > columns
+      ? `${start} / span ${columns - start + 1}`
+      : gridColumn
+  }
+  return gridColumn
+}
+
+const handleSpanStartPattern = (gridColumn: string): string => {
+  const match = gridColumn.match(/^span\s(\d+)\s*\/\s*(\d+)$/)
+  if (match) {
+    const spanValue = parseInt(match[1], 10)
+    const start = parseInt(match[2], 10)
+    return spanValue >= start ? `span ${start - 1} / ${start}` : gridColumn
+  }
+  return gridColumn
+}
+
+const handleStartEndPattern = (gridColumn: string, columns: number): string => {
+  const parts = gridColumn.split('/')
+  if (parts.length === 2) {
+    const start = parseInt(parts[0].trim(), 10)
+    const end = parseInt(parts[1].trim(), 10)
+    return end - start > columns ? `${start} / ${start + columns}` : gridColumn
+  }
+  return gridColumn
+}
+
+const adjustGridColumn = (gridColumn: string, columns: number): string => {
+  let adjustedGridColumn = gridColumn
+  adjustedGridColumn = handleSpanPattern(adjustedGridColumn, columns)
+  adjustedGridColumn = handleStartSpanPattern(adjustedGridColumn, columns)
+  adjustedGridColumn = handleSpanStartPattern(adjustedGridColumn)
+  adjustedGridColumn = handleStartEndPattern(adjustedGridColumn, columns)
+  return adjustedGridColumn
+}
+
 const adjustChildren = (children: ReactNode, columns: number): ReactNode => {
   return React.Children.map(children, child => {
     if (React.isValidElement<GridChildProps>(child)) {
       const { gridColumn } = child.props
       if (gridColumn) {
-        let adjustedGridColumn = gridColumn
-
-        // Regular expression to match different gridColumn formats
-        const spanPattern = /^span\s(\d+)$/
-        const startSpanPattern = /^(\d+)\s*\/\s*span\s(\d+)$/
-        const spanStartPattern = /^span\s(\d+)\s*\/\s*(\d+)$/
-
-        if (spanPattern.test(gridColumn)) {
-          // Handle "span X" format
-          const match = gridColumn.match(spanPattern)
-          if (match) {
-            const spanValue = parseInt(match[1], 10)
-            if (spanValue > columns) {
-              adjustedGridColumn = `span ${columns}`
-            }
-          }
-        } else if (startSpanPattern.test(gridColumn)) {
-          // Handle "start / span X" format
-          const match = gridColumn.match(startSpanPattern)
-          if (match) {
-            const start = parseInt(match[1], 10)
-            const spanValue = parseInt(match[2], 10)
-            if (start + spanValue - 1 > columns) {
-              adjustedGridColumn = `${start} / span ${columns - start + 1}`
-            }
-          }
-        } else if (spanStartPattern.test(gridColumn)) {
-          // Handle "span X / start" format
-          const match = gridColumn.match(spanStartPattern)
-          if (match) {
-            const spanValue = parseInt(match[1], 10)
-            const start = parseInt(match[2], 10)
-            if (spanValue >= start) {
-              adjustedGridColumn = `span ${start - 1} / ${start}`
-            }
-          }
-        } else {
-          // Handle "start / end" format
-          const parts = gridColumn.split('/')
-          if (parts.length === 2) {
-            const start = parseInt(parts[0].trim(), 10)
-            const end = parseInt(parts[1].trim(), 10)
-            if (end - start > columns) {
-              adjustedGridColumn = `${start} / ${start + columns}`
-            }
-          }
-        }
-
+        const adjustedGridColumn = adjustGridColumn(gridColumn, columns)
         return cloneElement(child, { gridColumn: adjustedGridColumn })
       }
     }

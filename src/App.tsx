@@ -29,10 +29,9 @@ const App: React.FC = () => {
   return (
     <AppWrapper>
       <Box gridColumn='span 3'>Box 1</Box>
-      <Box gridColumn='span 2'>Box 2</Box>
-      <Box gridColumn='span 9'>Box 3</Box>
-      <Box gridColumn='span 5'>Box 4</Box>
-
+      <Box gridColumn='2 / 4'>Box 2</Box> {/* start / end */}
+      <Box gridColumn='span 4 / 3'>Box 3</Box> {/* span X / start */}
+      <Box gridColumn='7 / span 3'>Box 4</Box> {/* start / span X */}
       <Container>
         <h1 style={theme.typography.h1}>Wuf Wuf {counter}</h1>
         <ButtonVariations setCounter={setCounter} />

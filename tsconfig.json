@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "lib": ["dom", "es2017"],
-    "jsx": "react",
-    "module": "commonjs",
+    "target": "es2020",
+    "lib": ["dom", "es2020", "dom.iterable"],
+    "jsx": "react-jsx",
+    "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": ["src"]
 }

@@ -16,6 +16,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    project: './tsconfig.json', // Add this line
     requireConfigFile: false, // For babel-eslint
     babelOptions: {
       presets: ['@babel/preset-react'],
@@ -29,6 +30,7 @@ module.exports = {
     'react',
     'styled-components-a11y', // Use the correct styled-components plugin
     'prettier',
+    '@typescript-eslint', // Ensure this plugin is included
   ],
   rules: {
     'prettier/prettier': 'error',
@@ -43,6 +45,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 0,
     '@typescript-eslint/no-unused-vars': ['error'],
-    'no-unused-vars': 'off',
+    'no-unused-vars': 'off', // Disable the base rule
   },
 }

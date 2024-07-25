@@ -14,7 +14,7 @@
   "prettier.requireConfig": true,
   "eslint.format.enable": true,
   "eslint.options": {
-    "overrideConfigFile": "eslint.config.cjs"
+    "overrideConfigFile": "eslint.config.js"
   }
   
   

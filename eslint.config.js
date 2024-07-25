@@ -1,21 +1,28 @@
-/* eslint-disable */
+import { FlatCompat } from '@eslint/eslintrc'
+import js from '@eslint/js' // Import @eslint/js to provide the recommended configurations
+import typescriptParser from '@typescript-eslint/parser'
+import nodePlugin from 'eslint-plugin-node'
+import reactPlugin from 'eslint-plugin-react'
+import styledComponentsA11yPlugin from 'eslint-plugin-styled-components-a11y'
+import prettierPlugin from 'eslint-plugin-prettier'
+import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-console.log('ESLint configuration loaded')
+// Get the directory name
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
-const { FlatCompat } = require('@eslint/eslintrc')
-const js = require('@eslint/js') // Import @eslint/js to provide the recommended configurations
-
+// Compatibility for older config files
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
 })
 
-const typescriptParser = require('@typescript-eslint/parser')
-
-module.exports = [
+export default [
   {
     files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
-    ignores: ['eslint.config.cjs', 'node_modules', 'dist'],
+    ignores: ['eslint.config.js', 'node_modules', 'dist'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -37,15 +44,15 @@ module.exports = [
     },
     settings: {
       react: {
-        version: 'detect', // Add this line to auto-detect React version
+        version: 'detect',
       },
     },
     plugins: {
-      node: require('eslint-plugin-node'),
-      react: require('eslint-plugin-react'),
-      'styled-components-a11y': require('eslint-plugin-styled-components-a11y'),
-      prettier: require('eslint-plugin-prettier'),
-      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+      node: nodePlugin,
+      react: reactPlugin,
+      'styled-components-a11y': styledComponentsA11yPlugin,
+      prettier: prettierPlugin,
+      '@typescript-eslint': typescriptEslintPlugin,
     },
     rules: {
       'prettier/prettier': 'error',

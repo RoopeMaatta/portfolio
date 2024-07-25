@@ -8,6 +8,7 @@ import prettierPlugin from 'eslint-plugin-prettier'
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import eslintPluginExample from './eslint-custom-rules/eslint-plugin-example.js'
 
 // Get the directory name
 const __filename = fileURLToPath(import.meta.url)
@@ -53,6 +54,7 @@ export default [
       'styled-components-a11y': styledComponentsA11yPlugin,
       prettier: prettierPlugin,
       '@typescript-eslint': typescriptEslintPlugin,
+      example: eslintPluginExample,
     },
     rules: {
       'prettier/prettier': 'error',
@@ -68,6 +70,7 @@ export default [
       'react/prop-types': 0,
       '@typescript-eslint/no-unused-vars': ['error'],
       'no-unused-vars': 'off', // Disable the base rule
+      'example/enforce-foo-bar': 'error',
     },
   },
   ...compat.extends('eslint:recommended'),

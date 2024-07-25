@@ -11,5 +11,11 @@
     "typescript",
     "typescriptreact"
   ],
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "eslint.format.enable": true,
+  "eslint.options": {
+    "overrideConfigFile": "eslint.config.cjs"
+  }
+  
+  
 }

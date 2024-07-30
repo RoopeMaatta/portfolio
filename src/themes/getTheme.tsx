@@ -131,6 +131,24 @@ export const getTheme = (isDarkMode: boolean) => {
       overlay:
         '0 4px 12px 0 rgba(0, 18, 38, 16%), 0 0px 1px 0 rgba(0, 18, 38, 16%)',
     },
+
+    grid: {
+      s: {
+        minWidthBreakpoint: 0,
+        columns: 4,
+        gridGap: 16,
+      },
+      m: {
+        minWidthBreakpoint: 600,
+        columns: 8,
+        gridGap: 24,
+      },
+      l: {
+        minWidthBreakpoint: 900,
+        columns: 12,
+        gridGap: 32,
+      },
+    },
   }
 }
 

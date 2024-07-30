@@ -4,21 +4,20 @@ import { GridContainer } from './GridContainerStyle'
 import GridVisualization from './GridVisualization'
 import withResponsiveProps from './withResponsiveProps'
 
+// Interface for the AppWrapper properties
 interface AppWrapperProps {
   children: ReactNode
-  gridGap?: number
 }
 
-const AppWrapperContent: React.FC<AppWrapperProps> = ({
-  children,
-  gridGap = 20,
-}) => {
+// Main content component for the AppWrapper
+const AppWrapperContent: React.FC<AppWrapperProps> = ({ children }) => {
   const [showGrid, setShowGrid] = useState(true)
-  const { columns } = useGrid()
+  const { columns, gridGap } = useGrid()
 
-  // Log columns to ensure it works
-  console.log('Current number of columns:', columns)
+  // Log the current grid configuration for debugging
+  console.log('Current grid config:', { columns, gridGap })
 
+  // Function to render children with responsive grid properties
   const renderChildren = useCallback(() => {
     return Children.map(children, child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -42,6 +41,7 @@ const AppWrapperContent: React.FC<AppWrapperProps> = ({
   )
 }
 
+// AppWrapper component to provide grid context to its children
 const AppWrapper: React.FC<AppWrapperProps> = props => (
   <GridProvider>
     <AppWrapperContent {...props} />

@@ -6,47 +6,61 @@ import React, {
   useCallback,
   ReactNode,
 } from 'react'
+import { useTheme } from 'styled-components'
 import { debounce } from 'lodash'
 
+// Interface for the grid context properties
 interface GridContextProps {
   columns: number
+  gridGap: number
 }
 
+// Create the GridContext
 const GridContext = createContext<GridContextProps | undefined>(undefined)
 
-const useColumns = () => {
-  const getColumns = useCallback((): number => {
-    if (window.innerWidth <= 599) return 4
-    if (window.innerWidth <= 899) return 8
-    return 12
-  }, [])
+// Custom hook to get the grid configuration based on the current window width
+const useGridConfig = () => {
+  const theme = useTheme()
+  const breakpoints = theme.breakpoints
 
-  const [columns, setColumns] = useState(getColumns)
+  const getGridConfig = useCallback(() => {
+    const width = window.innerWidth
+    for (let i = breakpoints.length - 1; i >= 0; i--) {
+      if (width >= breakpoints[i].minWidthBreakpoint) {
+        return {
+          columns: breakpoints[i].columns,
+          gridGap: breakpoints[i].gridGap,
+        }
+      }
+    }
+    // Default to smallest config if no breakpoints match
+    return { columns: 4, gridGap: 16 }
+  }, [breakpoints])
+
+  const [gridConfig, setGridConfig] = useState(getGridConfig)
 
   useEffect(() => {
     const handleResize = debounce(() => {
-      setColumns(getColumns())
+      setGridConfig(getGridConfig())
     }, 100)
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [getColumns])
+  }, [getGridConfig])
 
-  return columns
+  return gridConfig
 }
 
-interface GridProviderProps {
-  children: ReactNode
-}
-
-const GridProvider: React.FC<GridProviderProps> = ({ children }) => {
-  const columns = useColumns()
+// Provider component to supply the grid configuration to its children
+const GridProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const gridConfig = useGridConfig()
 
   return (
-    <GridContext.Provider value={{ columns }}>{children}</GridContext.Provider>
+    <GridContext.Provider value={gridConfig}>{children}</GridContext.Provider>
   )
 }
 
+// Custom hook to access the grid configuration context
 const useGrid = () => {
   const context = useContext(GridContext)
   if (!context) {

@@ -5,6 +5,7 @@ import RenderTypography from '../components/StyleGuide/RenderTypography'
 import RenderSpacing from '../components/StyleGuide/RenderSpacing'
 import RenderRadius from '../components/StyleGuide/RenderRadius'
 import RenderShadows from '../components/StyleGuide/RenderShadows'
+import RenderBreakpoints from '../components/StyleGuide/RenderBreakpoints'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>
@@ -22,6 +23,7 @@ const StyleGuide: React.FC = () => {
       style={{ padding: '20px', textAlign: 'left', ...theme.typography.body }}
     >
       <h1>Style Guide</h1>
+      <RenderBreakpoints />
       <RenderColorBlocks colors={theme.colors} />
       <RenderTypography typography={theme.typography} />
       <RenderSpacing spacing={theme.spacing} />

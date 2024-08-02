@@ -3,18 +3,18 @@ import RenderBlock from './RenderBlock'
 import { useTheme } from 'styled-components'
 
 interface Breakpoint {
-  minWidthBreakpoint: number
+  minScreenWidth: number
   columns: number
   gridGap: number
 }
 
 const RenderBreakpoints: React.FC = () => {
   const theme = useTheme()
-  const breakpoints = theme.breakpoints as Breakpoint[]
+  const breakpoints = theme.breakpoints as Record<string, Breakpoint>
 
-  const formattedBreakpoints: Record<string, Breakpoint> = breakpoints.reduce(
-    (acc, breakpoint, index) => {
-      acc[`Breakpoint ${index + 1}`] = breakpoint
+  const formattedBreakpoints = Object.keys(breakpoints).reduce(
+    (acc, key) => {
+      acc[`Breakpoint ${key}`] = breakpoints[key]
       return acc
     },
     {} as Record<string, Breakpoint>
@@ -34,9 +34,9 @@ const RenderBreakpoints: React.FC = () => {
     >
       <span>{key}:</span>
       <div style={{ marginLeft: '10px' }}>
-        <div>Min Width: {value.minWidthBreakpoint}px</div>
-        <div>Columns: {value.columns}</div>
-        <div>Grid Gap: {value.gridGap}px</div>
+        <div>minScreenWidth: {value.minScreenWidth}px</div>
+        <div>columns: {value.columns}</div>
+        <div>gridGap: {value.gridGap}px</div>
       </div>
     </div>
   )

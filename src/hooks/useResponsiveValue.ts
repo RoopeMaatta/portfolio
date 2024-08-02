@@ -2,14 +2,27 @@ import { useEffect, useState, useCallback } from 'react'
 import { useTheme } from 'styled-components'
 import { debounce } from 'lodash'
 
+type Breakpoints = {
+  [key: string]: {
+    minScreenWidth: number
+    columns: number
+    gridGap: number
+  }
+}
+
 const useResponsiveValue = <T>(values: T[]): T => {
   const theme = useTheme()
-  const breakpoints = theme.breakpoints
+  const breakpoints = theme.breakpoints as Breakpoints
 
   const getResponsiveValue = useCallback(() => {
     const width = window.innerWidth
-    for (let i = breakpoints.length - 1; i >= 0; i--) {
-      if (width >= breakpoints[i].minWidthBreakpoint) {
+    const breakpointKeys = Object.keys(breakpoints).sort(
+      (a, b) => breakpoints[a].minScreenWidth - breakpoints[b].minScreenWidth
+    )
+
+    for (let i = breakpointKeys.length - 1; i >= 0; i--) {
+      const key = breakpointKeys[i]
+      if (width >= breakpoints[key].minScreenWidth) {
         return values[i]
       }
     }

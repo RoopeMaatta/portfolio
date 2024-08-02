@@ -25,16 +25,18 @@ const useGridConfig = () => {
 
   const getGridConfig = useCallback(() => {
     const width = window.innerWidth
-    for (let i = breakpoints.length - 1; i >= 0; i--) {
-      if (width >= breakpoints[i].minWidthBreakpoint) {
-        return {
-          columns: breakpoints[i].columns,
-          gridGap: breakpoints[i].gridGap,
-        }
+    const matchingBreakpoint = Object.values(breakpoints)
+      .reverse()
+      .find(breakpoint => width >= breakpoint.minScreenWidth)
+
+    if (matchingBreakpoint) {
+      return {
+        columns: matchingBreakpoint.columns,
+        gridGap: matchingBreakpoint.gridGap,
       }
     }
-    // Default to smallest config if no breakpoints match
-    return { columns: 4, gridGap: 16 }
+
+    throw new Error('No matching breakpoints found for the given width')
   }, [breakpoints])
 
   const [gridConfig, setGridConfig] = useState(getGridConfig)

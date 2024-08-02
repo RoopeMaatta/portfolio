@@ -5,17 +5,12 @@ import StyleGuide from './views/StyleGuide'
 import AppWrapper from './components/gridContainer/AppWrapper'
 import ButtonVariations from './views/ButtonVariations'
 import styled from 'styled-components'
+import useResponsiveValue from './hooks/useResponsiveValue'
 
 const App: React.FC = () => {
   const [counter, setCounter] = useState(0)
   const isDarkMode = useDarkMode()
   const theme = useTheme()
-
-  const Box = styled.div<{ gridColumn: string | string[] }>`
-    border: 1px solid black;
-    padding: 20px;
-    grid-column: ${({ gridColumn }) => gridColumn};
-  `
 
   const Container = styled.div`
     text-align: center;
@@ -25,11 +20,18 @@ const App: React.FC = () => {
     background-color: ${theme.colors.fill.background.base};
     color: ${theme.colors.text.neutral.strong};
   `
+  const Box = styled.div<{ gridColumn: string | string[] }>`
+    border: 1px solid black;
+    padding: 20px;
+    grid-column: ${({ gridColumn }) => gridColumn};
+  `
 
   return (
     <AppWrapper>
       <Box gridColumn='span 3'>Box 1</Box>
-      <Box gridColumn={['span 3', 'span 4', 'span 6']}>Box responsive</Box>
+      <Box gridColumn={useResponsiveValue(['span 3', 'span 4', 'span 6'])}>
+        Box responsive
+      </Box>
 
       {/* 
       <Box gridColumn='2 / 4'>Box 2</Box>

@@ -13,7 +13,6 @@ declare module 'styled-components' {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const isDarkMode = useDarkMode()
-
   return (
     <StyledThemeProvider theme={getTheme(isDarkMode)}>
       {children}

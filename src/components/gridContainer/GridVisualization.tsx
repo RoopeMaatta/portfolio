@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 interface GridVisualizationProps {
@@ -25,10 +25,6 @@ const GridColumn = styled.div`
 `
 
 const GridVisualization: React.FC<GridVisualizationProps> = ({ columns }) => {
-  useEffect(() => {
-    console.log('Columns:', columns)
-  }, [columns])
-
   return (
     <GridOverlay columns={columns}>
       {Array.from({ length: columns }).map((_, index) => (

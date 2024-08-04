@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
 import { useDarkMode } from './hooks'
-import { useTheme } from 'styled-components'
+import { useTheme, DefaultTheme } from 'styled-components'
 import StyleGuide from './views/StyleGuide'
 import AppWrapper from './components/gridContainer/AppWrapper'
 import ButtonVariations from './views/ButtonVariations'
 import styled from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
 
-const App: React.FC = () => {
-  const [counter, setCounter] = useState(0)
-  const isDarkMode = useDarkMode()
-  const theme = useTheme()
-
-  const Container = styled.div`
+const Container = styled.div(
+  ({ theme }: { theme: DefaultTheme }) => `
     text-align: center;
     padding: 50px;
     border: ${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong};
@@ -20,26 +16,50 @@ const App: React.FC = () => {
     background-color: ${theme.colors.fill.background.base};
     color: ${theme.colors.text.neutral.strong};
   `
-  const Box = styled.div<{ gridColumn: string | string[] }>`
-    border: 1px solid black;
-    padding: 20px;
-    grid-column: ${({ gridColumn }) => gridColumn};
-  `
+)
+
+const Box = styled.div`
+  border: 1px solid black;
+  padding: 20px;
+`
+
+const App: React.FC = () => {
+  const [counter, setCounter] = useState(0)
+  const isDarkMode = useDarkMode()
+  const theme = useTheme()
 
   return (
     <AppWrapper>
-      <Box gridColumn='span 3'>Box 1</Box>
-      <Box gridColumn={useResponsiveValue(['span 3', 'span 4', 'span 6'])}>
-        Box responsive
+      <Box style={{ gridColumn: 'span 3' }}>Box 1</Box>
+      <Box
+        style={{
+          gridColumn: useResponsiveValue(['span 2', 'span 3', 'span 4']),
+        }}
+      >
+        Box responsive works
       </Box>
 
-      {/* 
-      <Box gridColumn='2 / 4'>Box 2</Box>
-      <Box gridColumn='span 4 / 3'>Box 3</Box>
-      <Box gridColumn='7 / span 3'>Box 4</Box>
-      */}
+      <Box style={{ gridColumn: useResponsiveValue(['span 3', 'span 6']) }}>
+        Box error too few values
+      </Box>
+      <Box
+        style={{
+          gridColumn: useResponsiveValue([
+            'span 2',
+            'span 3',
+            'span 4',
+            'span 5',
+          ]),
+        }}
+      >
+        Box error too many values
+      </Box>
 
-      <Container>
+      {/* <Box style={{ gridColumn: '2 / 4' }}>Box 2</Box>
+      <Box style={{ gridColumn: 'span 4 / 3' }}>Box 3</Box>
+      <Box style={{ gridColumn: '2 / span 3' }}>Box 4</Box> */}
+
+      <Container theme={theme}>
         <h1 style={theme.typography.h1}>Wuf Wuf {counter}</h1>
         <ButtonVariations setCounter={setCounter} />
         <h3>Darkmode is: {isDarkMode ? 'on' : 'off'}</h3>

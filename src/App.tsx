@@ -7,9 +7,6 @@ import ButtonVariations from './views/ButtonVariations'
 import styled from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
 
-
-
-  
 const Container = styled.div(
   ({ theme }: { theme: DefaultTheme }) => `
     text-align: center;

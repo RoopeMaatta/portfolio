@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "test": "node eslint-custom-rules/enforce-foo-bar.test.js"
+    "test": "node eslint-custom-rules/enforce-useResponsiveValue-array.test.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",

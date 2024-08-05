@@ -1,0 +1,17 @@
+{
+  "s": {
+    "minScreenWidth": 0,
+    "columns": 4,
+    "gridGap": 16
+  },
+  "m": {
+    "minScreenWidth": 600,
+    "columns": 8,
+    "gridGap": 24
+  },
+  "l": {
+    "minScreenWidth": 900,
+    "columns": 12,
+    "gridGap": 32
+  }
+}

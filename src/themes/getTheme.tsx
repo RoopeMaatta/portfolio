@@ -1,4 +1,5 @@
 import { typographyStyles } from './typographyStyles'
+import breakpoints from './breakpoints.json'
 
 export const getTheme = (isDarkMode: boolean) => {
   const D = isDarkMode
@@ -132,23 +133,7 @@ export const getTheme = (isDarkMode: boolean) => {
         '0 4px 12px 0 rgba(0, 18, 38, 16%), 0 0px 1px 0 rgba(0, 18, 38, 16%)',
     },
 
-    breakpoints: {
-      s: {
-        minScreenWidth: 0,
-        columns: 4,
-        gridGap: 16,
-      },
-      m: {
-        minScreenWidth: 600,
-        columns: 8,
-        gridGap: 24,
-      },
-      l: {
-        minScreenWidth: 900,
-        columns: 12,
-        gridGap: 32,
-      },
-    },
+    breakpoints,
   }
 }
 

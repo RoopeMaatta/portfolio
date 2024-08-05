@@ -1,52 +1,49 @@
 /**
- * @fileoverview Rule to enforce that `const foo` is assigned "bar".
- * @author Ben Perlmutter
+ * @fileoverview Rule to enforce that `useResponsiveValue` is given an array of correct length.
  */
 
-// The enforce-foo-bar rule definition
+// The enforce-useResponsiveValue-array rule definition
 export default {
   meta: {
     type: 'problem',
     docs: {
       description:
-        "Enforce that a variable named `foo` can only be assigned a value of 'bar'.",
+        'Enforce that `useResponsiveValue` is given an array of length matching the number of breakpoints.',
     },
-    fixable: 'code',
+    fixable: null, // or 'code' if you plan to provide automatic fixes
     schema: [],
   },
   create(context) {
+    const expectedArrayLength = 3 // Hardcoded number of breakpoints
+
     return {
-      // Performs action in the function on every variable declarator
-      VariableDeclarator(node) {
-        // Check if a `const` variable declaration
-        if (node.parent.kind === 'const') {
-          // Check if variable name is `foo`
-          if (node.id.type === 'Identifier' && node.id.name === 'foo') {
-            // Check if value of variable is "bar"
-            if (
-              node.init &&
-              node.init.type === 'Literal' &&
-              node.init.value !== 'bar'
-            ) {
-              /*
-               * Report error to ESLint. Error message uses
-               * a message placeholder to include the incorrect value
-               * in the error message.
-               * Also includes a `fix(fixer)` function that replaces
-               * any values assigned to `const foo` with "bar".
-               */
+      // Performs action on every call expression
+      CallExpression(node) {
+        // Check if the function name is `useResponsiveValue`
+        if (
+          node.callee.type === 'Identifier' &&
+          node.callee.name === 'useResponsiveValue'
+        ) {
+          // Check if the argument is an array
+          if (
+            node.arguments.length === 1 &&
+            node.arguments[0].type === 'ArrayExpression'
+          ) {
+            const arrayLength = node.arguments[0].elements.length
+
+            // Check if array length matches the expected length
+            if (arrayLength !== expectedArrayLength) {
               context.report({
                 node,
-                message:
-                  'Value other than "bar" assigned to `const foo`. Unexpected value: {{ notBar }}.',
-                data: {
-                  notBar: node.init.value,
-                },
-                fix(fixer) {
-                  return fixer.replaceText(node.init, '"bar"')
-                },
+                message: `Array length passed to useResponsiveValue should be ${expectedArrayLength}, but got ${arrayLength}.`,
               })
             }
+          } else {
+            context.report({
+              node,
+              message:
+                'useResponsiveValue must be called with an array argument.',
+            })
           }
         }
       },

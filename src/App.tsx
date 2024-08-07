@@ -39,22 +39,6 @@ const App: React.FC = () => {
         Box responsive works
       </Box>
 
-      <Box style={{ gridColumn: useResponsiveValue(['span 3', 'span 6']) }}>
-        Box error too few values
-      </Box>
-      <Box
-        style={{
-          gridColumn: useResponsiveValue([
-            'span 2',
-            'span 3',
-            'span 4',
-            'span 5',
-          ]),
-        }}
-      >
-        Box error too many values
-      </Box>
-
       {/* <Box style={{ gridColumn: '2 / 4' }}>Box 2</Box>
       <Box style={{ gridColumn: 'span 4 / 3' }}>Box 3</Box>
       <Box style={{ gridColumn: '2 / span 3' }}>Box 4</Box> */}

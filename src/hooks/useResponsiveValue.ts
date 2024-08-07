@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useTheme } from 'styled-components'
-import { debounce } from 'lodash'
+import { useWindowSizeContext } from '../contexts/WindowSizeContext'
 
 type Breakpoint = {
   minScreenWidth: number
@@ -13,10 +13,11 @@ type Breakpoints = {
 }
 
 const useResponsiveValue = <T>(values: T[]): T => {
+  const { windowWidth } = useWindowSizeContext()
   const theme = useTheme()
   const breakpoints = useMemo(() => theme.breakpoints as Breakpoints, [theme])
 
-  const breakpointKeys = useMemo(
+  const sortedBreakpointKeys = useMemo(
     () =>
       Object.keys(breakpoints).sort(
         (a, b) => breakpoints[a].minScreenWidth - breakpoints[b].minScreenWidth
@@ -25,61 +26,33 @@ const useResponsiveValue = <T>(values: T[]): T => {
   )
 
   useEffect(() => {
-    if (values.length !== breakpointKeys.length) {
+    if (values.length !== sortedBreakpointKeys.length) {
       console.warn(
-        `Warning: The number of values (${values.length}) does not match the number of breakpoints (${breakpointKeys.length}).`
+        `Warning: The number of values (${values.length}) does not match the number of breakpoints (${sortedBreakpointKeys.length}).`
       )
     }
-  }, [values, breakpointKeys])
+  }, [values, sortedBreakpointKeys])
 
   const adjustedValues = useMemo(() => {
-    const adjusted = values.slice(0, breakpointKeys.length)
-    if (values.length < breakpointKeys.length) {
-      return [
-        ...adjusted,
-        ...new Array(breakpointKeys.length - values.length).fill(
-          values[values.length - 1]
-        ),
-      ]
+    if (values.length >= sortedBreakpointKeys.length) {
+      return values.slice(0, sortedBreakpointKeys.length)
     }
-    return adjusted
-  }, [values, breakpointKeys])
+    const lastValue = values[values.length - 1]
+    return [
+      ...values,
+      ...new Array(sortedBreakpointKeys.length - values.length).fill(lastValue),
+    ]
+  }, [values, sortedBreakpointKeys])
 
-  const getResponsiveValue = useCallback(() => {
-    const width = window.innerWidth
-
-    for (let i = breakpointKeys.length - 1; i >= 0; i--) {
-      const key = breakpointKeys[i]
-      if (width >= breakpoints[key].minScreenWidth) {
+  const responsiveValue = useMemo(() => {
+    for (let i = sortedBreakpointKeys.length - 1; i >= 0; i--) {
+      const key = sortedBreakpointKeys[i]
+      if (windowWidth >= breakpoints[key].minScreenWidth) {
         return adjustedValues[i]
       }
     }
-
     return adjustedValues[0]
-  }, [adjustedValues, breakpoints, breakpointKeys])
-
-  const [responsiveValue, setResponsiveValue] = useState<T>(getResponsiveValue)
-
-  const handleResize = useRef(
-    debounce(() => {
-      const newValue = getResponsiveValue()
-      setResponsiveValue(prevValue =>
-        prevValue !== newValue ? newValue : prevValue
-      )
-    }, 100)
-  ).current
-
-  useEffect(() => {
-    const resizeListener = handleResize
-
-    window.addEventListener('resize', resizeListener)
-    setResponsiveValue(getResponsiveValue())
-
-    return () => {
-      window.removeEventListener('resize', resizeListener)
-      handleResize.cancel()
-    }
-  }, [handleResize, getResponsiveValue])
+  }, [windowWidth, adjustedValues, sortedBreakpointKeys, breakpoints])
 
   return responsiveValue
 }

@@ -2,22 +2,27 @@ import React, { ReactNode, useState } from 'react'
 import { GridProvider, useGrid } from './GridContext'
 import { GridContainer } from './GridContainerStyle'
 import GridVisualization from './GridVisualization'
+import { Button } from '../Button'
 
-// Interface for the AppWrapper properties
-interface AppWrapperProps {
+// Interface for the GridWrapper properties
+interface GridWrapperProps {
   children: ReactNode
 }
 
-// Main content component for the AppWrapper
-const AppWrapperContent: React.FC<AppWrapperProps> = ({ children }) => {
+// Main content component for the GridWrapper
+const GridWrapperContent: React.FC<GridWrapperProps> = ({ children }) => {
   const [showGrid, setShowGrid] = useState(true)
   const { columns, gridGap } = useGrid()
 
   return (
     <div style={{ position: 'relative' }}>
-      <button onClick={() => setShowGrid(!showGrid)}>
-        Toggle Grid Visualization
-      </button>
+      <Button
+        label='Toggle Grid Visualization'
+        onClick={() => setShowGrid(!showGrid)}
+        buttonStyle='tonal'
+        fullWidth={true}
+      />
+
       <GridContainer gridGap={gridGap} columns={columns}>
         {children}
         {showGrid && <GridVisualization columns={columns} />}
@@ -26,11 +31,11 @@ const AppWrapperContent: React.FC<AppWrapperProps> = ({ children }) => {
   )
 }
 
-// AppWrapper component to provide grid context to its children
-const AppWrapper: React.FC<AppWrapperProps> = props => (
+// GridWrapper component to provide grid context to its children
+const GridWrapper: React.FC<GridWrapperProps> = props => (
   <GridProvider>
-    <AppWrapperContent {...props} />
+    <GridWrapperContent {...props} />
   </GridProvider>
 )
 
-export default AppWrapper
+export default GridWrapper

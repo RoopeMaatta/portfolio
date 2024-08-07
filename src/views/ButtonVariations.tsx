@@ -1,21 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '../components'
 import CheckIcon from '@mui/icons-material/Check'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import { useTheme } from 'styled-components'
+import styled from 'styled-components'
 
-// Define the type for the props
-interface ButtonVariationsProps {
-  setCounter: React.Dispatch<React.SetStateAction<number>>
-}
+const Container = styled.div`
+  text-align: center;
+  grid-column: 1 / -1;
+`
 
-const ButtonVariations: React.FC<ButtonVariationsProps> = ({ setCounter }) => {
+const ButtonVariations: React.FC = () => {
+  const [counter, setCounter] = useState(0)
+  const theme = useTheme()
+
   // Function to increment the counter
   const handleButtonClick = () => {
     setCounter((prevCounter: number) => prevCounter + 1)
   }
 
   return (
-    <>
+    <Container>
+      <h1 style={theme.typography.h1}>Wuf Wuf counter: {counter}</h1>
       <Button
         onClick={handleButtonClick}
         buttonStyle='outline'
@@ -105,7 +111,7 @@ const ButtonVariations: React.FC<ButtonVariationsProps> = ({ setCounter }) => {
         buttonStyle='text'
         icon={<ChevronRightIcon />}
       />
-    </>
+    </Container>
   )
 }
 

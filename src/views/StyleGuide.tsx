@@ -19,17 +19,16 @@ const StyleGuide: React.FC = () => {
   const theme = useTheme() as unknown as Theme
 
   return (
-    <div
-      style={{ padding: '20px', textAlign: 'left', ...theme.typography.body }}
-    >
-      <h1>Style Guide</h1>
-      <RenderBreakpoints />
-      <RenderColorBlocks colors={theme.colors} />
+    <>
+      {/* <h1>Style Guide</h1> */}
+
       <RenderTypography typography={theme.typography} />
+      <RenderColorBlocks colors={theme.colors} />
       <RenderSpacing spacing={theme.spacing} />
       <RenderRadius radius={theme.radius} />
       <RenderShadows shadows={theme.shadow} />
-    </div>
+      <RenderBreakpoints />
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import RenderBlock from './RenderBlock'
 import { useTheme } from 'styled-components'
+import useResponsiveValue from '../../hooks/useResponsiveValue'
 
 interface Breakpoint {
   minScreenWidth: number
@@ -14,7 +15,7 @@ const RenderBreakpoints: React.FC = () => {
 
   const formattedBreakpoints = Object.keys(breakpoints).reduce(
     (acc, key) => {
-      acc[`Breakpoint ${key}`] = breakpoints[key]
+      acc[`${key}`] = breakpoints[key]
       return acc
     },
     {} as Record<string, Breakpoint>
@@ -26,7 +27,7 @@ const RenderBreakpoints: React.FC = () => {
       style={{
         margin: '10px 0',
         display: 'grid',
-        gridTemplateColumns: '200px auto',
+        gridTemplateColumns: '100px auto',
         alignItems: 'center',
         textAlign: 'left',
         ...theme.typography.body,
@@ -46,6 +47,9 @@ const RenderBreakpoints: React.FC = () => {
       title='Breakpoints'
       data={formattedBreakpoints}
       renderItem={renderBreakpointItem}
+      style={{
+        gridColumn: useResponsiveValue(['1/-1', 'span 4', 'span 6']),
+      }}
     />
   )
 }

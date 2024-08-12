@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import RenderBlock from './RenderBlock'
 import { useTheme } from 'styled-components'
+import useResponsiveValue from '../../hooks/useResponsiveValue'
 
 interface RenderTypographyProps {
   typography: Record<string, React.CSSProperties>
+  style?: CSSProperties
 }
 
 const RenderTypography: React.FC<RenderTypographyProps> = ({ typography }) => {
@@ -33,6 +35,9 @@ const RenderTypography: React.FC<RenderTypographyProps> = ({ typography }) => {
       title='Typography'
       data={typography}
       renderItem={renderTypographyItem}
+      style={{
+        gridColumn: useResponsiveValue(['1/-1', '1/-1', 'span 6']),
+      }}
     />
   )
 }

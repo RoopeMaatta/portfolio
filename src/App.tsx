@@ -1,26 +1,36 @@
 import React from 'react'
-import { useDarkMode } from './hooks'
-import { useTheme, DefaultTheme } from 'styled-components'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useTheme } from 'styled-components'
 import StyleGuide from './views/StyleGuide'
 import GridWrapper from './components/gridContainer/GridWrapper'
 import ButtonVariations from './views/ButtonVariations'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
+import { NavigationBar } from './components/NavigationBar'
 
-const Container = styled.div<{ padding: string }>(
-  ({ theme, padding }: { theme: DefaultTheme; padding: string }) => `
-    padding-left: ${padding};
-    padding-right: ${padding};
-    
-    text-align: center;
-    border: ${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong};
-    grid-column: 1 / -1; /* Span full width */
-    background-color: ${theme.colors.fill.background.base};
-    color: ${theme.colors.text.neutral.strong};
+const GlobalStyle = createGlobalStyle(
+  ({ theme }) => `
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: ${theme.colors.fill.background.base};
+      color: ${theme.colors.text.neutral.strong};
+      ${Object.entries(theme.typography.body)
+        .map(([key, value]) => `${key}: ${value};`)
+        .join(' ')}
+    }
   `
 )
 
-console.log(Container)
+const Container = styled.div<{ padding: string }>(
+  ({ theme, padding }) => `
+    padding-left: ${padding};
+    padding-right: ${padding};
+    text-align: center;
+    border: ${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong};
+    grid-column: 1 / -1;
+  `
+)
 
 // const MakeDirectChilOfParentContainer = styled.div`
 //   display: contents;
@@ -31,19 +41,23 @@ console.log(Container)
 // `
 
 const App: React.FC = () => {
-  const isDarkMode = useDarkMode()
   const theme = useTheme()
 
   const padding = useResponsiveValue(['2vw', '4vw', '6vw'])
 
   return (
-    <Container theme={theme} padding={padding}>
-      <GridWrapper>
-        <h3>Darkmode is: {isDarkMode ? 'on' : 'off'}</h3>
-        <ButtonVariations />
-        <StyleGuide />
-      </GridWrapper>
-    </Container>
+    <Router>
+      <GlobalStyle theme={theme} />
+      <Container theme={theme} padding={padding}>
+        <NavigationBar />
+        <GridWrapper>
+          <Routes>
+            <Route path='/style-guide' element={<StyleGuide />} />
+            <Route path='/button-variations' element={<ButtonVariations />} />
+          </Routes>
+        </GridWrapper>
+      </Container>
+    </Router>
   )
 }
 

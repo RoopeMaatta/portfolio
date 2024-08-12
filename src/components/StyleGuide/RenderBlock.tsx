@@ -5,17 +5,24 @@ interface RenderBlockProps<T> {
   title: string
   data: Record<string, T>
   renderItem: (key: string, value: T) => React.ReactNode
+  style?: React.CSSProperties // Add the style prop
 }
 
 const RenderBlock = <T extends string | React.CSSProperties>({
   title,
   data,
   renderItem,
+  style,
 }: RenderBlockProps<T>) => {
   const theme = useTheme()
 
   return (
-    <div style={{ marginBottom: '40px' }}>
+    <div
+      style={{
+        marginBottom: '40px',
+        ...style,
+      }}
+    >
       <h2
         style={{
           borderBottom: '2px solid #000',

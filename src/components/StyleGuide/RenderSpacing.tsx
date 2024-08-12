@@ -1,6 +1,7 @@
 import React from 'react'
 import RenderBlock from './RenderBlock'
 import { useTheme } from 'styled-components'
+import useResponsiveValue from '../../hooks/useResponsiveValue'
 
 interface RenderSpacingProps {
   spacing: Record<string, string>
@@ -15,7 +16,7 @@ const RenderSpacing: React.FC<RenderSpacingProps> = ({ spacing }) => {
       style={{
         margin: '10px 0',
         display: 'grid',
-        gridTemplateColumns: '200px auto 100px',
+        gridTemplateColumns: '125px 100px auto',
         alignItems: 'center',
         textAlign: 'left',
         ...theme.typography.body,
@@ -39,6 +40,9 @@ const RenderSpacing: React.FC<RenderSpacingProps> = ({ spacing }) => {
       title='Spacing'
       data={spacing}
       renderItem={renderSpacingItem}
+      style={{
+        gridColumn: useResponsiveValue(['1/-1', 'span 4', 'span 6']),
+      }}
     />
   )
 }

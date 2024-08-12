@@ -1,6 +1,7 @@
 import React from 'react'
 import RenderBlock from './RenderBlock'
 import { useTheme } from 'styled-components'
+import useResponsiveValue from '../../hooks/useResponsiveValue'
 
 interface RenderShadowsProps {
   shadows: Record<string, string>
@@ -15,7 +16,7 @@ const RenderShadows: React.FC<RenderShadowsProps> = ({ shadows }) => {
       style={{
         margin: '10px 0',
         display: 'grid',
-        gridTemplateColumns: '200px 100px auto',
+        gridTemplateColumns: '100px 75px auto',
         alignItems: 'center',
         textAlign: 'left',
         ...theme.typography.body,
@@ -24,9 +25,9 @@ const RenderShadows: React.FC<RenderShadowsProps> = ({ shadows }) => {
       <span>Shadow {key}:</span>
       <div
         style={{
-          width: '100px',
+          width: '50px',
           height: '50px',
-          backgroundColor: 'white',
+          backgroundColor: theme.colors.fill.background.raised,
           boxShadow: value,
         }}
       ></div>
@@ -39,6 +40,9 @@ const RenderShadows: React.FC<RenderShadowsProps> = ({ shadows }) => {
       title='Shadows'
       data={shadows}
       renderItem={renderShadowsItem}
+      style={{
+        gridColumn: useResponsiveValue(['1/-1', 'span 4', 'span 6']),
+      }}
     />
   )
 }

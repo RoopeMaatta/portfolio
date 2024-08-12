@@ -1,6 +1,7 @@
 import React from 'react'
 import RenderBlock from './RenderBlock'
 import { useTheme } from 'styled-components'
+import useResponsiveValue from '../../hooks/useResponsiveValue'
 
 interface RenderColorBlocksProps {
   colors: Record<string, string | Record<string, string>>
@@ -35,7 +36,7 @@ const RenderColorBlocks: React.FC<RenderColorBlocksProps> = ({ colors }) => {
       style={{
         margin: '10px 0',
         display: 'grid',
-        gridTemplateColumns: '200px 50px auto',
+        gridTemplateColumns: '200px 75px auto',
         alignItems: 'center',
         textAlign: 'left',
         ...theme.typography.body,
@@ -46,7 +47,7 @@ const RenderColorBlocks: React.FC<RenderColorBlocksProps> = ({ colors }) => {
         style={{
           backgroundColor: value,
           width: '50px',
-          height: '50px',
+          height: '25px',
           border: '1px solid #000',
         }}
       ></div>
@@ -60,6 +61,9 @@ const RenderColorBlocks: React.FC<RenderColorBlocksProps> = ({ colors }) => {
       title='Colors'
       data={flattenedColors}
       renderItem={renderColorItem}
+      style={{
+        gridColumn: useResponsiveValue(['1/-1', '1/-1', 'span 6']),
+      }}
     />
   )
 }

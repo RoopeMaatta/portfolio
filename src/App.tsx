@@ -26,7 +26,7 @@ const Container = styled.div<{ padding: string }>(
   ({ theme, padding }) => `
     padding-left: ${padding};
     padding-right: ${padding};
-    text-align: center;
+    text-align: left;
     border: ${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong};
     grid-column: 1 / -1;
   `
@@ -52,7 +52,7 @@ const App: React.FC = () => {
         <NavigationBar />
         <GridWrapper>
           <Routes>
-            <Route path='/style-guide' element={<StyleGuide />} />
+            <Route path='/style-guide/*' element={<StyleGuide />} />
             <Route path='/button-variations' element={<ButtonVariations />} />
           </Routes>
         </GridWrapper>

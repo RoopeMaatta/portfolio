@@ -1,4 +1,5 @@
 import React from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 import RenderColorBlocks from '../components/StyleGuide/RenderColorBlocks'
 import RenderTypography from '../components/StyleGuide/RenderTypography'
@@ -20,14 +21,49 @@ const StyleGuide: React.FC = () => {
 
   return (
     <>
-      {/* <h1>Style Guide</h1> */}
+      <nav style={{ gridColumn: '1/-1' }}>
+        <ul>
+          <li>
+            <Link to='/style-guide/typography'>Typography</Link>
+          </li>
+          <li>
+            <Link to='/style-guide/colors'>Colors</Link>
+          </li>
+          <li>
+            <Link to='/style-guide/spacing'>Spacing</Link>
+          </li>
+          <li>
+            <Link to='/style-guide/radius'>Radius</Link>
+          </li>
+          <li>
+            <Link to='/style-guide/shadows'>Shadows</Link>
+          </li>
+          <li>
+            <Link to='/style-guide/breakpoints'>Breakpoints</Link>
+          </li>
+        </ul>
+      </nav>
 
-      <RenderTypography typography={theme.typography} />
-      <RenderColorBlocks colors={theme.colors} />
-      <RenderSpacing spacing={theme.spacing} />
-      <RenderRadius radius={theme.radius} />
-      <RenderShadows shadows={theme.shadow} />
-      <RenderBreakpoints />
+      <Routes>
+        <Route
+          path='typography'
+          element={<RenderTypography typography={theme.typography} />}
+        />
+        <Route
+          path='colors'
+          element={<RenderColorBlocks colors={theme.colors} />}
+        />
+        <Route
+          path='spacing'
+          element={<RenderSpacing spacing={theme.spacing} />}
+        />
+        <Route path='radius' element={<RenderRadius radius={theme.radius} />} />
+        <Route
+          path='shadows'
+          element={<RenderShadows shadows={theme.shadow} />}
+        />
+        <Route path='breakpoints' element={<RenderBreakpoints />} />
+      </Routes>
     </>
   )
 }

@@ -5,7 +5,9 @@ interface GridVisualizationProps {
   columns: number
 }
 
-const GridOverlay = styled.div<{ columns: number }>`
+const GridOverlay = styled.div.withConfig({
+  shouldForwardProp: prop => !['columns'].includes(prop),
+})<{ columns: number }>`
   position: absolute;
   top: 0;
   left: 0;

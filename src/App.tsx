@@ -22,7 +22,10 @@ const GlobalStyle = createGlobalStyle(
   `
 )
 
-const Container = styled.div<{ padding: string }>(
+const Container = styled.div.withConfig({
+  // shouldForwardProp filters out the "padding" prop so it doesn't get passed to the DOM
+  shouldForwardProp: prop => prop !== 'padding',
+})<{ padding: string }>(
   ({ theme, padding }) => `
     padding-left: ${padding};
     padding-right: ${padding};
@@ -31,7 +34,6 @@ const Container = styled.div<{ padding: string }>(
     grid-column: 1 / -1;
   `
 )
-
 // const MakeDirectChilOfParentContainer = styled.div`
 //   display: contents;
 

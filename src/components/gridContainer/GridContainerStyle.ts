@@ -6,7 +6,9 @@ interface GridContainerProps {
   columns: number
 }
 
-const GridContainerStyled = styled.div<GridContainerProps>`
+const GridContainerStyled = styled.div.withConfig({
+  shouldForwardProp: prop => !['columns', 'gridGap'].includes(prop),
+})<GridContainerProps>`
   display: grid;
   grid-template-columns: ${({ columns }) =>
     `repeat(${columns}, minmax(0, 1fr))`};

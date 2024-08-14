@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components'
 
 // Styled component using destructuring
-const ButtonBase = styled.button<{ fullWidth: boolean }>`
+const ButtonBase = styled.button.withConfig({
+  shouldForwardProp: prop => !['fullWidth'].includes(prop),
+})<{ fullWidth: boolean }>`
   ${({ theme, fullWidth }) => {
     const { colors, spacing, radius, typography } = theme
     return css`

@@ -1,0 +1,29 @@
+const Container = styled.div<{ width: string }>(
+  ({ theme, width }) => `
+    padding-left: ${width};
+    padding-right: ${width};
+    text-align: left;
+    border: ${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong};
+    grid-column: 1 / -1;
+  `
+)
+
+
+<Container theme={theme} width={padding}>
+
+Bug/weirdness:
+- styled component poprs that you pass should have a spesific name. For example padding causes console.log statements within child components to not work. But with width everything works.
+- Propably caused by how styled components and react handle optimization or something
+” Color
+Width
+Height
+Spacing
+Size
+Rows”
+
+
+
+const Container = styled.div.withConfig({
+  // Filter out multiple props from being passed to the DOM
+  shouldForwardProp: (prop) => !['padding', 'backgroundColor'].includes(prop)
+})<{ padding: string; backgroundColor: string }>(

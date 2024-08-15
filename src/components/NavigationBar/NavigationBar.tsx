@@ -12,7 +12,6 @@ const Nav = styled.nav`
 
 const NavigationBar: React.FC = () => {
   const isDarkMode = useDarkMode()
-
   return (
     <>
       <Nav>

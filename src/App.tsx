@@ -7,6 +7,7 @@ import ButtonVariations from './views/ButtonVariations'
 import styled, { createGlobalStyle } from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
 import { NavigationBar } from './components/NavigationBar'
+import { applyTypographyToCss } from '@utils/typographyUtils'
 
 const GlobalStyle = createGlobalStyle(
   ({ theme }) => `
@@ -15,9 +16,7 @@ const GlobalStyle = createGlobalStyle(
       padding: 0;
       background-color: ${theme.colors.fill.background.base};
       color: ${theme.colors.text.neutral.strong};
-      ${Object.entries(theme.typography.body)
-        .map(([key, value]) => `${key}: ${value};`)
-        .join(' ')}
+      ${applyTypographyToCss(theme.typography.body)};
     }
   `
 )
@@ -26,11 +25,10 @@ const Container = styled.div.withConfig({
   // shouldForwardProp filters out the "padding" prop so it doesn't get passed to the DOM
   shouldForwardProp: prop => prop !== 'padding',
 })<{ padding: string }>(
-  ({ theme, padding }) => `
+  ({ padding }) => `
     padding-left: ${padding};
     padding-right: ${padding};
     text-align: left;
-    border: ${theme.stroke.strong} solid ${theme.colors.stroke.neutral.strong};
     grid-column: 1 / -1;
   `
 )

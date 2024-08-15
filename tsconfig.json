@@ -10,7 +10,12 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": "./",
+    "paths": {
+      "@utils/*": ["src/utils/*"],
+      "@hooks/*": ["src/hooks/*"],
+    }
   },
-  "include": ["src", "eslint-custom-rules"]
+  "include": ["src", "eslint-custom-rules", "vite.config.ts"]
 }

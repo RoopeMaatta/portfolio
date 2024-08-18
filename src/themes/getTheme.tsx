@@ -128,11 +128,11 @@ export const getTheme = (isDarkMode: boolean) => {
     },
 
     radius: {
-      xs: '4px',
-      s: '8px',
-      m: '16px',
-      l: '24px',
-      xl: '32px',
+      4: '4px',
+      8: '8px',
+      16: '16px',
+      24: '24px',
+      32: '32px',
     },
 
     shadow: {

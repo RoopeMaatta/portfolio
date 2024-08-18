@@ -20,7 +20,7 @@ const RenderTypography: React.FC<RenderTypographyProps> = ({ typography }) => {
         gridTemplateColumns: '100px auto',
         alignItems: 'center',
         textAlign: 'left',
-        ...theme.typography.body,
+        ...theme.typography.small,
       }}
     >
       <span>{key}:</span>

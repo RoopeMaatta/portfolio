@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
-import { useTheme } from 'styled-components'
 import { useWindowSizeContext } from '../contexts/WindowSizeContext'
+import breakpointsData from '../themes/breakpoints.json' // Import the breakpoints JSON
 
 type Breakpoint = {
   minScreenWidth: number
@@ -12,17 +12,17 @@ type Breakpoints = {
   [key: string]: Breakpoint
 }
 
+const breakpoints = breakpointsData as Breakpoints
+
 const useResponsiveValue = <T>(values: T[]): T => {
   const { windowWidth } = useWindowSizeContext()
-  const theme = useTheme()
-  const breakpoints = useMemo(() => theme.breakpoints as Breakpoints, [theme])
 
   const sortedBreakpointKeys = useMemo(
     () =>
       Object.keys(breakpoints).sort(
         (a, b) => breakpoints[a].minScreenWidth - breakpoints[b].minScreenWidth
       ),
-    [breakpoints]
+    []
   )
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const useResponsiveValue = <T>(values: T[]): T => {
       }
     }
     return adjustedValues[0]
-  }, [windowWidth, adjustedValues, sortedBreakpointKeys, breakpoints])
+  }, [windowWidth, adjustedValues, sortedBreakpointKeys])
 
   return responsiveValue
 }

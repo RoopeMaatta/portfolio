@@ -76,7 +76,7 @@ const RenderTypography: React.FC = () => {
       <p
         style={{
           gridColumn: '1/-1',
-          ...theme.typography.caption,
+          ...theme.typography.tiny,
           margin: '10px 0',
           fontSize: '12rem',
           lineHeight: '1.2',

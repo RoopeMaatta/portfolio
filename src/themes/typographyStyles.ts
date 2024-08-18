@@ -47,71 +47,74 @@ const { family, weights, size, lineheight, letterSpacing } = typography
 
 // Styles object
 
-export const typographyStyles = {
-  display: {
-    fontFamily: family.primary,
-    fontSize: size.xxxxxl,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.xxxxxl,
-    letterSpacing: letterSpacing.xxxxxl,
-    textTransform: 'none',
-  },
-  h1: {
-    fontFamily: family.primary,
-    fontSize: size.xxxxl,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.xxxxl,
-    letterSpacing: letterSpacing.xxxxl,
-    textTransform: 'none',
-  },
-  h2: {
-    fontFamily: family.primary,
-    fontSize: size.xxl,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.xxl,
-    letterSpacing: letterSpacing.xxxl,
-    textTransform: 'none',
-  },
-  h3: {
-    fontFamily: family.primary,
-    fontSize: size.l,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.l,
-    letterSpacing: letterSpacing.xxl,
-    textTransform: 'none',
-  },
-  h4: {
-    fontFamily: family.primary,
-    fontSize: size.m,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.m,
-    letterSpacing: letterSpacing.xl,
-    textTransform: 'none',
-  },
-  small: {
-    fontFamily: family.primary,
-    fontSize: size.s,
-    fontWeight: weights.regular,
-    lineHeight: lineheight.s,
-    letterSpacing: letterSpacing.m,
-    textTransform: 'none',
-  },
-  tiny: {
-    fontFamily: family.primary,
-    fontSize: size.xs,
-    fontWeight: weights.regular,
-    lineHeight: lineheight.xs,
-    letterSpacing: letterSpacing.s,
-    textTransform: 'none',
-  },
-  overline: {
-    fontFamily: family.primary,
-    fontSize: size.xs,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.xs,
-    letterSpacing: letterSpacing.xxs,
-    textTransform: 'uppercase',
-  },
-} as const
+export const typographyStyles = (isSmallScreen: boolean) => {
+  const S = isSmallScreen
 
+  return {
+    display: {
+      fontFamily: family.primary,
+      fontSize: S ? size.xxxxl : size.xxxxxl,
+      fontWeight: weights.bold,
+      lineHeight: S ? lineheight.xxxxl : lineheight.xxxxxl,
+      letterSpacing: letterSpacing.xxxxxl,
+      textTransform: 'none',
+    },
+    h1: {
+      fontFamily: family.primary,
+      fontSize: S ? size.xxxl : size.xxxxl,
+      fontWeight: weights.bold,
+      lineHeight: S ? lineheight.xxxl : lineheight.xxxxl,
+      letterSpacing: letterSpacing.xxxxl,
+      textTransform: 'none',
+    },
+    h2: {
+      fontFamily: family.primary,
+      fontSize: S ? size.xl : size.xxl,
+      fontWeight: weights.bold,
+      lineHeight: S ? lineheight.xl : lineheight.xxl,
+      letterSpacing: letterSpacing.xxxl,
+      textTransform: 'none',
+    },
+    h3: {
+      fontFamily: family.primary,
+      fontSize: size.l,
+      fontWeight: weights.bold,
+      lineHeight: lineheight.l,
+      letterSpacing: letterSpacing.xxl,
+      textTransform: 'none',
+    },
+    h4: {
+      fontFamily: family.primary,
+      fontSize: size.m,
+      fontWeight: weights.bold,
+      lineHeight: lineheight.m,
+      letterSpacing: letterSpacing.xl,
+      textTransform: 'none',
+    },
+    small: {
+      fontFamily: family.primary,
+      fontSize: size.s,
+      fontWeight: weights.regular,
+      lineHeight: lineheight.s,
+      letterSpacing: letterSpacing.m,
+      textTransform: 'none',
+    },
+    tiny: {
+      fontFamily: family.primary,
+      fontSize: size.xs,
+      fontWeight: weights.regular,
+      lineHeight: lineheight.xs,
+      letterSpacing: letterSpacing.s,
+      textTransform: 'none',
+    },
+    overline: {
+      fontFamily: family.primary,
+      fontSize: size.xs,
+      fontWeight: weights.bold,
+      lineHeight: lineheight.xs,
+      letterSpacing: letterSpacing.xxs,
+      textTransform: 'uppercase',
+    },
+  } as const
+}
 // export type StyleKeys = keyof typeof typographyStyles

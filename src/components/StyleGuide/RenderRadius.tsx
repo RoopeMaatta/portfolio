@@ -19,7 +19,7 @@ const RenderRadius: React.FC<RenderRadiusProps> = ({ radius }) => {
         gridTemplateColumns: '100px 75px auto',
         alignItems: 'center',
         textAlign: 'left',
-        ...theme.typography.body,
+        ...theme.typography.small,
       }}
     >
       <span>Radius {key}:</span>

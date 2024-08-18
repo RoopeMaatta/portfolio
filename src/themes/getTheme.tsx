@@ -1,7 +1,7 @@
 import { typographyStyles } from './typographyStyles'
 import breakpoints from './breakpoints.json'
 
-export const getTheme = (isDarkMode: boolean) => {
+export const getTheme = (isDarkMode: boolean, isSmallScreen: boolean) => {
   const D = isDarkMode
 
   const palette = {
@@ -26,7 +26,8 @@ export const getTheme = (isDarkMode: boolean) => {
 
   // deconstruct for easier use
   const { neutral, brand } = palette // , brand, red, amber, green
-  const { display, h1, h2, h3, h4, small, tiny, overline } = typographyStyles
+  const { display, h1, h2, h3, h4, small, tiny, overline } =
+    typographyStyles(isSmallScreen)
 
   // Theme
   return {

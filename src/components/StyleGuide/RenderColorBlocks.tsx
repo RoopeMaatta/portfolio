@@ -39,7 +39,7 @@ const RenderColorBlocks: React.FC<RenderColorBlocksProps> = ({ colors }) => {
         gridTemplateColumns: '200px 75px auto',
         alignItems: 'center',
         textAlign: 'left',
-        ...theme.typography.body,
+        ...theme.typography.small,
       }}
     >
       <span>{key}:</span>

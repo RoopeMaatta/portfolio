@@ -18,7 +18,7 @@ const ButtonBase = styled.button.withConfig({
       background-color: ${colors.fill.brand.strong};
       color: ${colors.text.neutral.invert};
 
-      ${typography.body};
+      ${typography.small};
 
       border: none;
       border-radius: ${radius[16]};

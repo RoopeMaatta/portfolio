@@ -19,7 +19,7 @@ const RenderSpacing: React.FC<RenderSpacingProps> = ({ spacing }) => {
         gridTemplateColumns: '125px 100px auto',
         alignItems: 'center',
         textAlign: 'left',
-        ...theme.typography.body,
+        ...theme.typography.small,
       }}
     >
       <span>Spacing {key}:</span>

@@ -19,7 +19,7 @@ const RenderShadows: React.FC<RenderShadowsProps> = ({ shadows }) => {
         gridTemplateColumns: '100px 75px auto',
         alignItems: 'center',
         textAlign: 'left',
-        ...theme.typography.body,
+        ...theme.typography.small,
       }}
     >
       <span>Shadow {key}:</span>

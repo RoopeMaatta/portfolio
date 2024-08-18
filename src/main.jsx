@@ -1,17 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { ThemeProvider } from './themes'
+import { ThemeProvider } from './contexts/themeContext'
 import { WindowSizeProvider } from './contexts/WindowSizeContext'
 import GlobalStyle from './styles/globalStyles'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <GlobalStyle />
-      <WindowSizeProvider>
+    <WindowSizeProvider>
+      <ThemeProvider>
+        <GlobalStyle />
+
         <App />
-      </WindowSizeProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </WindowSizeProvider>
   </React.StrictMode>
 )

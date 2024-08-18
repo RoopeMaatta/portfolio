@@ -85,14 +85,14 @@ const RenderTypography: React.FC = () => {
         Ag
       </p>
       <TextContainer>
-        <h4 style={{ marginBottom: theme.spacing.xs }}>Figtree typeface</h4>
+        <h4 style={{ marginBottom: theme.spacing[8] }}>Figtree typeface</h4>
         <p style={{ color: theme.colors.text.neutral.weak }}>
           ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ abcdefghijklmnopqrstuvxyzåäö 0123456789
         </p>
         <h5
           style={{
-            marginTop: theme.spacing.xxxl,
-            marginBottom: theme.spacing.xs,
+            marginTop: theme.spacing[80],
+            marginBottom: theme.spacing[8],
           }}
         >
           Desktop

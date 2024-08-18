@@ -12,8 +12,8 @@ const ButtonBase = styled.button.withConfig({
       vertical-align: middle;
       justify-content: center;
 
-      padding-left: ${spacing.xs};
-      padding-right: ${spacing.xs};
+      padding-left: ${spacing[8]};
+      padding-right: ${spacing[8]};
 
       background-color: ${colors.fill.brand.strong};
       color: ${colors.text.neutral.invert};
@@ -54,7 +54,7 @@ const ButtonBase = styled.button.withConfig({
       }
 
       .label {
-        padding: ${spacing.xs};
+        padding: ${spacing[8]};
       }
     `
   }}

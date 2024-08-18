@@ -4,32 +4,17 @@ import { useTheme } from 'styled-components'
 import StyleGuide from './views/StyleGuide'
 import GridWrapper from './components/gridContainer/GridWrapper'
 import ButtonVariations from './views/ButtonVariations'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
 import { NavigationBar } from './components/NavigationBar'
-import { applyTypographyToCss } from '@utils/typographyUtils'
 
-const GlobalStyle = createGlobalStyle(
-  ({ theme }) => `
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: ${theme.colors.fill.background.base};
-      color: ${theme.colors.text.neutral.strong};
-      ${applyTypographyToCss(theme.typography.body)};
-    }
-  `
-)
-
-const Container = styled.div.withConfig({
+const PaddingContainer = styled.div.withConfig({
   // shouldForwardProp filters out the "padding" prop so it doesn't get passed to the DOM
   shouldForwardProp: prop => prop !== 'padding',
 })<{ padding: string }>(
   ({ padding }) => `
     padding-left: ${padding};
     padding-right: ${padding};
-    text-align: left;
-    grid-column: 1 / -1;
   `
 )
 // const MakeDirectChilOfParentContainer = styled.div`
@@ -47,8 +32,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <GlobalStyle theme={theme} />
-      <Container theme={theme} padding={padding}>
+      <PaddingContainer theme={theme} padding={padding}>
         <NavigationBar />
         <GridWrapper>
           <Routes>
@@ -56,7 +40,7 @@ const App: React.FC = () => {
             <Route path='/button-variations' element={<ButtonVariations />} />
           </Routes>
         </GridWrapper>
-      </Container>
+      </PaddingContainer>
     </Router>
   )
 }

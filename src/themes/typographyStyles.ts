@@ -16,6 +16,7 @@ const typography = {
     xxl: '1.625rem',
     xxxl: '2rem',
     xxxxl: '2.25rem',
+    xxxxxl: '3.5rem',
   },
   lineheight: {
     xxs: '1rem',
@@ -27,6 +28,7 @@ const typography = {
     xxl: '2rem',
     xxxl: '2.5rem',
     xxxxl: '2.75rem',
+    xxxxxl: '4.5rem',
   },
   letterSpacing: {
     xxs: '0.03rem',
@@ -38,6 +40,7 @@ const typography = {
     xxl: '-0.00325',
     xxxl: '-0.006rem',
     xxxxl: '-0.0125rem',
+    xxxxxl: '-0.0150rem',
   },
 }
 
@@ -46,6 +49,14 @@ const { family, weights, size, lineheight, letterSpacing } = typography
 // Styles object
 
 export const typographyStyles = {
+  display: {
+    fontFamily: family.primary,
+    fontSize: size.xxxxxl,
+    fontWeight: weights.bold,
+    lineHeight: lineheight.xxxxxl,
+    letterSpacing: letterSpacing.xxxxxl,
+    textTransform: 'none',
+  },
   h1: {
     fontFamily: family.primary,
     fontSize: size.xxxxl,

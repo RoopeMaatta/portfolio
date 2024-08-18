@@ -17,7 +17,7 @@ const TableStyle1Wrapper = styled.div(
       
       th {
         color: ${theme.colors.text.neutral.weak};
-        ${applyTypographyToCss(theme.typography.caption)};
+        ${applyTypographyToCss(theme.typography.overline)};
         border-bottom: ${theme.stroke.default} solid ${theme.colors.stroke.neutral.weak};
       }
     }

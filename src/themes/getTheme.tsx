@@ -27,6 +27,7 @@ export const getTheme = (isDarkMode: boolean) => {
   // deconstruct for easier use
   const { neutral, brand } = palette // , brand, red, amber, green
   const {
+    display,
     h1,
     h2,
     h3,
@@ -89,6 +90,7 @@ export const getTheme = (isDarkMode: boolean) => {
     },
 
     typography: {
+      display,
       h1,
       h2,
       h3,

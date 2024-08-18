@@ -11,7 +11,7 @@ interface GridWrapperProps {
 
 // Main content component for the GridWrapper
 const GridWrapperContent: React.FC<GridWrapperProps> = ({ children }) => {
-  const [showGrid, setShowGrid] = useState(true)
+  const [showGrid, setShowGrid] = useState(false)
   const { columns, gridGap } = useGrid()
 
   return (

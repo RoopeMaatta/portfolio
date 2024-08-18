@@ -12,7 +12,8 @@ const GridContainerStyled = styled.div.withConfig({
   display: grid;
   grid-template-columns: ${({ columns }) =>
     `repeat(${columns}, minmax(0, 1fr))`};
-  grid-gap: ${({ gridGap }) => gridGap}px;
+  column-gap: ${({ gridGap }) => gridGap}px;
+  row-gap: 0px;
   position: relative;
   margin: 0 auto;
 `

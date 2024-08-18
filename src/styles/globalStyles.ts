@@ -8,11 +8,11 @@ const GlobalStyle = createGlobalStyle(
       padding: 0;
       background-color: ${theme.colors.fill.background.base};
       color: ${theme.colors.text.neutral.strong};
-      ${applyTypographyToCss(theme.typography.body)};
+      ${applyTypographyToCss(theme.typography.small)};
     }
 
     p {
-      ${applyTypographyToCss(theme.typography.body)};
+      ${applyTypographyToCss(theme.typography.small)};
     }
 
     h1 {
@@ -31,16 +31,8 @@ const GlobalStyle = createGlobalStyle(
       ${applyTypographyToCss(theme.typography.h4)};
     }
 
-    h5 {
-      ${applyTypographyToCss(theme.typography.h5)};
-    }
-
     small {
       ${applyTypographyToCss(theme.typography.small)};
-    }
-
-    caption, figcaption {
-      ${applyTypographyToCss(theme.typography.caption)};
     }
 
 

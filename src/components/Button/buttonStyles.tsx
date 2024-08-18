@@ -21,7 +21,7 @@ const ButtonBase = styled.button.withConfig({
       ${typography.body};
 
       border: none;
-      border-radius: ${spacing[16]};
+      border-radius: ${radius[16]};
       cursor: pointer;
 
       width: ${fullWidth ? '100%' : 'auto'};

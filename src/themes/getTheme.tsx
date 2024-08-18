@@ -26,20 +26,7 @@ export const getTheme = (isDarkMode: boolean) => {
 
   // deconstruct for easier use
   const { neutral, brand } = palette // , brand, red, amber, green
-  const {
-    display,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    body,
-    bodyBold,
-    small,
-    smallBold,
-    caption,
-    overline,
-  } = typographyStyles
+  const { display, h1, h2, h3, h4, small, tiny, overline } = typographyStyles
 
   // Theme
   return {
@@ -95,12 +82,8 @@ export const getTheme = (isDarkMode: boolean) => {
       h2,
       h3,
       h4,
-      h5,
-      body,
-      bodyBold,
       small,
-      smallBold,
-      caption,
+      tiny,
       overline,
     },
 

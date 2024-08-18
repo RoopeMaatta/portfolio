@@ -7,29 +7,28 @@ const typography = {
     bold: 600,
   },
   size: {
-    xxs: '0.75rem',
-    xs: '0.875rem',
-    s: '0.9375rem',
-    m: '1.0625rem',
-    l: '1.25rem',
-    xl: '1.375rem',
-    xxl: '1.625rem',
-    xxxl: '2rem',
-    xxxxl: '2.25rem',
-    xxxxxl: '3.5rem',
+    xs: '0.875rem', // 14px
+    s: '1rem', // 16px
+    m: '1.25rem', // 20px
+    l: '1.5rem', // 24px
+    xl: '1.75rem', // 28px
+    xxl: '2rem', // 32px
+    xxxl: '2.25rem', // 36px
+    xxxxl: '2.5rem', // 40px
+    xxxxxl: '3.5rem', // 56px
   },
   lineheight: {
-    xxs: '1rem',
-    xs: '1rem',
-    s: '1.5rem',
-    m: '1.5rem',
-    l: '1.5rem',
-    xl: '1.75rem',
-    xxl: '2rem',
-    xxxl: '2.5rem',
-    xxxxl: '2.75rem',
-    xxxxxl: '4.5rem',
+    xs: '1.25rem', // 20px
+    s: '1.5rem', // 24px
+    m: '1.75rem', // 28px
+    l: '2rem', // 32px
+    xl: '2.25rem', // 36px
+    xxl: '2.5rem', // 40px
+    xxxl: '2.75rem', // 44px
+    xxxxl: '3rem', // 48px
+    xxxxxl: '4rem', // 64px
   },
+
   letterSpacing: {
     xxs: '0.03rem',
     xs: '0rem',
@@ -67,50 +66,26 @@ export const typographyStyles = {
   },
   h2: {
     fontFamily: family.primary,
-    fontSize: size.xxxl,
+    fontSize: size.xxl,
     fontWeight: weights.bold,
-    lineHeight: lineheight.xxxl,
+    lineHeight: lineheight.xxl,
     letterSpacing: letterSpacing.xxxl,
     textTransform: 'none',
   },
   h3: {
     fontFamily: family.primary,
-    fontSize: size.xxl,
+    fontSize: size.l,
     fontWeight: weights.bold,
-    lineHeight: lineheight.xxl,
+    lineHeight: lineheight.l,
     letterSpacing: letterSpacing.xxl,
     textTransform: 'none',
   },
   h4: {
     fontFamily: family.primary,
-    fontSize: size.xl,
+    fontSize: size.m,
     fontWeight: weights.bold,
-    lineHeight: lineheight.xl,
+    lineHeight: lineheight.m,
     letterSpacing: letterSpacing.xl,
-    textTransform: 'none',
-  },
-  h5: {
-    fontFamily: family.primary,
-    fontSize: size.l,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.l,
-    letterSpacing: letterSpacing.l,
-    textTransform: 'none',
-  },
-  body: {
-    fontFamily: family.primary,
-    fontSize: size.m,
-    fontWeight: weights.regular,
-    lineHeight: lineheight.m,
-    letterSpacing: letterSpacing.m,
-    textTransform: 'none',
-  },
-  bodyBold: {
-    fontFamily: family.primary,
-    fontSize: size.m,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.m,
-    letterSpacing: letterSpacing.m,
     textTransform: 'none',
   },
   small: {
@@ -118,30 +93,22 @@ export const typographyStyles = {
     fontSize: size.s,
     fontWeight: weights.regular,
     lineHeight: lineheight.s,
-    letterSpacing: letterSpacing.s,
+    letterSpacing: letterSpacing.m,
     textTransform: 'none',
   },
-  smallBold: {
-    fontFamily: family.primary,
-    fontSize: size.s,
-    fontWeight: weights.bold,
-    lineHeight: lineheight.s,
-    letterSpacing: letterSpacing.s,
-    textTransform: 'none',
-  },
-  caption: {
+  tiny: {
     fontFamily: family.primary,
     fontSize: size.xs,
     fontWeight: weights.regular,
     lineHeight: lineheight.xs,
-    letterSpacing: letterSpacing.xs,
+    letterSpacing: letterSpacing.s,
     textTransform: 'none',
   },
   overline: {
     fontFamily: family.primary,
-    fontSize: size.xxs,
+    fontSize: size.xs,
     fontWeight: weights.bold,
-    lineHeight: lineheight.xxs,
+    lineHeight: lineheight.xs,
     letterSpacing: letterSpacing.xxs,
     textTransform: 'uppercase',
   },

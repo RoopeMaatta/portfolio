@@ -45,9 +45,7 @@ const typography = {
 
 const { family, weights, size, lineheight, letterSpacing } = typography
 
-// Styles object
-
-export const typographyStyles = (isSmallScreen: boolean) => {
+export const getTypography = (isSmallScreen: boolean) => {
   const S = isSmallScreen
 
   return {
@@ -117,4 +115,3 @@ export const typographyStyles = (isSmallScreen: boolean) => {
     },
   } as const
 }
-// export type StyleKeys = keyof typeof typographyStyles

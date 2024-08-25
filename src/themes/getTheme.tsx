@@ -38,11 +38,11 @@ export const getTheme = (isDarkMode: boolean, isSmallScreen: boolean) => {
     },
 
     radius: {
-      4: '4px',
-      8: '8px',
-      16: '16px',
-      24: '24px',
-      32: '32px',
+      '04px': '4px',
+      '08px': '8px',
+      '16px': '16px',
+      '24px': '24px',
+      '32px': '32px',
     },
 
     shadow: {

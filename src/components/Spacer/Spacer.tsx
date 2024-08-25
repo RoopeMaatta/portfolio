@@ -2,13 +2,13 @@ import React from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 import { LiteralUnion } from 'type-fest'
 
+// Define the type for CSS length values
 type CustomLength =
   `${number}${'px' | 'em' | 'rem' | '%' | 'vh' | 'vw' | 'vmin' | 'vmax'}`
-type SpacerHeight = LiteralUnion<keyof DefaultTheme['spacing'], CustomLength>
 
 interface SpacerProps {
   gridColumn?: string
-  height?: SpacerHeight
+  height?: LiteralUnion<keyof DefaultTheme['spacing'], CustomLength>
   showVisualization?: boolean
 }
 
@@ -26,13 +26,9 @@ const StyledSpacer = styled.div<SpacerProps>(
     height = '008px',
     showVisualization = false,
   }) => {
-    let heightValue: string
-
-    if (isValidSpacingKey(theme, height)) {
-      heightValue = theme.spacing[height as keyof DefaultTheme['spacing']]
-    } else {
-      heightValue = height
-    }
+    const heightValue: string = isValidSpacingKey(theme, height)
+      ? theme.spacing[height as keyof DefaultTheme['spacing']]
+      : height
 
     return `
       grid-column: ${gridColumn};

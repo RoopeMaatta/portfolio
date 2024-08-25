@@ -3,6 +3,7 @@ import { useTheme } from 'styled-components'
 import Table from '../Table/Table'
 import TableStyle1Wrapper from '../Table/TableStyle1Wrapper'
 import styled from 'styled-components'
+import { Spacer } from '../Spacer'
 
 // Define the typography style type based on theme's typography structure
 interface TypographyStyle {
@@ -85,14 +86,16 @@ const RenderTypography: React.FC = () => {
         Ag
       </p>
       <TextContainer>
-        <h4 style={{ marginBottom: theme.spacing[8] }}>Figtree typeface</h4>
+        <h4 style={{ marginBottom: theme.spacing['008px'] }}>
+          Figtree typeface
+        </h4>
         <p style={{ color: theme.colors.text.neutral.weak }}>
           ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ abcdefghijklmnopqrstuvxyzåäö 0123456789
         </p>
         <h5
           style={{
-            marginTop: theme.spacing[80],
-            marginBottom: theme.spacing[8],
+            marginTop: theme.spacing['080px'],
+            marginBottom: theme.spacing['008px'],
           }}
         >
           Desktop
@@ -103,6 +106,8 @@ const RenderTypography: React.FC = () => {
           larger font sizes are created by multiplying smaller ones by 1,2
         </p>
       </TextContainer>
+
+      <Spacer height='064px' showVisualization={true} />
 
       <TableStyle1Wrapper>
         <Table columns={columns} data={data} />

@@ -12,7 +12,7 @@ const TableStyle1Wrapper = styled.div(
       border-collapse: collapse;
 
       th, td {
-        padding: ${theme.spacing[8]};
+        padding: ${theme.spacing['008px']};
         border-bottom: ${theme.stroke.default} solid ${theme.colors.stroke.neutral.weak};
       }
       

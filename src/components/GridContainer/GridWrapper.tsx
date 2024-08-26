@@ -14,11 +14,14 @@ const GridWrapperContent: React.FC<GridWrapperProps> = ({ children }) => {
   const { showMainGridVisualization } = useDevVisualizationContext()
   const { columns, gridGap } = useGrid()
 
+  // Safeguard to ensure showMainGridVisualization has a fallback
+  const shouldShowGrid = showMainGridVisualization ?? false
+
   return (
     <div style={{ position: 'relative' }}>
       <GridContainer gridGap={gridGap} columns={columns}>
         {children}
-        {showMainGridVisualization && <GridVisualization columns={columns} />}
+        {shouldShowGrid && <GridVisualization columns={columns} />}
       </GridContainer>
     </div>
   )

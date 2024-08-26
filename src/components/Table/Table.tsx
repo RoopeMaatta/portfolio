@@ -1,5 +1,4 @@
 import React from 'react'
-import useResponsiveValue from '../../hooks/useResponsiveValue'
 
 interface TableColumn<T> {
   header: string
@@ -14,13 +13,9 @@ interface TableProps<T> {
 }
 
 const Table = <T,>({ columns, data, style }: TableProps<T>) => {
-  const isSmallScreen = useResponsiveValue([true, false, false])
-
   return (
     <div
       style={{
-        width: '100%',
-        overflowX: isSmallScreen ? 'auto' : 'unset',
         ...style,
       }}
     >

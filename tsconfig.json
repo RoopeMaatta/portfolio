@@ -15,7 +15,13 @@
     "paths": {
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
-    }
+    },
+        "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "tags": ["styled", "css", "injectGlobal", "createGlobalStyle", "keyframes"]
+      }
+    ],
   },
   "include": ["src", "eslint-custom-rules", "vite.config.ts"]
 }

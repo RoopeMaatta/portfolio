@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { GridProvider, useGrid } from './GridContext'
 import { GridContainer } from './GridContainerStyle'
 import GridVisualization from './GridVisualization'
-import { useDevVisualizationContext } from '../../contexts/DevVisualizationContext'
+import { useDevVisualizationContext } from '../../../contexts/DevVisualizationContext'
 
 // Interface for the GridWrapper properties
 interface GridWrapperProps {

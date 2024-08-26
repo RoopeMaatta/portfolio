@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
 import { useTheme } from 'styled-components'
-import Table from '../Table/Table'
-import TableStyle1Wrapper from '../Table/TableStyle1Wrapper'
+import Table from '../../Atoms/Table/Table'
+import TableStyle1Wrapper from '../../Atoms/Table/TableStyle1Wrapper'
 import styled from 'styled-components'
-import { Spacer } from '../Spacer'
-import { getTheme } from '../../themes/getTheme'
+import { Spacer } from '../../Atoms/Spacer'
+import { getTheme } from '../../../themes/getTheme'
 
 // Define the typography style type based on theme's typography structure
 interface TypographyStyle {

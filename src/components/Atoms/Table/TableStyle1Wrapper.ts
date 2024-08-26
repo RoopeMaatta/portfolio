@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { applyTypographyToCss } from '@utils/typographyUtils'
-import useResponsiveValue from '../../hooks/useResponsiveValue'
+import useResponsiveValue from '../../../hooks/useResponsiveValue'
 
 const TableStyle1Wrapper = styled.div(({ theme }) => {
   const isSmallScreen = useResponsiveValue([true, false, false])

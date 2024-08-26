@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from '../components'
+import { Button } from '..'
 import CheckIcon from '@mui/icons-material/Check'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useTheme } from 'styled-components'

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import RenderColorBlocks from '../components/StyleGuide/RenderColorBlocks'
-import RenderTypography from '../components/StyleGuide/RenderTypography'
-import RenderSpacing from '../components/StyleGuide/RenderSpacing'
-import RenderRadius from '../components/StyleGuide/RenderRadius'
-import RenderShadows from '../components/StyleGuide/RenderShadows'
-import RenderBreakpoints from '../components/StyleGuide/RenderBreakpoints'
+import RenderColorBlocks from './StyleGuide/RenderColorBlocks'
+import RenderTypography from './StyleGuide/RenderTypography'
+import RenderSpacing from './StyleGuide/RenderSpacing'
+import RenderRadius from './StyleGuide/RenderRadius'
+import RenderShadows from './StyleGuide/RenderShadows'
+import RenderBreakpoints from './StyleGuide/RenderBreakpoints'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 import { LiteralUnion } from 'type-fest'
-import { useDevVisualizationContext } from '../../contexts/DevVisualizationContext'
+import { useDevVisualizationContext } from '../../../contexts/DevVisualizationContext'
 
 // Define the type for CSS length values
 type CustomLength =

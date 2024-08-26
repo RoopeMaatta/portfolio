@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import StyleGuide from './views/StyleGuide'
-import GridWrapper from './components/GridContainer/GridWrapper'
-import ButtonVariations from './views/ButtonVariations'
+import StyleGuide from './components/Pages/StyleGuide'
+import GridWrapper from './components/Organisms/GridContainer/GridWrapper'
+import ButtonVariations from './components/Pages/ButtonVariations'
 import styled from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
-import { NavigationBar } from './components/NavigationBar'
-import { DevVisualizationButtons } from './components/DevVisualizationButtons'
+import { NavigationBar } from './components/Organisms/NavigationBar'
+import { DevVisualizationButtons } from './components/Molecules/DevVisualizationButtons'
 
 const PaddingContainer = styled.div.withConfig({
   // shouldForwardProp filters out the "padding" prop so it doesn't get passed to the DOM

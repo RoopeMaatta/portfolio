@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button } from '../Button'
-import { useDevVisualizationContext } from '../../contexts/DevVisualizationContext'
+import { Button } from '../../Atoms/Button'
+import { useDevVisualizationContext } from '../../../contexts/DevVisualizationContext'
 
 const DevVisualizationButtons: React.FC = () => {
   const {

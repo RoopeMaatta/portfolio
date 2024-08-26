@@ -2,11 +2,12 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 import StyleGuide from './views/StyleGuide'
-import GridWrapper from './components/gridContainer/GridWrapper'
+import GridWrapper from './components/GridContainer/GridWrapper'
 import ButtonVariations from './views/ButtonVariations'
 import styled from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
 import { NavigationBar } from './components/NavigationBar'
+import { DevVisualizationButtons } from './components/DevVisualizationButtons'
 
 const PaddingContainer = styled.div.withConfig({
   // shouldForwardProp filters out the "padding" prop so it doesn't get passed to the DOM
@@ -34,6 +35,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <PaddingContainer theme={theme} padding={padding}>
+        <DevVisualizationButtons />
         <NavigationBar />
         <GridWrapper>
           <Routes>

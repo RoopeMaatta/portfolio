@@ -12,8 +12,8 @@ const ButtonBase = styled.button.withConfig({
       vertical-align: middle;
       justify-content: center;
 
-      padding-left: ${spacing[8]};
-      padding-right: ${spacing[8]};
+      padding-left: ${spacing['008px']};
+      padding-right: ${spacing['008px']};
 
       background-color: ${colors.fill.brand.strong};
       color: ${colors.text.neutral.invert};
@@ -21,7 +21,7 @@ const ButtonBase = styled.button.withConfig({
       ${typography.small};
 
       border: none;
-      border-radius: ${radius[16]};
+      border-radius: ${radius['16px']};
       cursor: pointer;
 
       width: ${fullWidth ? '100%' : 'auto'};
@@ -54,7 +54,7 @@ const ButtonBase = styled.button.withConfig({
       }
 
       .label {
-        padding: ${spacing[8]};
+        padding: ${spacing['008px']};
       }
     `
   }}

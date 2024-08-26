@@ -107,7 +107,9 @@ const RenderTypography: React.FC = () => {
         <h4>Figtree typeface</h4>
         <Spacer height={'008px'} />
         <p style={{ color: theme.colors.text.neutral.weak }}>
-          ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ abcdefghijklmnopqrstuvxyzåäö 0123456789
+          ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ <br />
+          abcdefghijklmnopqrstuvxyzåäö <br />
+          0123456789 <br />
         </p>
         <Spacer height={'080px'} />
         <h4>Desktop</h4>

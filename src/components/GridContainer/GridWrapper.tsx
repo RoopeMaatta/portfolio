@@ -1,8 +1,8 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 import { GridProvider, useGrid } from './GridContext'
 import { GridContainer } from './GridContainerStyle'
 import GridVisualization from './GridVisualization'
-import { Button } from '../Button'
+import { useDevVisualizationContext } from '../../contexts/DevVisualizationContext'
 
 // Interface for the GridWrapper properties
 interface GridWrapperProps {
@@ -11,21 +11,14 @@ interface GridWrapperProps {
 
 // Main content component for the GridWrapper
 const GridWrapperContent: React.FC<GridWrapperProps> = ({ children }) => {
-  const [showGrid, setShowGrid] = useState(false)
+  const { showMainGridVisualization } = useDevVisualizationContext()
   const { columns, gridGap } = useGrid()
 
   return (
     <div style={{ position: 'relative' }}>
-      <Button
-        label='Toggle Grid Visualization'
-        onClick={() => setShowGrid(!showGrid)}
-        buttonStyle='tonal'
-        fullWidth={true}
-      />
-
       <GridContainer gridGap={gridGap} columns={columns}>
         {children}
-        {showGrid && <GridVisualization columns={columns} />}
+        {showMainGridVisualization && <GridVisualization columns={columns} />}
       </GridContainer>
     </div>
   )

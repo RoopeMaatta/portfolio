@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 import { LiteralUnion } from 'type-fest'
+import { useDevVisualizationContext } from '../../contexts/DevVisualizationContext'
 
 // Define the type for CSS length values
 type CustomLength =
@@ -53,8 +54,6 @@ const StyledSpacer = styled.div<SpacerProps>(
           border-color: ${theme.colors.stroke.brand.weak};
           border-width: ${theme.stroke.strong};
           box-shadow: ${theme.shadow.raised};
-          
-
         }
       `
           : ''
@@ -64,7 +63,12 @@ const StyledSpacer = styled.div<SpacerProps>(
 )
 
 const Spacer: React.FC<SpacerProps> = props => {
-  return <StyledSpacer {...props} />
+  const { showSpacerVisualization } = useDevVisualizationContext()
+
+  // Use the prop value if provided, otherwise fallback to context value
+  const showVisualization = props.showVisualization ?? showSpacerVisualization
+
+  return <StyledSpacer {...props} showVisualization={showVisualization} />
 }
 
 export default Spacer

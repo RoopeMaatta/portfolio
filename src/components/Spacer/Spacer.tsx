@@ -31,9 +31,34 @@ const StyledSpacer = styled.div<SpacerProps>(
       : height
 
     return `
+      position: relative;
       grid-column: ${gridColumn};
       height: ${heightValue};
       ${showVisualization ? 'background-color: rgba(173, 216, 230, 0.3);' : ''}
+      
+      ${
+        showVisualization
+          ? `
+        &:after {
+          content: '${heightValue}';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: ${theme.colors.fill.background.overlay};
+          color: ${theme.colors.text.neutral.strong};
+          padding: ${theme.spacing['004px']} ${theme.spacing['008px']} ;
+          border-radius: ${theme.radius['08px']};
+          border-style: solid;
+          border-color: ${theme.colors.stroke.brand.weak};
+          border-width: ${theme.stroke.strong};
+          box-shadow: ${theme.shadow.raised};
+          
+
+        }
+      `
+          : ''
+      }
     `
   }
 )

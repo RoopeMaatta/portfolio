@@ -16,7 +16,7 @@ interface Theme {
   shadow: Record<string, string>
 }
 
-const StyleGuide: React.FC = () => {
+const StyleGuidePage: React.FC = () => {
   const theme = useTheme() as unknown as Theme
 
   return (
@@ -68,4 +68,4 @@ const StyleGuide: React.FC = () => {
   )
 }
 
-export default StyleGuide
+export default StyleGuidePage

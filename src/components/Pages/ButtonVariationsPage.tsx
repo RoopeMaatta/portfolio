@@ -10,7 +10,7 @@ const Container = styled.div`
   grid-column: 1 / -1;
 `
 
-const ButtonVariations: React.FC = () => {
+const ButtonVariationsPage: React.FC = () => {
   const [counter, setCounter] = useState(0)
   const theme = useTheme()
 
@@ -115,4 +115,4 @@ const ButtonVariations: React.FC = () => {
   )
 }
 
-export default ButtonVariations
+export default ButtonVariationsPage

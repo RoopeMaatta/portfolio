@@ -1,16 +1,13 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import StyleGuide from './components/Pages/StyleGuide'
 import GridWrapper from './components/Organisms/GridContainer/GridWrapper'
-import ButtonVariations from './components/Pages/ButtonVariations'
 import styled from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
 import { NavigationBar } from './components/Organisms/NavigationBar'
 import { DevVisualizationButtons } from './components/Molecules/DevVisualizationButtons'
+import AppRoutes from './routes'
 
 const PaddingContainer = styled.div.withConfig({
-  // shouldForwardProp filters out the "padding" prop so it doesn't get passed to the DOM
   shouldForwardProp: prop => prop !== 'padding',
 })<{ padding: string }>(
   ({ padding }) => `
@@ -18,13 +15,6 @@ const PaddingContainer = styled.div.withConfig({
     padding-right: ${padding};
   `
 )
-// const MakeDirectChilOfParentContainer = styled.div`
-//   display: contents;
-
-//   & > * {
-//     display: contents;
-//   }
-// `
 
 const App: React.FC = () => {
   const theme = useTheme()
@@ -33,18 +23,13 @@ const App: React.FC = () => {
   const padding = useResponsiveValue(['2vw', '4vw', '6vw'])
 
   return (
-    <Router>
-      <PaddingContainer theme={theme} padding={padding}>
-        <DevVisualizationButtons />
-        <NavigationBar />
-        <GridWrapper>
-          <Routes>
-            <Route path='/style-guide/*' element={<StyleGuide />} />
-            <Route path='/button-variations' element={<ButtonVariations />} />
-          </Routes>
-        </GridWrapper>
-      </PaddingContainer>
-    </Router>
+    <PaddingContainer theme={theme} padding={padding}>
+      <DevVisualizationButtons />
+      <NavigationBar />
+      <GridWrapper>
+        <AppRoutes />
+      </GridWrapper>
+    </PaddingContainer>
   )
 }
 

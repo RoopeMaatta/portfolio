@@ -2,9 +2,9 @@ import React, { useMemo } from 'react'
 import { useTheme } from 'styled-components'
 import Table from '../../Atoms/Table/Table'
 import TableStyle1Wrapper from '../../Atoms/Table/TableStyle1Wrapper'
-import styled from 'styled-components'
 import { Spacer } from '../../Atoms/Spacer'
 import { getTheme } from '../../../themes/getTheme'
+import { ContainerFullWidth } from '../../Atoms/ContainerFullWidth'
 
 // Define the typography style type based on theme's typography structure
 interface TypographyStyle {
@@ -24,10 +24,6 @@ interface TableColumn<T> {
   render?: (value: string) => React.ReactNode
 }
 
-const ContainerFullSpan = styled.div`
-  grid-column: 1/-1;
-`
-
 const RenderTypography: React.FC = () => {
   const theme = useTheme()
   const themeTypographySmallScreen = getTheme(false, true).typography
@@ -35,7 +31,7 @@ const RenderTypography: React.FC = () => {
 
   // Function to extract typography data
   const getTypographyData = (
-    typography: typeof themeTypographySmallScreen
+    typography: typeof theme.typography
   ): TypographyData[] => {
     return Object.keys(typography).map(key => {
       const typestyle = typography[
@@ -90,7 +86,7 @@ const RenderTypography: React.FC = () => {
 
   return (
     <>
-      <ContainerFullSpan>
+      <ContainerFullWidth>
         <h1>Typography</h1>
 
         <Spacer height={'040px'} />
@@ -140,7 +136,7 @@ const RenderTypography: React.FC = () => {
           <Table columns={columnsSmallScreen} data={dataSmallScreen} />
         </TableStyle1Wrapper>
         <Spacer height={'080px'} />
-      </ContainerFullSpan>
+      </ContainerFullWidth>
     </>
   )
 }

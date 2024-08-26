@@ -20,7 +20,7 @@ const App: React.FC = () => {
   const theme = useTheme()
 
   console.log(theme.typography)
-  const padding = useResponsiveValue(['2vw', '4vw', '6vw'])
+  const padding = useResponsiveValue(['4vw', '4vw', '6vw'])
 
   return (
     <PaddingContainer theme={theme} padding={padding}>

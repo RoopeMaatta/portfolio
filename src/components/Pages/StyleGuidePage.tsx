@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import RenderColorBlocks from './StyleGuide/RenderColorBlocks'
+import RenderColor from './StyleGuide/RenderColor'
 import RenderTypography from './StyleGuide/RenderTypography'
 import RenderSpacing from './StyleGuide/RenderSpacing'
 import RenderRadius from './StyleGuide/RenderRadius'
@@ -49,10 +49,7 @@ const StyleGuidePage: React.FC = () => {
           path='typography'
           element={<RenderTypography typography={theme.typography} />}
         />
-        <Route
-          path='colors'
-          element={<RenderColorBlocks colors={theme.colors} />}
-        />
+        <Route path='colors' element={<RenderColor />} />
         <Route
           path='spacing'
           element={<RenderSpacing spacing={theme.spacing} />}

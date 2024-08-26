@@ -3,12 +3,7 @@ import { Button } from '..'
 import CheckIcon from '@mui/icons-material/Check'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useTheme } from 'styled-components'
-import styled from 'styled-components'
-
-const Container = styled.div`
-  text-align: center;
-  grid-column: 1 / -1;
-`
+import { ContainerFullWidth } from '../../components/Atoms/ContainerFullWidth'
 
 const ButtonVariationsPage: React.FC = () => {
   const [counter, setCounter] = useState(0)
@@ -20,7 +15,7 @@ const ButtonVariationsPage: React.FC = () => {
   }
 
   return (
-    <Container>
+    <ContainerFullWidth>
       <h1 style={theme.typography.h1}>Wuf Wuf counter: {counter}</h1>
       <Button
         onClick={handleButtonClick}
@@ -111,7 +106,7 @@ const ButtonVariationsPage: React.FC = () => {
         buttonStyle='text'
         icon={<ChevronRightIcon />}
       />
-    </Container>
+    </ContainerFullWidth>
   )
 }
 

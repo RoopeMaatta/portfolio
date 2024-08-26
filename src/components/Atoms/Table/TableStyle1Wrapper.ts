@@ -17,9 +17,12 @@ const TableStyle1Wrapper = styled.div(({ theme }) => {
       border-collapse: collapse;
 
       th, td {
-        padding: ${theme.spacing['008px']};
+        padding-left: ${theme.spacing['016px']};
+        padding-right: ${theme.spacing['016px']};
+        padding-top: ${theme.spacing['008px']};
+        padding-bottom: ${theme.spacing['008px']};
         border-bottom: ${theme.stroke.default} solid ${theme.colors.stroke.neutral.weak};
-        min-width: ${isSmallScreen ? '250px' : 'unset'};
+        min-width: ${isSmallScreen ? '60vw' : 'unset'};
       }
       
       th {

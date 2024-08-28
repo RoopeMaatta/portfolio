@@ -2,10 +2,10 @@ import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 import ColorPage from './ColorPage/ColorPage'
+import ElevationPage from './ElevationPage/ElevationPage'
 import TypographyPage from './TypographyPage/TypographyPage'
 import RenderSpacing from '../StyleGuide/RenderSpacing'
 import RenderRadius from '../StyleGuide/RenderRadius'
-import RenderShadows from '../StyleGuide/RenderShadows'
 import RenderBreakpoints from '../StyleGuide/RenderBreakpoints'
 
 interface Theme {
@@ -36,7 +36,7 @@ const StyleGuidePage: React.FC = () => {
             <Link to='/style-guide/radius'>Radius</Link>
           </li>
           <li>
-            <Link to='/style-guide/shadows'>Shadows</Link>
+            <Link to='/style-guide/elevation'>Elevation</Link>
           </li>
           <li>
             <Link to='/style-guide/breakpoints'>Breakpoints</Link>
@@ -52,10 +52,7 @@ const StyleGuidePage: React.FC = () => {
           element={<RenderSpacing spacing={theme.spacing} />}
         />
         <Route path='radius' element={<RenderRadius radius={theme.radius} />} />
-        <Route
-          path='shadows'
-          element={<RenderShadows shadows={theme.shadow} />}
-        />
+        <Route path='elevation' element={<ElevationPage />} />
         <Route path='breakpoints' element={<RenderBreakpoints />} />
       </Routes>
     </>

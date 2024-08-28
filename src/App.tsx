@@ -19,7 +19,6 @@ const PaddingContainer = styled.div.withConfig({
 const App: React.FC = () => {
   const theme = useTheme()
 
-  console.log(theme.typography)
   const padding = useResponsiveValue(['4vw', '4vw', '6vw'])
 
   return (

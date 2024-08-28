@@ -1,12 +1,12 @@
 import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import RenderColor from './StyleGuide/RenderColor'
-import RenderTypography from './StyleGuide/RenderTypography'
-import RenderSpacing from './StyleGuide/RenderSpacing'
-import RenderRadius from './StyleGuide/RenderRadius'
-import RenderShadows from './StyleGuide/RenderShadows'
-import RenderBreakpoints from './StyleGuide/RenderBreakpoints'
+import ColorPage from './ColorPage/ColorPage'
+import TypographyPage from './TypographyPage/TypographyPage'
+import RenderSpacing from '../StyleGuide/RenderSpacing'
+import RenderRadius from '../StyleGuide/RenderRadius'
+import RenderShadows from '../StyleGuide/RenderShadows'
+import RenderBreakpoints from '../StyleGuide/RenderBreakpoints'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>
@@ -45,11 +45,8 @@ const StyleGuidePage: React.FC = () => {
       </nav>
 
       <Routes>
-        <Route
-          path='typography'
-          element={<RenderTypography typography={theme.typography} />}
-        />
-        <Route path='colors' element={<RenderColor />} />
+        <Route path='typography' element={<TypographyPage />} />
+        <Route path='colors' element={<ColorPage />} />
         <Route
           path='spacing'
           element={<RenderSpacing spacing={theme.spacing} />}

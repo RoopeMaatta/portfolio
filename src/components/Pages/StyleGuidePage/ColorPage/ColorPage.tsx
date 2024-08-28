@@ -36,7 +36,10 @@ const ColorPage: React.FC = () => {
           <Spacer height={'016px'} />
           <TableStyle1Wrapper>
             <Table
-              columns={getColumnsConfig(themeColorDarkMode)}
+              columns={getColumnsConfig(
+                themeColorDarkMode,
+                themeColorLightMode
+              )}
               data={colorData}
             />
           </TableStyle1Wrapper>

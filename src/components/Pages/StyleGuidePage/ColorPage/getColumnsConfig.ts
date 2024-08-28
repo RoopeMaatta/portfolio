@@ -13,7 +13,8 @@ export type TableColumn<T> = {
 
 // Table column configuration for ColorData
 export const getColumnsConfig = (
-  colorsDarkMode: DefaultTheme['colors']
+  colorsDarkMode: DefaultTheme['colors'],
+  colorsLightMode: DefaultTheme['colors']
 ): TableColumn<ColorData>[] => {
   return [
     { header: 'Name', accessor: 'name' },
@@ -21,6 +22,14 @@ export const getColumnsConfig = (
       header: 'Light Mode',
       accessor: 'lightMode',
       render: renderColorSwatch,
+      headerStyle: {
+        backgroundColor: colorsLightMode.fill.background.base,
+        color: colorsLightMode.text.neutral.strong,
+      },
+      cellStyle: {
+        backgroundColor: colorsLightMode.fill.background.base,
+        color: colorsLightMode.text.neutral.strong,
+      },
     },
     {
       header: 'Dark Mode',

@@ -16,6 +16,11 @@ const PaddingContainer = styled.div.withConfig({
   `
 )
 
+const items = [
+  { label: 'Style Guide', href: '/style-guide' },
+  { label: 'Button Variations', href: '/button-variations' },
+]
+
 const App: React.FC = () => {
   const theme = useTheme()
 
@@ -24,7 +29,7 @@ const App: React.FC = () => {
   return (
     <PaddingContainer theme={theme} padding={padding}>
       <DevVisualizationButtons />
-      <NavigationBar />
+      <NavigationBar items={items}/>
       <GridWrapper>
         <AppRoutes />
       </GridWrapper>

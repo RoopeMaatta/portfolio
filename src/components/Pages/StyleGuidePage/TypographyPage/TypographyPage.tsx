@@ -7,6 +7,7 @@ import { getTheme } from '../../../../themes/getTheme'
 import { ContainerFullWidth } from '../../../Atoms/ContainerFullWidth'
 import { getTypographyData } from './getTypographyData'
 import { getColumnsConfig } from './getColumnsConfig'
+import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
 
 const TypographyPage: React.FC = () => {
   const theme = useTheme()
@@ -47,6 +48,7 @@ const TypographyPage: React.FC = () => {
         Ag
       </p>
       <Spacer height={'008px'} />
+
       <h4>Figtree typeface</h4>
       <Spacer height={'008px'} />
       <p style={{ color: theme.colors.text.neutral.weak }}>
@@ -54,34 +56,34 @@ const TypographyPage: React.FC = () => {
         abcdefghijklmnopqrstuvxyzåäö <br />
         0123456789 <br />
       </p>
+
       <Spacer height={'080px'} />
-      <h4>Desktop</h4>
-      <Spacer height={'008px'} />
-      <p style={{ color: theme.colors.text.neutral.weak }}>
-        Desktop text style use a modified 1.200 – Minor Third scale to help
+
+      <H4TitleContentBlock
+        title='Desktop'
+        description='Desktop text style use a modified 1.200 – Minor Third scale to help
         ensure sizes are balanced and work well together. This means that larger
-        font sizes are created by multiplying smaller ones by 1,2
-      </p>
-
-      <Spacer height={'040px'} />
-
-      <TableStyle1Wrapper>
-        <Table columns={columnsLargeScreen} data={dataLargeScreen} />
-      </TableStyle1Wrapper>
+        font sizes are created by multiplying smaller ones by 1,2'
+        content={
+          <TableStyle1Wrapper>
+            <Table columns={columnsLargeScreen} data={dataLargeScreen} />
+          </TableStyle1Wrapper>
+        }
+      />
 
       <Spacer height={'064px'} />
 
-      <h4>Mobile</h4>
-      <Spacer height={'008px'} />
-      <p style={{ color: theme.colors.text.neutral.weak }}>
-        Largest sizes have been reduced to make the most of smaller screen size.
-        This also helps for not wrapping text on multiple lines.
-      </p>
-      <Spacer height={'040px'} />
+      <H4TitleContentBlock
+        title='Mobile'
+        description='Largest sizes have been reduced to make the most of smaller screen size.
+        This also helps for not wrapping text on multiple lines.'
+        content={
+          <TableStyle1Wrapper>
+            <Table columns={columnsSmallScreen} data={dataSmallScreen} />
+          </TableStyle1Wrapper>
+        }
+      />
 
-      <TableStyle1Wrapper>
-        <Table columns={columnsSmallScreen} data={dataSmallScreen} />
-      </TableStyle1Wrapper>
       <Spacer height={'080px'} />
     </ContainerFullWidth>
   )

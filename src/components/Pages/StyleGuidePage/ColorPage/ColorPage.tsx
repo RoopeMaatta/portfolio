@@ -7,6 +7,7 @@ import { ContainerFullWidth } from '../../../Atoms/ContainerFullWidth'
 import { Spacer } from '../../../Atoms/Spacer'
 import { getColorDataGroupedByKey } from './getColorDataGroupedByKey'
 import { getColumnsConfig } from './getColumnsConfig'
+import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
 
 // Main component rendering the color data table
 const ColorPage: React.FC = () => {
@@ -31,20 +32,26 @@ const ColorPage: React.FC = () => {
       <Spacer height={'080px'} />
 
       {Object.entries(groupedColorData).map(([groupKey, colorData]) => (
-        <div key={groupKey}>
-          <h4>{groupKey.charAt(0).toUpperCase() + groupKey.slice(1)}</h4>
-          <Spacer height={'016px'} />
-          <TableStyle1Wrapper>
-            <Table
-              columns={getColumnsConfig(
-                themeColorDarkMode,
-                themeColorLightMode
-              )}
-              data={colorData}
-            />
-          </TableStyle1Wrapper>
+        <>
+          <H4TitleContentBlock
+            key={groupKey}
+            title={groupKey.charAt(0).toUpperCase() + groupKey.slice(1)}
+            description={false}
+            content={
+              <TableStyle1Wrapper>
+                <Table
+                  columns={getColumnsConfig(
+                    themeColorDarkMode,
+                    themeColorLightMode
+                  )}
+                  data={colorData}
+                />
+              </TableStyle1Wrapper>
+            }
+          />
+
           <Spacer height={'080px'} />
-        </div>
+        </>
       ))}
     </ContainerFullWidth>
   )

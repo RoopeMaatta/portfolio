@@ -4,6 +4,7 @@ import { getTheme } from '../../../../themes/getTheme'
 import ElevationVisualization from './ElevationVisualization'
 import { ContainerFullWidth } from '../../../Atoms/ContainerFullWidth'
 import { Spacer } from '../../../Atoms/Spacer'
+import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
 
 // Main component rendering the color data table
 const ColorPage: React.FC = () => {
@@ -19,27 +20,22 @@ const ColorPage: React.FC = () => {
     <ContainerFullWidth>
       <h1>Elevation</h1>
       <Spacer height={'016px'} />
-      <h4>Light Mode</h4>
-      <Spacer height={'008px'} />
-      <p style={{ color: theme.colors.text.neutral.weak }}>
-        Shadows work well to indicate different levels of elevation.
-      </p>
-      <Spacer height={'016px'} />
-      <div>
-        <ElevationVisualization theme={themeLightMode} />
-      </div>
+
+      <H4TitleContentBlock
+        title='Light Mode'
+        description='Shadows work well to indicate different levels of elevation.'
+        content={<ElevationVisualization theme={themeLightMode} />}
+      />
+
       <Spacer height={'040px'} />
 
-      <h4>Dark Mode</h4>
-      <Spacer height={'008px'} />
-      <p style={{ color: theme.colors.text.neutral.weak }}>
-        Progressively lighter background colors are used to indicate elevation
-        in dark mode.
-      </p>
-      <Spacer height={'016px'} />
-      <div>
-        <ElevationVisualization theme={themeDarkMode} />
-      </div>
+      <H4TitleContentBlock
+        title='Dark Mode'
+        description='Progressively lighter background colors are used to indicate elevation
+        in dark mode.'
+        content={<ElevationVisualization theme={themeDarkMode} />}
+      />
+
       <Spacer height={'080px'} />
     </ContainerFullWidth>
   )

@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components'
 import ColorPage from './ColorPage/ColorPage'
 import ElevationPage from './ElevationPage/ElevationPage'
 import TypographyPage from './TypographyPage/TypographyPage'
+import TestingPage from './TestingPage'
 import RenderSpacing from '../StyleGuide/RenderSpacing'
 import RenderRadius from '../StyleGuide/RenderRadius'
 import RenderBreakpoints from '../StyleGuide/RenderBreakpoints'
@@ -41,6 +42,9 @@ const StyleGuidePage: React.FC = () => {
           <li>
             <Link to='/style-guide/breakpoints'>Breakpoints</Link>
           </li>
+          <li>
+            <Link to='/style-guide/testing'>Testing</Link>
+          </li>
         </ul>
       </nav>
 
@@ -54,6 +58,7 @@ const StyleGuidePage: React.FC = () => {
         <Route path='radius' element={<RenderRadius radius={theme.radius} />} />
         <Route path='elevation' element={<ElevationPage />} />
         <Route path='breakpoints' element={<RenderBreakpoints />} />
+        <Route path='testing' element={<TestingPage />} />
       </Routes>
     </>
   )

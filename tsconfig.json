@@ -15,6 +15,7 @@
     "paths": {
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
+      "src/*": ["src/*"],
     },
         "plugins": [
       {

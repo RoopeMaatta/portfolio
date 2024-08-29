@@ -55,9 +55,7 @@ const MiddleElement2 = styled.div<{ theme: DefaultTheme }>`
 
 const ElementText = styled.p<{ theme: DefaultTheme }>`
   margin-top: ${({ theme }) => theme.spacing['008px']};
-  color: ${({ theme }) =>
-    theme.colors.text.neutral.weak}; /* Use a text color from the theme */
-  font-size: 1rem; /* Adjust the text size as needed */
+  color: ${({ theme }) => theme.colors.text.neutral.weak};
   text-align: center;
 `
 

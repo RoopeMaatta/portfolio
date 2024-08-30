@@ -7,7 +7,6 @@ import { Button } from 'src/components/Atoms/Button'
 const Nav = styled.nav`
   display: flex;
   justify-content: left;
-  gap: 0.5rem;
   margin-bottom: 1rem;
   border-bottom: 2px solid #ddd; /* Underline for the entire nav */
   position: relative;

@@ -22,7 +22,6 @@ const ButtonVariationsPage: React.FC = () => {
         buttonStyle='outline'
         icon={<ChevronRightIcon />}
       />
-      <br />
       <Button
         label='Click Me, Fill'
         onClick={handleButtonClick}

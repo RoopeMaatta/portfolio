@@ -9,6 +9,8 @@ import {
 } from './buttonStyles'
 
 type ButtonVariant = 'filled' | 'tonal' | 'outline' | 'text'
+type ButtonSize = 'small' | 'regular' | 'large'
+type ButtonShape = 'round' | 'regular'
 
 const variantMap = {
   filled: StyledButtonFilled,
@@ -24,6 +26,8 @@ interface ButtonProps {
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
   fullWidth?: boolean
+  size?: ButtonSize
+  shape?: ButtonShape
   style?: React.CSSProperties
 }
 
@@ -35,12 +39,22 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   iconPosition = 'left',
   fullWidth = false,
+  size = 'regular',
+  shape = 'regular',
   style,
 }) => {
   const StyledButton = variantMap[buttonStyle]
+  const onlyIcon = !!(icon && !label)
 
   return (
-    <StyledButton onClick={onClick} fullWidth={fullWidth} style={style}>
+    <StyledButton
+      onClick={onClick}
+      fullWidth={fullWidth}
+      onlyIcon={onlyIcon}
+      size={size}
+      shape={shape}
+      style={style}
+    >
       {icon && iconPosition === 'left' && <span className='icon'>{icon}</span>}
       {label && <span className='label'>{label}</span>}
       {icon && iconPosition === 'right' && <span className='icon'>{icon}</span>}
@@ -53,6 +67,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   buttonStyle: PropTypes.oneOf(['filled', 'tonal', 'outline', 'text']),
   icon: PropTypes.node,
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
   iconPosition: PropTypes.oneOf(['left', 'right']),
 }
 

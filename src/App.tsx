@@ -27,13 +27,15 @@ const App: React.FC = () => {
   const padding = useResponsiveValue(['4vw', '4vw', '6vw'])
 
   return (
-    <PaddingContainer theme={theme} padding={padding}>
+    <>
       <DevVisualizationButtons />
-      <NavigationBar items={items}/>
-      <GridWrapper>
-        <AppRoutes />
-      </GridWrapper>
-    </PaddingContainer>
+      <NavigationBar items={items} />
+      <PaddingContainer theme={theme} padding={padding}>
+        <GridWrapper>
+          <AppRoutes />
+        </GridWrapper>
+      </PaddingContainer>
+    </>
   )
 }
 

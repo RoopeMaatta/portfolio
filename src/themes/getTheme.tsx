@@ -40,6 +40,7 @@ export const getTheme = (isDarkMode: boolean, isSmallScreen: boolean) => {
     radius: {
       '04px': '4px',
       '08px': '8px',
+      '12px': '12px',
       '16px': '16px',
       '24px': '24px',
       '32px': '32px',

@@ -10,7 +10,7 @@ import {
 
 type ButtonVariant = 'filled' | 'tonal' | 'outline' | 'text'
 type ButtonSize = 'small' | 'regular' | 'large'
-type ButtonShape = 'round' | 'regular'
+type ButtonShape = 'square' | 'regular' | 'round'
 
 const variantMap = {
   filled: StyledButtonFilled,
@@ -29,6 +29,7 @@ interface ButtonProps {
   size?: ButtonSize
   shape?: ButtonShape
   style?: React.CSSProperties
+  disabled?: boolean
 }
 
 // Functional component using styled button
@@ -42,6 +43,7 @@ const Button: React.FC<ButtonProps> = ({
   size = 'regular',
   shape = 'regular',
   style,
+  disabled = false,
 }) => {
   const StyledButton = variantMap[buttonStyle]
   const onlyIcon = !!(icon && !label)
@@ -54,9 +56,15 @@ const Button: React.FC<ButtonProps> = ({
       size={size}
       shape={shape}
       style={style}
+      tabIndex={0}
+      disabled={disabled}
     >
       {icon && iconPosition === 'left' && <span className='icon'>{icon}</span>}
-      {label && <span className='label'>{label}</span>}
+      {label && (
+        <span className='label'>
+          <strong>{label}</strong>
+        </span>
+      )}
       {icon && iconPosition === 'right' && <span className='icon'>{icon}</span>}
     </StyledButton>
   )

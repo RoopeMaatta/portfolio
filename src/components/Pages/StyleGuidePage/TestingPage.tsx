@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTheme } from 'styled-components'
 import { ContainerFullWidth } from 'src/components/Atoms/ContainerFullWidth'
-import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
+import Card from 'src/components/Organisms/Card/Card'
 
 // Main component rendering the color data table
 const TestingPage: React.FC = () => {
@@ -15,9 +15,10 @@ const TestingPage: React.FC = () => {
           borderStyle: 'dotted',
           borderColor: theme.colors.stroke.neutral.strong,
           borderWidth: theme.stroke.strong,
+          padding: theme.spacing['032px'],
         }}
       >
-        <H4TitleContentBlock />
+        <Card />
       </ContainerFullWidth>
     </div>
   )

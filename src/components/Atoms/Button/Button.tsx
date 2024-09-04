@@ -19,7 +19,7 @@ const variantMap = {
   text: StyledButtonText,
 }
 
-interface ButtonProps {
+export interface ButtonProps {
   label?: string
   onClick?: () => void
   buttonStyle?: ButtonVariant

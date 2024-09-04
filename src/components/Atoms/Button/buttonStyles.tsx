@@ -11,22 +11,18 @@ interface StyledButtonProps {
 
 // Styled component using destructuring
 const ButtonBase = styled.button.withConfig({
-  shouldForwardProp: prop => !['fullWidth', 'onlyIcon', 'size'].includes(prop),
+  shouldForwardProp: prop =>
+    !['fullWidth', 'onlyIcon', 'shape', 'size'].includes(prop),
 })<StyledButtonProps>`
   ${({ theme, fullWidth, onlyIcon, shape, size }) => {
     const { colors, spacing, radius, typography, shadow, stroke } = theme
 
-    const radiusButtonShapeDependant = (() => {
-      switch (shape) {
-        case 'square':
-          return 0
-        case 'round':
-          return radius['32px']
-        case 'regular':
-        default:
-          return radius['12px']
-      }
-    })()
+    const shapeRadiusMap = {
+      square: 0,
+      round: radius['32px'],
+      regular: radius['12px'],
+    }
+    const radiusButtonShapeDependant = shapeRadiusMap[shape || 'regular']
 
     const sizeDependantStyle = {
       small: css`
@@ -34,11 +30,7 @@ const ButtonBase = styled.button.withConfig({
         padding-right: ${onlyIcon ? 0 : spacing['008px']};
         ${typography.tiny};
         height: ${spacing['032px']};
-        width: ${() => {
-          if (onlyIcon) return spacing['032px']
-          if (fullWidth) return '100%'
-          return 'auto'
-        }};
+        width: ${onlyIcon ? spacing['032px'] : fullWidth ? '100%' : 'auto'};
         .icon {
           display: inline-flex;
           width: 20px;
@@ -50,11 +42,7 @@ const ButtonBase = styled.button.withConfig({
         padding-right: ${onlyIcon ? 0 : spacing['012px']};
         ${typography.small};
         height: ${spacing['048px']};
-        width: ${() => {
-          if (onlyIcon) return spacing['048px']
-          if (fullWidth) return '100%'
-          return 'auto'
-        }};
+        width: ${onlyIcon ? spacing['048px'] : fullWidth ? '100%' : 'auto'};
         .icon {
           display: inline-flex;
           width: 24px;
@@ -66,11 +54,7 @@ const ButtonBase = styled.button.withConfig({
         padding-right: ${onlyIcon ? 0 : spacing['020px']};
         ${typography.h4};
         height: ${spacing['056px']};
-        width: ${() => {
-          if (onlyIcon) return spacing['056px']
-          if (fullWidth) return '100%'
-          return 'auto'
-        }};
+        width: ${onlyIcon ? spacing['056px'] : fullWidth ? '100%' : 'auto'};
         .icon {
           display: inline-flex;
           width: 28px;
@@ -115,7 +99,7 @@ const ButtonBase = styled.button.withConfig({
         width: 100%;
         height: 100%;
         pointer-events: none;
-        transition: background-color 0.1;
+        transition: background-color 0.1s;
       }
 
       &:hover::before {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useTheme } from 'styled-components'
 import { ContainerFullWidth } from 'src/components/Atoms/ContainerFullWidth'
 import Card from 'src/components/Organisms/Card/Card'
+import { Button } from 'src/components/Atoms/Button'
 
 // Main component rendering the color data table
 const TestingPage: React.FC = () => {
@@ -19,6 +20,8 @@ const TestingPage: React.FC = () => {
         }}
       >
         <Card />
+        <Button label='button' disabled />
+        <Button label='button' />
       </ContainerFullWidth>
     </div>
   )

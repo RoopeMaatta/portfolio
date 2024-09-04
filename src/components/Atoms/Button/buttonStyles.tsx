@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { interactivePseudoClassStyles } from '../../../styles/interactivePseudoClassStyles'
 
 type ButtonSize = 'small' | 'regular' | 'large'
 
@@ -15,7 +16,7 @@ const ButtonBase = styled.button.withConfig({
     !['fullWidth', 'onlyIcon', 'shape', 'size'].includes(prop),
 })<StyledButtonProps>`
   ${({ theme, fullWidth, onlyIcon, shape, size }) => {
-    const { colors, spacing, radius, typography, shadow, stroke } = theme
+    const { colors, spacing, radius, typography, shadow } = theme
 
     const shapeRadiusMap = {
       square: 0,
@@ -64,14 +65,15 @@ const ButtonBase = styled.button.withConfig({
     }
 
     return css`
+      ${size && sizeDependantStyle[size]}
+      ${interactivePseudoClassStyles}
+
       display: inline-flex;
       gap: ${spacing['004px']};
       align-items: center;
       vertical-align: middle;
       justify-content: center;
       box-shadow: ${shadow.raised};
-
-      ${size && sizeDependantStyle[size]}
 
       background-color: ${colors.fill.brand.strong};
       color: ${colors.text.neutral.invert};
@@ -84,51 +86,6 @@ const ButtonBase = styled.button.withConfig({
       overflow: hidden;
 
       transition: box-shadow 0.5s ease;
-
-      &:focus-visible {
-        outline: ${stroke.strong} solid ${colors.stroke.brand.strong};
-        outline-offset: 2px;
-      }
-
-      &:hover::before,
-      &:active::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        transition: background-color 0.1s;
-      }
-
-      &:hover::before {
-        background-color: ${colors.fill.state.hover};
-      }
-
-      &:hover {
-        box-shadow: ${shadow.overlay};
-      }
-
-      &:active::before {
-        background-color: ${colors.fill.state.press};
-      }
-
-      &:disabled {
-        cursor: not-allowed;
-        background-color: ${theme.colors.fill.state.disabled};
-        box-shadow: none;
-
-        /* Prevent hover and active styles when disabled */
-        &:hover::before,
-        &:active::before {
-          content: none;
-          background-color: ${theme.colors.fill.state.disabled};
-        }
-        &:hover {
-          box-shadow: none;
-        }
-      }
 
       .icon svg {
         width: 100%;

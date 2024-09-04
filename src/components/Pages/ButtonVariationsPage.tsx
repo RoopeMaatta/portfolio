@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { Button } from '..'
-import CheckIcon from '@mui/icons-material/Check'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useTheme } from 'styled-components'
 import { ContainerFullWidth } from '../../components/Atoms/ContainerFullWidth'
+import { Check, ArrowRight } from 'react-feather'
 
 const ButtonVariationsPage: React.FC = () => {
   const [counter, setCounter] = useState(0)
@@ -20,7 +19,7 @@ const ButtonVariationsPage: React.FC = () => {
       <Button
         onClick={handleButtonClick}
         buttonStyle='outline'
-        icon={<ChevronRightIcon />}
+        icon={<ArrowRight />}
       />
       <Button
         label='Click Me, Fill'
@@ -42,14 +41,14 @@ const ButtonVariationsPage: React.FC = () => {
         label='Fill, icon left'
         onClick={handleButtonClick}
         buttonStyle='filled'
-        icon={<CheckIcon />}
+        icon={<Check />}
         iconPosition='left'
       />
       <Button
         label='Outline, icon right'
         onClick={handleButtonClick}
         buttonStyle='outline'
-        icon={<ChevronRightIcon />}
+        icon={<ArrowRight />}
         iconPosition='right'
       />
       <Button label='Click' onClick={handleButtonClick} buttonStyle='outline' />
@@ -64,7 +63,7 @@ const ButtonVariationsPage: React.FC = () => {
         label='Fill, icon left, fullWidth'
         onClick={handleButtonClick}
         buttonStyle='filled'
-        icon={<CheckIcon />}
+        icon={<Check />}
         iconPosition='left'
         fullWidth={true}
       />
@@ -72,7 +71,7 @@ const ButtonVariationsPage: React.FC = () => {
         label='Outline, icon right, fullWidth'
         onClick={handleButtonClick}
         buttonStyle='outline'
-        icon={<ChevronRightIcon />}
+        icon={<ArrowRight />}
         iconPosition='right'
         fullWidth={true}
       />
@@ -80,7 +79,7 @@ const ButtonVariationsPage: React.FC = () => {
         label='Tonal, icon right, fullWidth'
         onClick={handleButtonClick}
         buttonStyle='tonal'
-        icon={<ChevronRightIcon />}
+        icon={<ArrowRight />}
         iconPosition='right'
         fullWidth={true}
       />
@@ -88,22 +87,22 @@ const ButtonVariationsPage: React.FC = () => {
       <Button
         onClick={handleButtonClick}
         buttonStyle='filled'
-        icon={<ChevronRightIcon />}
+        icon={<ArrowRight />}
       />
       <Button
         onClick={handleButtonClick}
         buttonStyle='tonal'
-        icon={<ChevronRightIcon />}
+        icon={<ArrowRight />}
       />
       <Button
         onClick={handleButtonClick}
         buttonStyle='outline'
-        icon={<ChevronRightIcon />}
+        icon={<ArrowRight />}
       />
       <Button
         onClick={handleButtonClick}
         buttonStyle='text'
-        icon={<ChevronRightIcon />}
+        icon={<ArrowRight />}
       />
     </ContainerFullWidth>
   )

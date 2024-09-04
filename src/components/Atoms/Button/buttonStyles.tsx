@@ -27,22 +27,11 @@ const ButtonBase = styled.button.withConfig({
           return radius['12px']
       }
     })()
-    const paddingButtonSizeDependant = (() => {
-      switch (size) {
-        case 'small':
-          return spacing['008px']
-        case 'large':
-          return spacing['012px']
-        case 'regular':
-        default:
-          return spacing['020px']
-      }
-    })()
 
     const sizeDependantStyle = {
       small: css`
-        padding-left: ${onlyIcon ? 0 : paddingButtonSizeDependant};
-        padding-right: ${onlyIcon ? 0 : paddingButtonSizeDependant};
+        padding-left: ${onlyIcon ? 0 : spacing['008px']};
+        padding-right: ${onlyIcon ? 0 : spacing['008px']};
         ${typography.tiny};
         height: ${spacing['032px']};
         width: ${() => {
@@ -50,10 +39,15 @@ const ButtonBase = styled.button.withConfig({
           if (fullWidth) return '100%'
           return 'auto'
         }};
+        .icon {
+          display: inline-flex;
+          width: 20px;
+          height: 20px;
+        }
       `,
       regular: css`
-        padding-left: ${onlyIcon ? 0 : paddingButtonSizeDependant};
-        padding-right: ${onlyIcon ? 0 : paddingButtonSizeDependant};
+        padding-left: ${onlyIcon ? 0 : spacing['012px']};
+        padding-right: ${onlyIcon ? 0 : spacing['012px']};
         ${typography.small};
         height: ${spacing['048px']};
         width: ${() => {
@@ -61,10 +55,15 @@ const ButtonBase = styled.button.withConfig({
           if (fullWidth) return '100%'
           return 'auto'
         }};
+        .icon {
+          display: inline-flex;
+          width: 24px;
+          height: 24px;
+        }
       `,
       large: css`
-        padding-left: ${onlyIcon ? 0 : paddingButtonSizeDependant};
-        padding-right: ${onlyIcon ? 0 : paddingButtonSizeDependant};
+        padding-left: ${onlyIcon ? 0 : spacing['020px']};
+        padding-right: ${onlyIcon ? 0 : spacing['020px']};
         ${typography.h4};
         height: ${spacing['056px']};
         width: ${() => {
@@ -72,6 +71,11 @@ const ButtonBase = styled.button.withConfig({
           if (fullWidth) return '100%'
           return 'auto'
         }};
+        .icon {
+          display: inline-flex;
+          width: 28px;
+          height: 28px;
+        }
       `,
     }
 
@@ -135,16 +139,16 @@ const ButtonBase = styled.button.withConfig({
         &:hover::before,
         &:active::before {
           content: none;
-          background-color: ${theme.colors.fill.state
-            .disabled}; /* or set to none */
+          background-color: ${theme.colors.fill.state.disabled};
         }
         &:hover {
           box-shadow: none;
         }
       }
 
-      .icon {
-        display: inline-flex;
+      .icon svg {
+        width: 100%;
+        height: 100%;
       }
 
       .label {

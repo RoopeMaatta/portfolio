@@ -2,10 +2,7 @@ import React from 'react'
 import { useTheme } from 'styled-components'
 import { ContainerFullWidth } from 'src/components/Atoms/ContainerFullWidth'
 import Card from 'src/components/Organisms/Card/Card'
-import Button, {
-  ButtonSmall,
-  ButtonIcon,
-} from 'src/components/Atoms/Button/ButtonVariants'
+import { Button, ButtonSmall, ButtonIcon } from 'src/components/Atoms/Button'
 import { Check } from 'react-feather'
 
 // Main component rendering the color data table
@@ -35,6 +32,12 @@ const TestingPage: React.FC = () => {
           icon={<Check />}
           size='small'
           buttonStyle='outline'
+          shape='square'
+        />
+        <ButtonIcon
+          icon={<Check />}
+          size='small'
+          buttonStyle='text'
           shape='square'
         />
       </ContainerFullWidth>

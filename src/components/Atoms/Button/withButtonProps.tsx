@@ -1,6 +1,6 @@
 // src/components/withButtonProps.tsx
 import React from 'react'
-import Button, { ButtonProps } from './Button'
+import Button, { ButtonProps } from './ButtonMaster'
 
 // Modify the HOC to accept an additional generic for excluded props
 const withButtonProps = <

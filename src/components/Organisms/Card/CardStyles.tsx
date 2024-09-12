@@ -2,13 +2,14 @@ import styled, { css } from 'styled-components'
 
 interface StyledCardProps {
   isHorizontal?: boolean // Prop used only for styling
+  gridColumn?: string
 }
 
 // Shared card styling for both variants with shouldForwardProp
 const CardBase = styled.div.withConfig({
-  shouldForwardProp: prop => !['isHorizontal'].includes(prop), // Prevent 'isHorizontal' from being passed to the DOM
+  shouldForwardProp: prop => !['isHorizontal', 'gridColumn'].includes(prop), // Prevent 'isHorizontal' from being passed to the DOM
 })<StyledCardProps>`
-  ${({ theme, isHorizontal }) => {
+  ${({ theme, isHorizontal, gridColumn }) => {
     const { shadow, colors, spacing, radius } = theme
 
     return css`
@@ -17,13 +18,13 @@ const CardBase = styled.div.withConfig({
       border-radius: ${radius['16px']};
       position: relative;
       display: flex;
-      flex-direction: ${isHorizontal
-        ? 'row'
-        : 'column'}; /* Dynamic based on orientation */
+      flex-direction: ${isHorizontal ? 'row' : 'column'};
       align-items: stretch;
       justify-content: flex-start;
       max-width: 100%;
       flex-grow: 1;
+
+      grid-column: ${gridColumn};
 
       /* Apply padding to all children except the image */
       & > *:not(img) {

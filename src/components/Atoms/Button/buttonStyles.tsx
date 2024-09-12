@@ -92,7 +92,6 @@ const ButtonBase = styled.button.withConfig({
       cursor: pointer;
 
       position: relative;
-      overflow: hidden;
 
       transition: box-shadow 0.5s ease;
 

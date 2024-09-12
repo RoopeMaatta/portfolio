@@ -8,6 +8,8 @@ import TestingPage from './TestingPage'
 import RenderSpacing from '../StyleGuide/RenderSpacing'
 import RenderRadius from '../StyleGuide/RenderRadius'
 import RenderBreakpoints from '../StyleGuide/RenderBreakpoints'
+import Card from 'src/components/Organisms/Card/Card'
+import { ButtonContainer } from 'src/components/Atoms/Button'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>
@@ -22,6 +24,9 @@ const StyleGuidePage: React.FC = () => {
 
   return (
     <>
+      <ButtonContainer style={{ gridColumn: 'span 4' }}>
+        <Card image />
+      </ButtonContainer>
       <nav style={{ gridColumn: '1/-1' }}>
         <ul>
           <li>

@@ -16,11 +16,7 @@ const TestingPage: React.FC = () => {
 
   return (
     <div style={{ display: 'contents' }}>
-      <ButtonContainer
-        style={{ gridColumn: 'span 4' }}
-        buttonStyle='clear'
-        shape='square'
-      >
+      <ButtonContainer style={{ gridColumn: 'span 4' }}>
         <Card image='https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-m@2x.png' />
       </ButtonContainer>
       <Card

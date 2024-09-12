@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
 import { StyledCardOverlay, StyledCardRaised, CardImage } from './CardStyles'
 import PlaceholderComponent from 'src/components/Atoms/PlaceholderComponent'
 
 type CardVariant = 'overlay' | 'raised'
+
+type GridColumnValue =
+  | 'auto' // Default value
+  | `span ${number}` // "span n" format
+  | `${number} / ${number}` // "start / end" format
+  | `${number} / span ${number}` // "start / span n" format
+  | '1 / -1' // Common full-width usage
+  | 'inherit'
 
 const variantMap = {
   overlay: StyledCardOverlay,
@@ -19,6 +27,7 @@ interface CardProps {
   style?: React.CSSProperties
   image?: string | boolean // Image can be a string (URL) or a boolean
   isHorizontal?: boolean
+  gridColumn?: GridColumnValue
 }
 
 const Card: React.FC<CardProps> = ({
@@ -29,19 +38,31 @@ const Card: React.FC<CardProps> = ({
   style,
   image = false, // Default to false
   isHorizontal = false,
+  gridColumn = '1 / -1',
 }) => {
   const StyledCard = variantMap[cardStyle]
 
-  // Define the placeholder image URL
-  const placeholderImage =
-    'https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-m@2x.png'
+  // Memoizing the placeholder image URL
+  const placeholderImage = useMemo(
+    () =>
+      'https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-m@2x.png',
+    []
+  )
 
-  // Determine which image to show: the placeholder, a string, or no image
-  const imageToShow =
-    typeof image === 'boolean' && image === true ? placeholderImage : image
+  // Memoize the image to avoid recalculation on every render
+  const imageToShow = useMemo(() => {
+    if (typeof image === 'boolean' && image === true) {
+      return placeholderImage
+    }
+    return image
+  }, [image, placeholderImage])
 
   return (
-    <StyledCard style={style} isHorizontal={isHorizontal}>
+    <StyledCard
+      gridColumn={gridColumn}
+      style={style}
+      isHorizontal={isHorizontal}
+    >
       {imageToShow && (
         <CardImage
           src={imageToShow}
@@ -49,14 +70,13 @@ const Card: React.FC<CardProps> = ({
           isHorizontal={isHorizontal}
         />
       )}
-      <div>
-        <H4TitleContentBlock
-          title={title}
-          description={description}
-          content={content}
-          customSpacingHeight={'016px'}
-        />
-      </div>
+
+      <H4TitleContentBlock
+        title={title}
+        description={description}
+        content={content}
+        customSpacingHeight={'016px'}
+      />
     </StyledCard>
   )
 }

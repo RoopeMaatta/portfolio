@@ -2,6 +2,9 @@ import { css } from 'styled-components'
 
 export const interactivePseudoClassStyles = css`
   ${({ theme }) => `
+
+    transition: box-shadow 0.1s ease-in-out;
+
     &:focus-visible {
       outline: ${theme.stroke.strong} solid ${theme.colors.stroke.brand.strong};
       outline-offset: 2px;

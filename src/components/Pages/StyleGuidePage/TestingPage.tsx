@@ -30,7 +30,7 @@ const TestingPage: React.FC = () => {
           padding: theme.spacing['032px'],
         }}
       >
-        <Card image='https://dummyimage.com/640x360/eee/aaa' />
+        <Card content={false} image='https://dummyimage.com/640x360/eee/aaa' />
         <Card isHorizontal image />
         <Card />
         <Card title={false} />

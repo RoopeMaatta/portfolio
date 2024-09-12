@@ -22,7 +22,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({
-  cardStyle = 'overlay',
+  cardStyle = 'raised',
   title = 'title: Placeholder. If not needed, set to {false}',
   description = 'description: Placeholder. If not needed, set to {false}',
   content = <PlaceholderComponent />,

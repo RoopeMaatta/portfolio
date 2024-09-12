@@ -2,7 +2,11 @@ import React from 'react'
 import { useTheme } from 'styled-components'
 import { ContainerFullWidth } from 'src/components/Atoms/ContainerFullWidth'
 import Card from 'src/components/Organisms/Card/Card'
-import { Button, ButtonSmall, ButtonIcon } from 'src/components/Atoms/Button'
+import {
+  Button,
+  ButtonIcon,
+  ButtonContainer,
+} from 'src/components/Atoms/Button'
 import { Check } from 'react-feather'
 import PlaceholderComponent from 'src/components/Atoms/PlaceholderComponent'
 
@@ -12,10 +16,13 @@ const TestingPage: React.FC = () => {
 
   return (
     <div style={{ display: 'contents' }}>
-      <Card
-        image='https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-m@2x.png'
+      <ButtonContainer
         style={{ gridColumn: 'span 4' }}
-      />
+        buttonStyle='clear'
+        shape='square'
+      >
+        <Card image='https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-m@2x.png' />
+      </ButtonContainer>
       <Card
         isHorizontal
         image='https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-m@2x.png'
@@ -30,18 +37,8 @@ const TestingPage: React.FC = () => {
           padding: theme.spacing['032px'],
         }}
       >
-        <Button
-          style={{
-            textDecorationLine: 'underline',
-            padding: '0px',
-            height: 'auto',
-          }}
-          buttonStyle='clear'
-          shape='square'
-          label='test'
-        >
-          {<Check />}
-          <h4>test</h4>test
+        <Button>
+          <PlaceholderComponent />
         </Button>
 
         <Card content={false} image='https://dummyimage.com/640x360/eee/aaa' />
@@ -51,10 +48,7 @@ const TestingPage: React.FC = () => {
         <Card cardStyle='raised' />
         <Button label='button' disabled />
         <Button label='button' icon={<Check />} />
-        <ButtonSmall label='button' disabled />
-        <ButtonSmall label='button' />
-        <ButtonSmall label='button' disabled />
-        <ButtonSmall label='button' shape='regular' />
+
         <ButtonIcon icon={<Check />} disabled />
         <ButtonIcon
           icon={<Check />}

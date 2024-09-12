@@ -12,6 +12,7 @@ export const interactivePseudoClassStyles = css`
 
     &:hover::before,
     &:active::before {
+      z-index: 1;
       content: '';
       position: absolute;
       top: 0;

@@ -1,2 +1,2 @@
 export { default as Button } from './Button'
-export { ButtonSmall, ButtonIcon } from './Button'
+export { ButtonIcon, ButtonContainer } from './Button'

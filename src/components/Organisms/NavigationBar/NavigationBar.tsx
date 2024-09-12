@@ -58,7 +58,7 @@ const NavigationBar: React.FC<NavBarProps> = ({ items }) => {
               <Button
                 label={item.label}
                 onClick={() => navigate(item.href)}
-                buttonStyle='text'
+                buttonStyle='clear'
                 shape='square'
               />
             </div>

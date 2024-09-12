@@ -1,14 +1,12 @@
-// src/components/Button.jsx
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   StyledButtonFilled,
   StyledButtonTonal,
   StyledButtonStroke,
-  StyledButtonText,
+  StyledButtonClear,
 } from './buttonStyles'
 
-type ButtonVariant = 'filled' | 'tonal' | 'outline' | 'text'
+type ButtonVariant = 'filled' | 'tonal' | 'outline' | 'clear'
 type ButtonSize = 'small' | 'regular' | 'large'
 type ButtonShape = 'square' | 'regular' | 'round'
 
@@ -16,7 +14,7 @@ const variantMap = {
   filled: StyledButtonFilled,
   tonal: StyledButtonTonal,
   outline: StyledButtonStroke,
-  text: StyledButtonText,
+  clear: StyledButtonClear,
 }
 
 export interface ButtonProps {
@@ -30,6 +28,7 @@ export interface ButtonProps {
   shape?: ButtonShape
   style?: React.CSSProperties
   disabled?: boolean
+  children?: React.ReactNode
 }
 
 // Functional component using styled button
@@ -44,15 +43,20 @@ const Button: React.FC<ButtonProps> = ({
   shape = 'regular',
   style,
   disabled = false,
+  children,
 }) => {
   const StyledButton = variantMap[buttonStyle]
   const onlyIcon = !!(icon && !label)
+  const noPadding = !label
+  const noIconOrLabel = !(icon || label)
 
   return (
     <StyledButton
       onClick={onClick}
       fullWidth={fullWidth}
       onlyIcon={onlyIcon}
+      noPadding={noPadding}
+      noIconOrLabel={noIconOrLabel}
       size={size}
       shape={shape}
       style={style}
@@ -66,17 +70,10 @@ const Button: React.FC<ButtonProps> = ({
         </span>
       )}
       {icon && iconPosition === 'right' && <span className='icon'>{icon}</span>}
+      {/* Render children if present */}
+      {children}
     </StyledButton>
   )
-}
-
-Button.propTypes = {
-  label: PropTypes.string,
-  onClick: PropTypes.func,
-  buttonStyle: PropTypes.oneOf(['filled', 'tonal', 'outline', 'text']),
-  icon: PropTypes.node,
-  size: PropTypes.oneOf(['small', 'regular', 'large']),
-  iconPosition: PropTypes.oneOf(['left', 'right']),
 }
 
 export default Button

@@ -19,6 +19,6 @@ export const ButtonIcon = withButtonProps<
   Omit<ButtonProps, 'label' | 'iconPosition' | 'fullWidth'>,
   'label' | 'iconPosition' | 'fullWidth'
 >({
-  buttonStyle: 'text',
+  buttonStyle: 'clear',
   size: 'regular',
 })

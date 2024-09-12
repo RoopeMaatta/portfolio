@@ -34,7 +34,7 @@ const ButtonVariationsPage: React.FC = () => {
       <Button
         label='Click Me, Text'
         onClick={handleButtonClick}
-        buttonStyle='text'
+        buttonStyle='clear'
       />
       <br />
       <Button
@@ -101,7 +101,7 @@ const ButtonVariationsPage: React.FC = () => {
       />
       <Button
         onClick={handleButtonClick}
-        buttonStyle='text'
+        buttonStyle='clear'
         icon={<ArrowRight />}
       />
     </ContainerFullWidth>

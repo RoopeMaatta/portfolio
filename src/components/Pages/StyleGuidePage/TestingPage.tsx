@@ -30,13 +30,27 @@ const TestingPage: React.FC = () => {
           padding: theme.spacing['032px'],
         }}
       >
+        <Button
+          style={{
+            textDecorationLine: 'underline',
+            padding: '0px',
+            height: 'auto',
+          }}
+          buttonStyle='clear'
+          shape='square'
+          label='test'
+        >
+          {<Check />}
+          <h4>test</h4>test
+        </Button>
+
         <Card content={false} image='https://dummyimage.com/640x360/eee/aaa' />
         <Card isHorizontal image />
         <Card />
         <Card title={false} />
         <Card cardStyle='raised' />
         <Button label='button' disabled />
-        <Button label='button' />
+        <Button label='button' icon={<Check />} />
         <ButtonSmall label='button' disabled />
         <ButtonSmall label='button' />
         <ButtonSmall label='button' disabled />
@@ -46,12 +60,6 @@ const TestingPage: React.FC = () => {
           icon={<Check />}
           size='small'
           buttonStyle='outline'
-          shape='square'
-        />
-        <ButtonIcon
-          icon={<Check />}
-          size='small'
-          buttonStyle='text'
           shape='square'
         />
 

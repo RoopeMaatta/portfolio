@@ -6,6 +6,8 @@ type ButtonSize = 'small' | 'regular' | 'large'
 interface StyledButtonProps {
   fullWidth?: boolean
   onlyIcon?: boolean
+  noPadding?: boolean
+  noIconOrLabel?: boolean
   shape?: 'square' | 'regular' | 'round'
   size?: ButtonSize
 }
@@ -13,9 +15,16 @@ interface StyledButtonProps {
 // Styled component using destructuring
 const ButtonBase = styled.button.withConfig({
   shouldForwardProp: prop =>
-    !['fullWidth', 'onlyIcon', 'shape', 'size'].includes(prop),
+    ![
+      'fullWidth',
+      'onlyIcon',
+      'noPadding',
+      'noIconOrLabel',
+      'shape',
+      'size',
+    ].includes(prop),
 })<StyledButtonProps>`
-  ${({ theme, fullWidth, onlyIcon, shape, size }) => {
+  ${({ theme, fullWidth, onlyIcon, noPadding, noIconOrLabel, shape, size }) => {
     const { colors, spacing, radius, typography, shadow } = theme
 
     const shapeRadiusMap = {
@@ -27,10 +36,10 @@ const ButtonBase = styled.button.withConfig({
 
     const sizeDependantStyle = {
       small: css`
-        padding-left: ${onlyIcon ? 0 : spacing['008px']};
-        padding-right: ${onlyIcon ? 0 : spacing['008px']};
+        padding-left: ${noPadding ? 0 : spacing['008px']};
+        padding-right: ${noPadding ? 0 : spacing['008px']};
         ${typography.tiny};
-        height: ${spacing['032px']};
+        height: ${noIconOrLabel ? 'auto' : spacing['032px']};
         width: ${onlyIcon ? spacing['032px'] : fullWidth ? '100%' : 'auto'};
         .icon {
           display: inline-flex;
@@ -39,10 +48,10 @@ const ButtonBase = styled.button.withConfig({
         }
       `,
       regular: css`
-        padding-left: ${onlyIcon ? 0 : spacing['012px']};
-        padding-right: ${onlyIcon ? 0 : spacing['012px']};
+        padding-left: ${noPadding ? 0 : spacing['012px']};
+        padding-right: ${noPadding ? 0 : spacing['012px']};
         ${typography.small};
-        height: ${spacing['048px']};
+        height: ${noIconOrLabel ? 'auto' : spacing['048px']};
         width: ${onlyIcon ? spacing['048px'] : fullWidth ? '100%' : 'auto'};
         .icon {
           display: inline-flex;
@@ -51,10 +60,10 @@ const ButtonBase = styled.button.withConfig({
         }
       `,
       large: css`
-        padding-left: ${onlyIcon ? 0 : spacing['020px']};
-        padding-right: ${onlyIcon ? 0 : spacing['020px']};
+        padding-left: ${noPadding ? 0 : spacing['020px']};
+        padding-right: ${noPadding ? 0 : spacing['020px']};
         ${typography.h4};
-        height: ${spacing['056px']};
+        height: ${noIconOrLabel ? 'auto' : spacing['056px']};
         width: ${onlyIcon ? spacing['056px'] : fullWidth ? '100%' : 'auto'};
         .icon {
           display: inline-flex;
@@ -96,6 +105,9 @@ const ButtonBase = styled.button.withConfig({
         padding-left: ${spacing['004px']};
         padding-right: ${spacing['004px']};
       }
+
+      // text-decoration-line: underline;
+      // text-underline-offset: ${spacing['004px']};
     `
   }}
 `
@@ -116,7 +128,7 @@ const StyledButtonStroke = styled(ButtonBase)`
     border: ${stroke.strong} solid ${colors.stroke.brand.strong};
   `}
 `
-const StyledButtonText = styled(ButtonBase)`
+const StyledButtonClear = styled(ButtonBase)`
   ${({ theme: { colors, shadow } }) => `
     background-color: transparent;
     border: none;
@@ -133,5 +145,5 @@ export {
   StyledButtonFilled,
   StyledButtonTonal,
   StyledButtonStroke,
-  StyledButtonText,
+  StyledButtonClear,
 }

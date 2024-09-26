@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from 'src/components/Organisms/Card/Card'
+import Card from 'src/components/Molecules/Card/Card'
 import {
   Button,
   ButtonIcon,

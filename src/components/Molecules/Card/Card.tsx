@@ -34,7 +34,7 @@ const Card: React.FC<CardProps> = ({
   cardStyle = 'raised',
   title = 'title: Placeholder. If not needed, set to {false}',
   description = 'description: Placeholder. If not needed, set to {false}',
-  content = <PlaceholderComponent />,
+  content = false,
   style,
   image = false, // Default to false
   isHorizontal = false,
@@ -57,6 +57,13 @@ const Card: React.FC<CardProps> = ({
     return image
   }, [image, placeholderImage])
 
+  const contentToShow = useMemo(() => {
+    if (typeof content === 'boolean' && content === true) {
+      return <PlaceholderComponent /> // Use PlaceholderComponent when content is true
+    }
+    return content // Otherwise, use the actual content
+  }, [content])
+
   return (
     <StyledCard
       gridColumn={gridColumn}
@@ -74,7 +81,7 @@ const Card: React.FC<CardProps> = ({
       <H4TitleContentBlock
         title={title}
         description={description}
-        content={content}
+        content={contentToShow}
         customSpacingHeight={'016px'}
       />
     </StyledCard>

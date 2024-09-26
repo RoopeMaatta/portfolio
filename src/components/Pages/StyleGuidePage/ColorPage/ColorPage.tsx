@@ -3,7 +3,6 @@ import { useTheme } from 'styled-components'
 import { getTheme } from '../../../../themes/getTheme'
 import Table from '../../../Molecules/Table/Table'
 import TableStyle1Wrapper from '../../../Molecules/Table/TableStyle1Wrapper'
-import { ContainerFullWidth } from '../../../Atoms/ContainerFullWidth'
 import { Spacer } from '../../../Atoms/Spacer'
 import { getColorDataGroupedByKey } from './getColorDataGroupedByKey'
 import { getColumnsConfig } from './getColumnsConfig'
@@ -23,7 +22,7 @@ const ColorPage: React.FC = () => {
   )
 
   return (
-    <ContainerFullWidth>
+    <>
       <h1>Color Tokens</h1>
       <Spacer height={'016px'} />
       <p style={{ color: theme.colors.text.neutral.weak }}>
@@ -53,7 +52,7 @@ const ColorPage: React.FC = () => {
           <Spacer height={'080px'} />
         </>
       ))}
-    </ContainerFullWidth>
+    </>
   )
 }
 

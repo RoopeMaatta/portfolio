@@ -1,6 +1,6 @@
 import React from 'react'
 // import { useTheme } from 'styled-components'
-import GridWrapper from './components/Organisms/GridContainer/GridWrapper'
+// import GridWrapper from './components/Organisms/GridContainer/GridWrapper'
 import styled from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
 import { NavigationBar } from './components/Organisms/NavigationBar'
@@ -31,9 +31,7 @@ const App: React.FC = () => {
       <DevVisualizationButtons />
       <NavigationBar items={items} />
       <PaddingContainer padding={padding}>
-        <GridWrapper>
-          <AppRoutes />
-        </GridWrapper>
+        <AppRoutes />
       </PaddingContainer>
     </>
   )

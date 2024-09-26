@@ -12,6 +12,7 @@ import Card from 'src/components/Organisms/Card/Card'
 import { ButtonContainer } from 'src/components/Atoms/Button'
 // import { Spacer } from 'src/components/Atoms/Spacer'
 import GridWrapper from 'src/components/Organisms/GridContainer/GridWrapper'
+import { Spacer } from 'src/components/Atoms/Spacer'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>
@@ -26,6 +27,10 @@ const StyleGuidePage: React.FC = () => {
 
   return (
     <>
+      <h1>Saana Design System</h1>
+      <Spacer />
+      <h2>Components</h2>
+      <h2>Foundations</h2>
       <GridWrapper rowGap>
         <ButtonContainer style={{ gridColumn: 'span 4' }}>
           <Card image content={false} description={false} />

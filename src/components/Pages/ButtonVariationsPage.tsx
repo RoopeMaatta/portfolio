@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from '..'
 import { useTheme } from 'styled-components'
-import { ContainerFullWidth } from '../../components/Atoms/ContainerFullWidth'
 import { Check, ArrowRight } from 'react-feather'
 
 const ButtonVariationsPage: React.FC = () => {
@@ -14,7 +13,7 @@ const ButtonVariationsPage: React.FC = () => {
   }
 
   return (
-    <ContainerFullWidth>
+    <>
       <h1 style={theme.typography.h1}>Wuf Wuf counter: {counter}</h1>
       <Button
         onClick={handleButtonClick}
@@ -104,7 +103,7 @@ const ButtonVariationsPage: React.FC = () => {
         buttonStyle='clear'
         icon={<ArrowRight />}
       />
-    </ContainerFullWidth>
+    </>
   )
 }
 

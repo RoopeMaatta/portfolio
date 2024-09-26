@@ -4,7 +4,6 @@ import Table from '../../../Molecules/Table/Table'
 import TableStyle1Wrapper from '../../../Molecules/Table/TableStyle1Wrapper'
 import { Spacer } from '../../../Atoms/Spacer'
 import { getTheme } from '../../../../themes/getTheme'
-import { ContainerFullWidth } from '../../../Atoms/ContainerFullWidth'
 import { getTypographyData } from './getTypographyData'
 import { getColumnsConfig } from './getColumnsConfig'
 import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
@@ -34,7 +33,7 @@ const TypographyPage: React.FC = () => {
   )
 
   return (
-    <ContainerFullWidth>
+    <>
       <h1>Typography</h1>
 
       <Spacer height={'040px'} />
@@ -85,7 +84,7 @@ const TypographyPage: React.FC = () => {
       />
 
       <Spacer height={'080px'} />
-    </ContainerFullWidth>
+    </>
   )
 }
 

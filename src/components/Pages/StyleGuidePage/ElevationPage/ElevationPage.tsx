@@ -2,12 +2,11 @@ import React from 'react'
 import { useTheme } from 'styled-components'
 import { getTheme } from '../../../../themes/getTheme'
 import ElevationVisualization from './ElevationVisualization'
-import { ContainerFullWidth } from '../../../Atoms/ContainerFullWidth'
 import { Spacer } from '../../../Atoms/Spacer'
 import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
 
 // Main component rendering the color data table
-const ColorPage: React.FC = () => {
+const ElevationPage: React.FC = () => {
   const theme = useTheme()
   // Fetching theme colors for light and dark modes
   const themeLightMode = getTheme(false, false)
@@ -17,7 +16,7 @@ const ColorPage: React.FC = () => {
   theme.shadow.raised
 
   return (
-    <ContainerFullWidth>
+    <>
       <h1>Elevation</h1>
       <Spacer height={'016px'} />
 
@@ -37,8 +36,8 @@ const ColorPage: React.FC = () => {
       />
 
       <Spacer height={'080px'} />
-    </ContainerFullWidth>
+    </>
   )
 }
 
-export default ColorPage
+export default ElevationPage

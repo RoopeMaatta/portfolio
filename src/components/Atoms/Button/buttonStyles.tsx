@@ -10,6 +10,7 @@ interface StyledButtonProps {
   noIconOrLabel?: boolean
   shape?: 'square' | 'regular' | 'round'
   size?: ButtonSize
+  useAsContainer?: boolean
 }
 
 // Styled component using destructuring
@@ -22,13 +23,23 @@ const ButtonBase = styled.button.withConfig({
       'noIconOrLabel',
       'shape',
       'size',
+      'useAsContainer',
     ].includes(prop),
 })<StyledButtonProps>`
-  ${({ theme, fullWidth, onlyIcon, noPadding, noIconOrLabel, shape, size }) => {
+  ${({
+    theme,
+    fullWidth,
+    onlyIcon,
+    noPadding,
+    noIconOrLabel,
+    shape,
+    size,
+    useAsContainer,
+  }) => {
     const { colors, spacing, radius, typography, shadow } = theme
 
     const shapeRadiusMap = {
-      square: 0,
+      square: '0px',
       round: radius['32px'],
       regular: radius['12px'],
     }
@@ -75,11 +86,13 @@ const ButtonBase = styled.button.withConfig({
 
     return css`
       ${size && sizeDependantStyle[size]}
-      ${interactivePseudoClassStyles}
+
+      ${interactivePseudoClassStyles('12px')}
+
 
       display: inline-flex;
       gap: ${spacing['004px']};
-      align-items: center;
+      align-items: ${useAsContainer ? 'stretch' : 'center'};
       vertical-align: middle;
       justify-content: center;
       box-shadow: ${shadow.raised};

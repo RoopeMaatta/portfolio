@@ -15,7 +15,7 @@ interface H4TitleContentBlockProps {
   customSpacingHeight?: LiteralUnion<
     keyof DefaultTheme['spacing'],
     CustomLength
-  > // New optional prop
+  >
 }
 
 // Main component rendering the content
@@ -34,11 +34,14 @@ const H4TitleContentBlock: React.FC<H4TitleContentBlockProps> = ({
         <>
           <h4>{title}</h4>
           {/* Spacer after title, either use customSpacingHeight or default */}
-          <Spacer
-            height={
-              customSpacingHeight || (description === false ? '016px' : '008px')
-            }
-          />
+          {content !== false && (
+            <Spacer
+              height={
+                customSpacingHeight ||
+                (description === false ? '016px' : '008px')
+              }
+            />
+          )}
         </>
       )}
 

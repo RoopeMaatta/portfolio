@@ -10,6 +10,8 @@ import RenderRadius from '../StyleGuide/RenderRadius'
 import RenderBreakpoints from '../StyleGuide/RenderBreakpoints'
 import Card from 'src/components/Organisms/Card/Card'
 import { ButtonContainer } from 'src/components/Atoms/Button'
+// import { Spacer } from 'src/components/Atoms/Spacer'
+import GridWrapper from 'src/components/Organisms/GridContainer/GridWrapper'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>
@@ -24,9 +26,31 @@ const StyleGuidePage: React.FC = () => {
 
   return (
     <>
-      <ButtonContainer style={{ gridColumn: 'span 4' }}>
-        <Card image />
-      </ButtonContainer>
+      <GridWrapper rowGap>
+        <ButtonContainer style={{ gridColumn: 'span 4' }}>
+          <Card image content={false} description={false} />
+        </ButtonContainer>
+        <ButtonContainer style={{ gridColumn: 'span 4' }}>
+          <Card image content={false} description={false} />
+        </ButtonContainer>
+        <Card
+          style={{ gridColumn: 'span 4' }}
+          image
+          content={false}
+          description='Description testsldfkj sdlfkj  sdlkfj  sdlfkj sldfk'
+        />
+        <ButtonContainer useAsContainer style={{ gridColumn: 'span 4' }}>
+          <Card description={false} />
+        </ButtonContainer>
+
+        <ButtonContainer style={{ gridColumn: 'span 4' }}>
+          <Card
+            image
+            content={false}
+            description='aaaDaescription testsldfkj sdlfkj  sdlkfj  sdlfkj sldfk'
+          />
+        </ButtonContainer>
+      </GridWrapper>
       <nav style={{ gridColumn: '1/-1' }}>
         <ul>
           <li>

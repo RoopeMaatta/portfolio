@@ -1,6 +1,6 @@
 // src/components/withButtonProps.tsx
 import React from 'react'
-import Button, { ButtonProps } from './ButtonMaster'
+import ButtonMaster, { ButtonProps } from './ButtonMaster'
 
 // Modify the HOC to accept an additional generic for excluded props
 const withButtonProps = <
@@ -10,11 +10,11 @@ const withButtonProps = <
   defaultProps: P
 ) => {
   const WrappedButton = (props: Omit<ButtonProps, ExcludedProps> & P) => {
-    return <Button {...defaultProps} {...props} />
+    return <ButtonMaster {...defaultProps} {...props} />
   }
 
   // Set the display name for easier debugging
-  WrappedButton.displayName = `withButtonProps(${Button.displayName || 'Button'})`
+  WrappedButton.displayName = `withButtonProps(${ButtonMaster.displayName || 'Button'})`
 
   return WrappedButton
 }

@@ -22,7 +22,7 @@ const GridOverlay = styled.div.withConfig({
 `
 
 const GridColumn = styled.div`
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: rgba(255, 0, 0, 0.05);
   grid-column: span 1;
 `
 

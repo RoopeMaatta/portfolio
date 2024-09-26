@@ -5,7 +5,7 @@ import Card from 'src/components/Organisms/Card/Card'
 import {
   Button,
   ButtonIcon,
-  ButtonContainer,
+  // ButtonContainer,
 } from 'src/components/Atoms/Button'
 import { Check } from 'react-feather'
 import PlaceholderComponent from 'src/components/Atoms/PlaceholderComponent'
@@ -16,14 +16,6 @@ const TestingPage: React.FC = () => {
 
   return (
     <div style={{ display: 'contents' }}>
-      <ButtonContainer style={{ gridColumn: 'span 4' }}>
-        <Card image='https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-m@2x.png' />
-      </ButtonContainer>
-      <Card
-        isHorizontal
-        image='https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-m@2x.png'
-        style={{ gridColumn: 'span 6' }}
-      />
       <ContainerFullWidth
         style={{
           // backgroundColor: 'hsl(212 100% 45% / 100%)',
@@ -33,15 +25,11 @@ const TestingPage: React.FC = () => {
           padding: theme.spacing['032px'],
         }}
       >
-        <Button>
-          <PlaceholderComponent />
-        </Button>
-
-        <Card content={false} image='https://dummyimage.com/640x360/eee/aaa' />
-        <Card isHorizontal image />
+        <Card isHorizontal />
         <Card />
-        <Card title={false} />
-        <Card cardStyle='raised' />
+        <Card image isHorizontal />
+        <Card image />
+
         <Button label='button' disabled />
         <Button label='button' icon={<Check />} />
 

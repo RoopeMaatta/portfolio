@@ -15,13 +15,14 @@ const CardBase = styled.div.withConfig({
     return css`
       box-shadow: ${shadow.overlay};
       background-color: ${colors.fill.background.overlay};
-      border-radius: ${radius['16px']};
+      border-radius: ${radius['12px']};
       position: relative;
       display: flex;
       flex-direction: ${isHorizontal ? 'row' : 'column'};
       align-items: stretch;
       justify-content: flex-start;
-      max-width: 100%;
+      max-width: auto;
+      height: auto;
       flex-grow: 1;
 
       grid-column: ${gridColumn};
@@ -40,11 +41,10 @@ const CardImage = styled.img.withConfig({
 })<StyledCardProps>`
   ${({ isHorizontal }) => {
     return css`
-      width: ${isHorizontal ? '40%' : 'auto'};
-      height: ${isHorizontal ? 'auto' : '40%'};
+      width: ${isHorizontal ? '150px' : 'auto'};
+      height: ${isHorizontal ? 'auto' : '150px'};
       object-fit: cover;
 
-      /* Apply border-radius to specific corners */
       border-top-left-radius: inherit;
       border-bottom-right-radius: 0;
       border-top-right-radius: ${isHorizontal ? '0' : 'inherit'};
@@ -52,8 +52,6 @@ const CardImage = styled.img.withConfig({
 
       flex-shrink: 0;
       padding: 0;
-
-      /* In horizontal layout, make the image take up half the width */
     `
   }}
 `

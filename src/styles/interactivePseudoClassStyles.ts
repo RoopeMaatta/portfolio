@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-export const interactivePseudoClassStyles = css`
+export const interactivePseudoClassStyles = (radius?: string) => css`
   ${({ theme }) => `
 
     transition: box-shadow 0.1s ease-in-out;
@@ -25,13 +25,15 @@ export const interactivePseudoClassStyles = css`
 
     &:hover::before {
       background-color: ${theme.colors.fill.state.hover};
-    }
+      ${radius ? `border-radius: ${radius};` : ''}
+      }
 
     &:hover {
       box-shadow: ${theme.shadow.overlay};
     }
 
     &:active::before {
+      ${radius ? `border-radius: ${radius};` : ''}
       background-color: ${theme.colors.fill.state.press};
     }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme } from 'styled-components'
+// import { useTheme } from 'styled-components'
 import GridWrapper from './components/Organisms/GridContainer/GridWrapper'
 import styled from 'styled-components'
 import useResponsiveValue from './hooks/useResponsiveValue'
@@ -22,7 +22,7 @@ const items = [
 ]
 
 const App: React.FC = () => {
-  const theme = useTheme()
+  // const theme = useTheme()
 
   const padding = useResponsiveValue(['4vw', '4vw', '6vw'])
 
@@ -30,7 +30,7 @@ const App: React.FC = () => {
     <>
       <DevVisualizationButtons />
       <NavigationBar items={items} />
-      <PaddingContainer theme={theme} padding={padding}>
+      <PaddingContainer padding={padding}>
         <GridWrapper>
           <AppRoutes />
         </GridWrapper>

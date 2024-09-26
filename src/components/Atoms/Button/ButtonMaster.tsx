@@ -29,10 +29,11 @@ export interface ButtonProps {
   style?: React.CSSProperties
   disabled?: boolean
   children?: React.ReactNode
+  useAsContainer?: boolean
 }
 
 // Functional component using styled button
-const Button: React.FC<ButtonProps> = ({
+const ButtonMaster: React.FC<ButtonProps> = ({
   label,
   onClick = () => {},
   buttonStyle = 'filled',
@@ -44,6 +45,7 @@ const Button: React.FC<ButtonProps> = ({
   style,
   disabled = false,
   children,
+  useAsContainer = false,
 }) => {
   const StyledButton = variantMap[buttonStyle]
   const onlyIcon = !!(icon && !label)
@@ -62,6 +64,7 @@ const Button: React.FC<ButtonProps> = ({
       style={style}
       tabIndex={0}
       disabled={disabled}
+      useAsContainer={useAsContainer}
     >
       {icon && iconPosition === 'left' && <span className='icon'>{icon}</span>}
       {label && (
@@ -76,4 +79,4 @@ const Button: React.FC<ButtonProps> = ({
   )
 }
 
-export default Button
+export default ButtonMaster

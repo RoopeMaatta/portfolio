@@ -1,13 +1,14 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import ColorPage from './ColorPage/ColorPage'
-import ElevationPage from './ElevationPage/ElevationPage'
-import TypographyPage from './TypographyPage/TypographyPage'
-import TestingPage from './TestingPage'
-import RenderSpacing from '../StyleGuide/RenderSpacing'
-import RenderRadius from '../StyleGuide/RenderRadius'
-import RenderBreakpoints from '../StyleGuide/RenderBreakpoints'
+import ColorPage from '../components/Pages/StyleGuidePage/ColorPage/ColorPage'
+import ElevationPage from '../components/Pages/StyleGuidePage/ElevationPage/ElevationPage'
+import TypographyPage from '../components/Pages/StyleGuidePage/TypographyPage/TypographyPage'
+import TestingPage from '../components/Pages/StyleGuidePage/TestingPage'
+import RenderSpacing from '../components/Pages/StyleGuidePage/StyleGuideOld/RenderSpacing'
+import RenderRadius from '../components/Pages/StyleGuidePage/StyleGuideOld/RenderRadius'
+import RenderBreakpoints from '../components/Pages/StyleGuidePage/StyleGuideOld/RenderBreakpoints'
+import ButtonVariationsPage from '../components/Pages/ButtonVariationsPage'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>
@@ -32,6 +33,7 @@ const StyleGuideContent: React.FC = () => {
       <Route path='elevation' element={<ElevationPage />} />
       <Route path='breakpoints' element={<RenderBreakpoints />} />
       <Route path='testing' element={<TestingPage />} />
+      <Route path='button-variations' element={<ButtonVariationsPage />} />
     </Routes>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import RenderBlock from './RenderBlock'
 import { useTheme } from 'styled-components'
-import useResponsiveValue from '../../../hooks/useResponsiveValue'
+import useResponsiveValue from '../../../../hooks/useResponsiveValue'
 
 interface Breakpoint {
   minScreenWidth: number

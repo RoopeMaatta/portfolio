@@ -1,35 +1,34 @@
 import React from 'react'
 import RenderBlock from './RenderBlock'
 import { useTheme } from 'styled-components'
-import useResponsiveValue from '../../../hooks/useResponsiveValue'
+import useResponsiveValue from '../../../../hooks/useResponsiveValue'
 
-interface RenderRadiusProps {
-  radius: Record<string, string>
+interface RenderSpacingProps {
+  spacing: Record<string, string>
 }
 
-const RenderRadius: React.FC<RenderRadiusProps> = ({ radius }) => {
+const RenderSpacing: React.FC<RenderSpacingProps> = ({ spacing }) => {
   const theme = useTheme()
 
-  const renderRadiusItem = (key: string, value: string) => (
+  const renderSpacingItem = (key: string, value: string) => (
     <div
       key={key}
       style={{
         margin: '10px 0',
         display: 'grid',
-        gridTemplateColumns: '100px 75px auto',
+        gridTemplateColumns: '125px 300px auto',
         alignItems: 'center',
         textAlign: 'left',
         ...theme.typography.small,
       }}
     >
-      <span>Radius {key}:</span>
+      <span>Spacing {key}:</span>
       <div
         style={{
-          width: '50px',
-          height: '50px',
-          backgroundColor: 'white',
-          borderRadius: value,
-          border: '1px solid #000',
+          borderLeft: '2px solid #000',
+          borderRight: '2px solid #000',
+          height: '20px',
+          width: value,
         }}
       ></div>
       <span style={{ marginLeft: '10px' }}>{value}</span>
@@ -38,9 +37,9 @@ const RenderRadius: React.FC<RenderRadiusProps> = ({ radius }) => {
 
   return (
     <RenderBlock
-      title='Radius'
-      data={radius}
-      renderItem={renderRadiusItem}
+      title='Spacing'
+      data={spacing}
+      renderItem={renderSpacingItem}
       style={{
         gridColumn: useResponsiveValue(['1/-1', 'span 4', 'span 6']),
       }}
@@ -48,4 +47,4 @@ const RenderRadius: React.FC<RenderRadiusProps> = ({ radius }) => {
   )
 }
 
-export default RenderRadius
+export default RenderSpacing

@@ -10,14 +10,14 @@ const StyleGuideNavigationPage: React.FC = () => {
 
   return (
     <>
-      <h1>Saana Design System</h1>
-      <Spacer height={'024px'} />
-      <h2>Components</h2>
-      <Spacer height={'024px'} />
+      <h1 style={{ textAlign: 'center' }}>Saana Design System</h1>
+      <Spacer height={'048px'} />
+      <h2 style={{ textAlign: 'center' }}>Components</h2>
+      <Spacer height={'018px'} />
       <ClickableCardList cardData={cardDataComponents} />
-      <Spacer height={'024px'} />
-      <h2>Foundations</h2>
-      <Spacer height={'024px'} />
+      <Spacer height={'048px'} />
+      <h2 style={{ textAlign: 'center' }}>Foundations</h2>
+      <Spacer height={'018px'} />
       <ClickableCardList cardData={cardDataFoundations} />
     </>
   )

@@ -16,7 +16,6 @@ const breakpoints = breakpointsData as Breakpoints
 
 const useResponsiveValue = <T>(values: T[]): T => {
   const { windowWidth } = useWindowSizeContext()
-
   const sortedBreakpointKeys = useMemo(
     () =>
       Object.keys(breakpoints).sort(

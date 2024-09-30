@@ -1,4 +1,3 @@
-// WindowSizeContext.tsx
 import React, {
   createContext,
   useContext,
@@ -24,11 +23,13 @@ type WindowSizeProviderProps = {
 export const WindowSizeProvider: React.FC<WindowSizeProviderProps> = ({
   children,
 }) => {
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth)
+  const getWindowWidth = () => document.documentElement.clientWidth
 
+  const [windowWidth, setWindowWidth] = useState<number>(getWindowWidth())
+  // Update the resize handler
   const handleResize = useRef(
     debounce(() => {
-      setWindowWidth(window.innerWidth)
+      setWindowWidth(getWindowWidth())
     }, 100)
   ).current
 

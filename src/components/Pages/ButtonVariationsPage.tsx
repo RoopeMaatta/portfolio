@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Button } from '..'
-import { useTheme } from 'styled-components'
+
 import { Check, ArrowRight } from 'react-feather'
 
 const ButtonVariationsPage: React.FC = () => {
   const [counter, setCounter] = useState(0)
-  const theme = useTheme()
 
   // Function to increment the counter
   const handleButtonClick = () => {
@@ -14,7 +13,7 @@ const ButtonVariationsPage: React.FC = () => {
 
   return (
     <>
-      <h1 style={theme.typography.h1}>Wuf Wuf counter: {counter}</h1>
+      <h1>Wuf Wuf counter: {counter}</h1>
       <Button
         onClick={handleButtonClick}
         buttonStyle='outline'

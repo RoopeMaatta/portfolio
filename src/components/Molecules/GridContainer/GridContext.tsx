@@ -7,7 +7,7 @@ import React, {
   ReactNode,
 } from 'react'
 import { useTheme } from 'styled-components'
-import { debounce } from 'lodash'
+import { useWindowSizeContext } from 'src/contexts/WindowSizeContext'
 
 // Interface for the grid context properties
 interface GridContextProps {
@@ -21,13 +21,13 @@ const GridContext = createContext<GridContextProps | undefined>(undefined)
 // Custom hook to get the grid configuration based on the current window width
 const useGridConfig = () => {
   const theme = useTheme()
+  const { windowWidth } = useWindowSizeContext()
   const breakpoints = theme.breakpoints
 
   const getGridConfig = useCallback(() => {
-    const width = window.innerWidth
     const matchingBreakpoint = Object.values(breakpoints)
       .reverse()
-      .find(breakpoint => width >= breakpoint.minScreenWidth)
+      .find(breakpoint => windowWidth >= breakpoint.minScreenWidth)
 
     if (matchingBreakpoint) {
       return {
@@ -37,17 +37,12 @@ const useGridConfig = () => {
     }
 
     throw new Error('No matching breakpoints found for the given width')
-  }, [breakpoints])
+  }, [breakpoints, windowWidth])
 
   const [gridConfig, setGridConfig] = useState(getGridConfig)
 
   useEffect(() => {
-    const handleResize = debounce(() => {
-      setGridConfig(getGridConfig())
-    }, 100)
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    setGridConfig(getGridConfig())
   }, [getGridConfig])
 
   return gridConfig

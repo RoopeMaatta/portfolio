@@ -1,6 +1,6 @@
 import useResponsiveValue from '@hooks/useResponsiveValue'
 
-export const useFoundationsCardData = () => {
+export const useCardDataFoundations = () => {
   const gridColumnCard1 = useResponsiveValue(['span 4', 'span 8', 'span 8'])
   const isHorizontalCard1 = useResponsiveValue([false, true, true])
 

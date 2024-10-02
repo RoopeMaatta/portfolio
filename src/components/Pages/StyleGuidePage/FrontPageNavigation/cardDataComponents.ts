@@ -1,4 +1,4 @@
-export const useComponentsCardData = () => {
+export const useCardDataComponents = () => {
   const cardDataComponents = [
     {
       key: 'Button',

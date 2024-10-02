@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 interface CapsuleImageProps {
   src: string
@@ -7,29 +7,41 @@ interface CapsuleImageProps {
   gridColumn?: string
 }
 
-const CapsuleImageWrapper = styled.div<{ gridColumn?: string }>`
-  grid-column: ${({ gridColumn }) => gridColumn || 'auto'};
-  width: 100%;
-  position: relative;
-  overflow: hidden;
+interface CapsuleImageWrapperProps {
+  gridColumn?: string
+}
 
-  /* Maintain aspect ratio of 3:4 (height is 1.33 times the width) */
-  aspect-ratio: 3 / 4;
+const CapsuleImageWrapper = styled.div.withConfig({
+  shouldForwardProp: prop => !['gridColumn'].includes(prop),
+})<CapsuleImageWrapperProps>`
+  ${({ theme, gridColumn }) => {
+    const { colors, spacing } = theme
 
-  /* Capsule shape */
-  border-radius: 50% / 35%;
+    return css`
+      grid-column: ${gridColumn || 'auto'};
+      width: 100%;
+      position: relative;
+      overflow: hidden;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    box-shadow: inset 0 0 0 12px rgba(0, 0, 255, 0.3);
-    pointer-events: none;
-  }
+      /* Maintain aspect ratio of 3:4 (height is 1.33 times the width) */
+      aspect-ratio: 3 / 4;
+
+      /* Capsule shape */
+      border-radius: 45% / 35%;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        box-shadow: inset 0 0 0 ${spacing['004px']} ${colors.stroke.brand.weak};
+        pointer-events: none;
+      }
+    `
+  }}
 `
 
 const Image = styled.img`
@@ -48,7 +60,7 @@ const CapsuleImage: React.FC<CapsuleImageProps> = ({
 }) => {
   return (
     <CapsuleImageWrapper gridColumn={gridColumn}>
-      <Image src={src} alt={alt || 'Capsule Image'} />
+      <Image src={src} alt={alt || 'Capsule Image'} loading='lazy' />
     </CapsuleImageWrapper>
   )
 }

@@ -10,6 +10,7 @@ type CustomLength =
 interface SpacerProps {
   gridColumn?: string
   height?: LiteralUnion<keyof DefaultTheme['spacing'], CustomLength>
+  width?: LiteralUnion<keyof DefaultTheme['spacing'], CustomLength>
   showVisualization?: boolean
 }
 
@@ -25,23 +26,34 @@ const StyledSpacer = styled.div<SpacerProps>(
     theme,
     gridColumn = '1 / -1',
     height = '008px',
+    width,
     showVisualization = false,
   }) => {
     const heightValue: string = isValidSpacingKey(theme, height)
       ? theme.spacing[height as keyof DefaultTheme['spacing']]
       : height
 
+    const widthValue = width
+      ? isValidSpacingKey(theme, width)
+        ? theme.spacing[width as keyof DefaultTheme['spacing']]
+        : width
+      : undefined
+
+    const computedGridColumn = width ? 'auto' : gridColumn
+
     return `
       position: relative;
-      grid-column: ${gridColumn};
-      height: ${heightValue};
+      grid-column: ${computedGridColumn};
+      ${heightValue ? `height: ${heightValue};` : ''}
+      ${widthValue ? `width: ${widthValue};` : ''}
+      ${widthValue ? 'display: inline-block;' : 'display: block;'};
       ${showVisualization ? 'background-color: rgba(173, 216, 230, 0.3);' : ''}
       
       ${
         showVisualization
           ? `
         &:after {
-          content: '${heightValue}';
+          content: '${widthValue ? widthValue : heightValue}';
           position: absolute;
           top: 50%;
           left: 50%;

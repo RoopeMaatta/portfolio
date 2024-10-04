@@ -8,6 +8,7 @@ interface CardData {
   key: string
   gridColumn: string
   route?: string
+  isExternal?: boolean
   isHorizontal?: boolean
   image?: boolean
   content?: boolean
@@ -26,8 +27,13 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
 }) => {
   const navigate = useNavigate()
 
-  const handleCardClick = (route: string) => {
-    navigate(route) // Programmatically navigate to the route
+  const handleCardClick = (route: string, isExternal: boolean = false) => {
+    if (isExternal) {
+      window.open(route, '_blank')
+    } else {
+      window.scrollTo(0, 0)
+      navigate(route)
+    }
   }
 
   return (
@@ -37,6 +43,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
           key,
           gridColumn,
           route,
+          isExternal = false,
           isHorizontal = false,
           image = false,
           content = false,
@@ -47,7 +54,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
             <ButtonContainer
               key={key}
               style={{ gridColumn }}
-              onClick={() => handleCardClick(route!)}
+              onClick={() => handleCardClick(route!, isExternal)}
             >
               <Card
                 isHorizontal={isHorizontal}

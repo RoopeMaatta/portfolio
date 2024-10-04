@@ -5,7 +5,7 @@ export const useCardDataProjects = () => {
       title: 'Saana Desing System',
       image: true,
       gridColumn: 'span 4',
-      route: '/style-guide/button-variations',
+      route: '/style-guide',
       description: 'This is a description underneath a title',
     },
     {
@@ -13,7 +13,8 @@ export const useCardDataProjects = () => {
       title: 'Bike App',
       image: true,
       gridColumn: 'span 4',
-      route: '/style-guide/button-variations',
+      isExternal: true,
+      route: 'https://github.com/RoopeMaatta/Bikeapp2024',
       description: 'This is a description underneath a title',
     },
     {
@@ -21,7 +22,8 @@ export const useCardDataProjects = () => {
       title: 'Villa Auroras Cottages',
       image: true,
       gridColumn: 'span 4',
-      route: '/style-guide/button-variations',
+      isExternal: true,
+      route: 'https://villaauroras.com/',
       description: 'This is a description underneath a title',
     },
     {

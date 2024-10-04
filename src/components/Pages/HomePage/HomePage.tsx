@@ -9,6 +9,7 @@ import useResponsiveValue from '@hooks/useResponsiveValue'
 import CardListOnGrid from 'src/components/Organisms/CardListOnGrid'
 import { useCardDataCv } from './cardDataCv'
 import { useCardDataProjects } from './cardDataProjects'
+import { Mail } from 'react-feather'
 
 const HomePage: React.FC = () => {
   const theme = useTheme()
@@ -36,9 +37,24 @@ const HomePage: React.FC = () => {
             Full Stack developer, architect and crafter
           </p>
           <Spacer height={'024px'} />
-          <Button label='Contact' />
+          <Button
+            label='Contact'
+            icon={<Mail />}
+            onClick={() =>
+              (window.location.href = 'mailto:roopemaatta@gmail.com')
+            }
+          />
           <Spacer width={'012px'} />
-          <Button label='Projects' buttonStyle='clear' />
+          <Button
+            label='Projects'
+            buttonStyle='clear'
+            onClick={() => {
+              const targetElement = document.getElementById('projects-section')
+              if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
+          />
         </div>
       </GridWrapper>
       <Spacer height={'096px'} />
@@ -50,7 +66,9 @@ const HomePage: React.FC = () => {
       <CardListOnGrid cardData={cardDataCv} isClickable={false} />
       <Spacer height={'096px'} />
 
-      <h2 style={{ textAlign: 'center' }}>Projects</h2>
+      <h2 id='projects-section' style={{ textAlign: 'center' }}>
+        Projects
+      </h2>
       <Spacer height={'024px'} />
       <CardListOnGrid cardData={cardDataProjects} />
       <Spacer height={'096px'} />
@@ -68,7 +86,13 @@ const HomePage: React.FC = () => {
           Was nice seeing you here
         </p>
         <Spacer height={'048px'} />
-        <Button label="Let's get connected" />
+        <Button
+          label="Let's get connected"
+          icon={<Mail />}
+          onClick={() =>
+            (window.location.href = 'mailto:roopemaatta@gmail.com')
+          }
+        />
         <Spacer height={'012px'} />
       </div>
     </>

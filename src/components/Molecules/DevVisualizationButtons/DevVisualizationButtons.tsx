@@ -13,16 +13,18 @@ const DevVisualizationButtons: React.FC = () => {
   return (
     <div style={{ position: 'relative', display: 'flex', gap: '8px' }}>
       <Button
-        label={`Show Grid Visualization (${showMainGridVisualization ? 'True' : 'False'})`}
+        label={`Show Grid (${showMainGridVisualization ? 'True' : 'False'})`}
         onClick={toggleMainGridVisualization}
-        buttonStyle='tonal'
+        buttonStyle='filled'
         fullWidth={true}
+        size='small'
       />
       <Button
-        label={`Show Spacer Visualization (${showSpacerVisualization ? 'True' : 'False'})`}
+        label={`Show Spacer (${showSpacerVisualization ? 'True' : 'False'})`}
         onClick={toggleSpacerVisualization}
-        buttonStyle='tonal'
+        buttonStyle='filled'
         fullWidth={true}
+        size='small'
       />
     </div>
   )

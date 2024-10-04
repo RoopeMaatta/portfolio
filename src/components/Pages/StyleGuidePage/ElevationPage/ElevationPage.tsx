@@ -34,8 +34,6 @@ const ElevationPage: React.FC = () => {
         in dark mode.'
         content={<ElevationVisualization theme={themeDarkMode} />}
       />
-
-      <Spacer height={'080px'} />
     </>
   )
 }

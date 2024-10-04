@@ -82,8 +82,6 @@ const TypographyPage: React.FC = () => {
           </TableStyle1Wrapper>
         }
       />
-
-      <Spacer height={'080px'} />
     </>
   )
 }

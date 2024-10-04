@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
       <Spacer height={'024px'} />
       <GridWrapper>
         <CapsuleImage
-          src='https://www.dropbox.com/scl/fi/nq93df1b7ykwbiqdzo4yq/Roope.jpg?rlkey=2nt6rjusqccy7bxs3oyx8fwc8&st=25fztfcf&raw=1'
+          src='https://res.cloudinary.com/dbm0udwcq/image/upload/v1727943590/IMG_2093_ps6okz.jpg'
           alt='Capsule Image'
           gridColumn={faceImageSpan}
         />
@@ -70,7 +70,6 @@ const HomePage: React.FC = () => {
         <Spacer height={'048px'} />
         <Button label="Let's get connected" />
         <Spacer height={'012px'} />
-        <Spacer height={'096px'} />
       </div>
     </>
   )

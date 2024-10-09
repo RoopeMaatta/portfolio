@@ -93,7 +93,6 @@ const HomePage: React.FC = () => {
             (window.location.href = 'mailto:roopemaatta@gmail.com')
           }
         />
-        <Spacer height={'012px'} />
       </div>
     </>
   )

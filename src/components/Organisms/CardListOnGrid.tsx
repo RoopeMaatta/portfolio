@@ -6,12 +6,13 @@ import GridWrapper from 'src/components/Molecules/GridContainer/GridWrapper'
 
 interface CardData {
   key: string
-  gridColumn: string
+  gridColumn?: string
+  gridRow?: string
   route?: string
   isExternal?: boolean
   isHorizontal?: boolean
   image?: boolean
-  content?: boolean
+  content?: React.ReactNode | boolean
   description?: string
   title?: string
 }
@@ -42,6 +43,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
         ({
           key,
           gridColumn,
+          gridRow,
           route,
           isExternal = false,
           isHorizontal = false,
@@ -53,7 +55,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
           isClickable ? (
             <ButtonContainer
               key={key}
-              style={{ gridColumn }}
+              style={{ gridColumn, gridRow }}
               onClick={() => handleCardClick(route!, isExternal)}
             >
               <Card
@@ -65,7 +67,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
               />
             </ButtonContainer>
           ) : (
-            <div key={key} style={{ gridColumn }}>
+            <div key={key} style={{ gridColumn, gridRow }}>
               <Card
                 isHorizontal={isHorizontal}
                 image={image}

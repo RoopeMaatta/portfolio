@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle(
       ${applyTypographyToCss(theme.typography.small)};
     }
     
-    p, h1, h2, h3, h4, small {
+    p, h1, h2, h3, h4, small, ul {
       margin: 0;
     }
 

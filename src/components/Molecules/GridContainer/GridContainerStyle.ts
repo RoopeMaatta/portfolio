@@ -12,11 +12,12 @@ const GridContainerStyled = styled.div.withConfig({
 })<GridContainerProps>`
   grid-column: 1/-1;
   display: grid;
+  grid-auto-flow: dense;
+  grid-auto-rows: min-content;
   grid-template-columns: ${({ columns }) =>
     `repeat(${columns}, minmax(0, 1fr))`};
   column-gap: ${({ gridGap }) => gridGap}px;
   row-gap: ${({ rowGap, gridGap }) => (rowGap ? `${gridGap}px` : '0px')};
-  position: relative;
   margin: 0 auto;
   align-items: stretch;
   position: relative;

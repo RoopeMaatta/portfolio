@@ -15,6 +15,7 @@ interface CardData {
   content?: React.ReactNode | boolean
   description?: string
   title?: string
+  icon?: React.ReactNode | boolean
 }
 
 interface CardListOnGridProps {
@@ -49,6 +50,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
           isHorizontal = false,
           image = false,
           content = false,
+          icon = false,
           description = '',
           title = '',
         }) =>
@@ -62,6 +64,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
                 isHorizontal={isHorizontal}
                 image={image}
                 content={content}
+                icon={icon}
                 description={description}
                 title={title}
               />
@@ -72,6 +75,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
                 isHorizontal={isHorizontal}
                 image={image}
                 content={content}
+                icon={icon}
                 description={description}
                 title={title}
               />

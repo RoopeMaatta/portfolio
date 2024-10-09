@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import useResponsiveValue from '@hooks/useResponsiveValue'
 import { Button } from 'src/components/Atoms/Button'
+import { Home, Edit3, Code, BookOpen } from 'react-feather'
 
 const PBoldGrey = styled.p`
   font-weight: bold;
@@ -178,30 +179,30 @@ export const useCardDataCv = () => {
   const cardDataCv = [
     {
       key: 'FullStackDeveloper',
+      icon: <Code />,
       title: 'Full Stack Developer',
       gridColumn: 'span 4',
       gridRow: 'span 3',
-      route: '/style-guide/button-variations',
       description:
         'I enjoy crafting websites from scratch and implement latest technologies',
       content: <FullStackContent />,
     },
     {
       key: 'Architect',
+      icon: <Home />,
       title: 'Architect',
       gridColumn: 'span 4',
       gridRow: 'span 2',
-      route: '/style-guide/button-variations',
       description:
         'I design modular homes and prefabricated building modules ready to face the problems of tomorrow',
       content: <ArchitectContent />,
     },
     {
       key: 'Crafting',
+      icon: <Edit3 />,
       title: 'Crafting',
       gridColumn: 'span 4',
       gridRow: BonusCardSpacing ? 'span 2' : '',
-      route: '/style-guide/button-variations',
       description:
         'On my free time I enjoy immersing myself many kinds of creative artforms',
       content: <CraftingContent />,
@@ -209,9 +210,9 @@ export const useCardDataCv = () => {
     BonusCard(),
     {
       key: 'Education',
+      icon: <BookOpen />,
       title: 'Education',
       gridColumn: educationGridColumn,
-      route: '/style-guide/button-variations',
       description:
         'Learning is a never ending journey, and it is more fun to travel in good company',
       content: <EducationContent />,

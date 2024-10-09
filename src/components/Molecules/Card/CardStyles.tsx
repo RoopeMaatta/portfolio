@@ -31,6 +31,10 @@ const CardBase = styled.div.withConfig({
       & > *:not(img) {
         padding: ${spacing['024px']};
       }
+      /* Remove bottom padding from the icon */
+      & > .icon {
+        padding-bottom: 0;
+      }
     `
   }}
 `

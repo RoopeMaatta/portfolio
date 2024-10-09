@@ -1,73 +1,25 @@
 import React from 'react'
 import GridWrapper from 'src/components/Molecules/GridContainer/GridWrapper'
 // import useResponsiveValue from '@hooks/useResponsiveValue'
+import Card from 'src/components/Molecules/Card/Card'
+import { ButtonIcon } from 'src/components/Atoms/Button'
+import { Home, Code } from 'react-feather'
 
 const TestingPage: React.FC = () => {
   return (
-    <div>
-      <GridWrapper rowGap>
-        {/* Item A */}
-        <div
-          style={{
-            backgroundColor: 'red',
-            height: '300px',
-            gridColumn: 'span 4',
-            gridRow: 'span 3',
-          }}
-        >
-          A
-        </div>
+    <GridWrapper rowGap>
+      <ButtonIcon
+        size='regular'
+        shape='round'
+        buttonStyle='tonal'
+        icon={<Code />}
+        isInteractive={false}
+      />
 
-        {/* Item B */}
-        <div
-          style={{
-            backgroundColor: 'green',
-            height: '100px',
-            gridColumn: 'span 4',
-          }}
-        >
-          Bbb
-        </div>
-
-        {/* Item C */}
-        <div
-          style={{
-            backgroundColor: 'blue',
-            height: '100px',
-            gridColumn: 'span 4',
-          }}
-        >
-          Cc
-        </div>
-        <div
-          style={{
-            backgroundColor: 'blue',
-            height: '100px',
-            gridColumn: 'span 4',
-          }}
-        >
-          Cc
-        </div>
-        <div
-          style={{
-            backgroundColor: 'blue',
-            height: '100px',
-            gridColumn: 'span 4',
-          }}
-        >
-          Cc
-        </div>
-        <div
-          style={{
-            backgroundColor: 'blue',
-            height: '100px',
-            gridColumn: 'span 4',
-          }}
-        >
-          Cc
-        </div>
-      </GridWrapper>
-    </div>
+      <Card icon={<Home />}></Card>
+      <Card icon image></Card>
+      <Card></Card>
+    </GridWrapper>
   )
 }
 

@@ -30,6 +30,7 @@ export interface ButtonProps {
   disabled?: boolean
   children?: React.ReactNode
   useAsContainer?: boolean
+  isInteractive?: boolean
 }
 
 // Functional component using styled button
@@ -46,6 +47,7 @@ const ButtonMaster: React.FC<ButtonProps> = ({
   disabled = false,
   children,
   useAsContainer = false,
+  isInteractive = true,
 }) => {
   const StyledButton = variantMap[buttonStyle]
   const onlyIcon = !!(icon && !label)
@@ -65,6 +67,7 @@ const ButtonMaster: React.FC<ButtonProps> = ({
       tabIndex={0}
       disabled={disabled}
       useAsContainer={useAsContainer}
+      isInteractive={isInteractive}
     >
       {icon && iconPosition === 'left' && <span className='icon'>{icon}</span>}
       {label && (

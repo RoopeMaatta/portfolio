@@ -2,6 +2,8 @@ import React, { useMemo } from 'react'
 import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
 import { StyledCardOverlay, StyledCardRaised, CardImage } from './CardStyles'
 import PlaceholderComponent from 'src/components/Atoms/PlaceholderComponent'
+import { Compass } from 'react-feather'
+import { ButtonIcon } from 'src/components/Atoms/Button'
 
 type CardVariant = 'overlay' | 'raised'
 
@@ -21,6 +23,7 @@ const variantMap = {
 // Update the CardProps interface to allow image to accept a boolean or string
 interface CardProps {
   cardStyle?: CardVariant
+  icon?: React.ReactNode | boolean
   title?: string | boolean
   description?: string | boolean
   content?: React.ReactNode | boolean
@@ -32,6 +35,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({
   cardStyle = 'raised',
+  icon = false,
   title = 'title: Placeholder. If not needed, set to {false}',
   description = 'description: Placeholder. If not needed, set to {false}',
   content = false,
@@ -50,18 +54,43 @@ const Card: React.FC<CardProps> = ({
   )
 
   // Memoize the image to avoid recalculation on every render
+  const iconToShow = useMemo(() => {
+    if (typeof icon === 'boolean' && icon === true) {
+      return (
+        <ButtonIcon
+          buttonStyle='tonal'
+          shape='round'
+          isInteractive={false}
+          icon={<Compass />}
+          size='regular'
+        />
+      )
+    }
+    return (
+      (
+        <ButtonIcon
+          buttonStyle='tonal'
+          shape='round'
+          isInteractive={false}
+          icon={icon}
+          size='regular'
+        />
+      ) || null
+    )
+  }, [icon])
+
   const imageToShow = useMemo(() => {
     if (typeof image === 'boolean' && image === true) {
       return placeholderImage
     }
-    return image
+    return image || null
   }, [image, placeholderImage])
 
   const contentToShow = useMemo(() => {
     if (typeof content === 'boolean' && content === true) {
       return <PlaceholderComponent /> // Use PlaceholderComponent when content is true
     }
-    return content // Otherwise, use the actual content
+    return content || null // Otherwise, use the actual content
   }, [content])
 
   return (
@@ -77,7 +106,7 @@ const Card: React.FC<CardProps> = ({
           isHorizontal={isHorizontal}
         />
       )}
-
+      {icon && <div className='icon'>{iconToShow}</div>}
       <H4TitleContentBlock
         title={title}
         description={description}

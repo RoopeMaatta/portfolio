@@ -11,6 +11,7 @@ interface StyledButtonProps {
   shape?: 'square' | 'regular' | 'round'
   size?: ButtonSize
   useAsContainer?: boolean
+  isInteractive?: boolean
 }
 
 // Styled component using destructuring
@@ -24,6 +25,7 @@ const ButtonBase = styled.button.withConfig({
       'shape',
       'size',
       'useAsContainer',
+      'isInteractive',
     ].includes(prop),
 })<StyledButtonProps>`
   ${({
@@ -35,6 +37,7 @@ const ButtonBase = styled.button.withConfig({
     shape,
     size,
     useAsContainer,
+    isInteractive,
   }) => {
     const { colors, spacing, radius, typography, shadow } = theme
 
@@ -87,7 +90,9 @@ const ButtonBase = styled.button.withConfig({
     return css`
       ${size && sizeDependantStyle[size]}
 
-      ${interactivePseudoClassStyles('12px')}
+      ${isInteractive
+        ? interactivePseudoClassStyles(radiusButtonShapeDependant)
+        : ''}
 
 
       display: inline-flex;

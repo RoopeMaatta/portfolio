@@ -33,8 +33,8 @@ const H4TitleContentBlock: React.FC<H4TitleContentBlockProps> = ({
       {title !== false && (
         <>
           <h4>{title}</h4>
-          {/* Spacer after title, either use customSpacingHeight or default */}
-          {content !== false && (
+          {/* Spacer after title only if description or content exists */}
+          {(description !== false || content) && (
             <Spacer
               height={
                 customSpacingHeight ||
@@ -48,8 +48,8 @@ const H4TitleContentBlock: React.FC<H4TitleContentBlockProps> = ({
       {description !== false && (
         <>
           <p style={{ color: theme.colors.text.neutral.weak }}>{description}</p>
-          {/* Spacer after description */}
-          {content !== false && (
+          {/* Spacer after description only if content exists */}
+          {content && (
             <Spacer
               height={
                 customSpacingHeight || (title === false ? '016px' : '040px')
@@ -59,7 +59,7 @@ const H4TitleContentBlock: React.FC<H4TitleContentBlockProps> = ({
         </>
       )}
 
-      {content !== false && <div>{content}</div>}
+      {content && <div>{content}</div>}
     </div>
   )
 }

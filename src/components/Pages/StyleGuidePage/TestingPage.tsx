@@ -1,25 +1,20 @@
 import React from 'react'
-import GridWrapper from 'src/components/Molecules/GridContainer/GridWrapper'
 // import useResponsiveValue from '@hooks/useResponsiveValue'
 import Card from 'src/components/Molecules/Card/Card'
-import { ButtonIcon } from 'src/components/Atoms/Button'
-import { Home, Code } from 'react-feather'
+
+import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
 
 const TestingPage: React.FC = () => {
   return (
-    <GridWrapper rowGap>
-      <ButtonIcon
-        size='regular'
-        shape='round'
-        buttonStyle='tonal'
-        icon={<Code />}
-        isInteractive={false}
-      />
+    <>
+      <Card description={false} content={false} />
 
-      <Card icon={<Home />}></Card>
-      <Card icon image></Card>
-      <Card></Card>
-    </GridWrapper>
+      <H4TitleContentBlock
+        title='Testing2'
+        description={false}
+        content={false}
+      />
+    </>
   )
 }
 

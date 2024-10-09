@@ -4,6 +4,7 @@ import { StyledCardOverlay, StyledCardRaised, CardImage } from './CardStyles'
 import PlaceholderComponent from 'src/components/Atoms/PlaceholderComponent'
 import { Compass } from 'react-feather'
 import { ButtonIcon } from 'src/components/Atoms/Button'
+import { Spacer } from 'src/components/Atoms/Spacer'
 
 type CardVariant = 'overlay' | 'raised'
 
@@ -106,13 +107,25 @@ const Card: React.FC<CardProps> = ({
           isHorizontal={isHorizontal}
         />
       )}
-      {icon && <div className='icon'>{iconToShow}</div>}
-      <H4TitleContentBlock
-        title={title}
-        description={description}
-        content={contentToShow}
-        customSpacingHeight={'016px'}
-      />
+      <div>
+        {icon && (
+          <div className='icon'>
+            {iconToShow}
+            <Spacer height={'016px'} />
+          </div>
+        )}
+        <H4TitleContentBlock
+          title={title}
+          description={description}
+          content={contentToShow}
+          // customSpacingHeight={
+          //   (title !== false && (description !== false || contentToShow)) ||
+          //   (description !== false && contentToShow)
+          //     ? '016px'
+          //     : undefined
+          // }
+        />
+      </div>
     </StyledCard>
   )
 }

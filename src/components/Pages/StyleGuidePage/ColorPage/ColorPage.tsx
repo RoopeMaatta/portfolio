@@ -28,10 +28,10 @@ const ColorPage: React.FC = () => {
       <p style={{ color: theme.colors.text.neutral.weak }}>
         Use color tokens to give meaning and roles
       </p>
-      <Spacer height={'080px'} />
 
       {Object.entries(groupedColorData).map(([groupKey, colorData]) => (
         <>
+          <Spacer height={'080px'} />
           <H4TitleContentBlock
             key={groupKey}
             title={groupKey.charAt(0).toUpperCase() + groupKey.slice(1)}

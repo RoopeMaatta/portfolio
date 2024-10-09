@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import useResponsiveValue from '@hooks/useResponsiveValue'
 import { Button } from 'src/components/Atoms/Button'
-import { Home, Edit3, Code, BookOpen } from 'react-feather'
+import { Home, Edit3, Code, BookOpen, Heart } from 'react-feather'
 
 const PBoldGrey = styled.p`
   font-weight: bold;
@@ -167,9 +167,12 @@ const EducationContent: React.FC = () => {
 const BonusCard = () => {
   return {
     key: 'Placholder',
-    title: 'Placholder',
+    icon: <Heart />,
     gridColumn: 'span 4',
-    description: 'Placeholder',
+    title: 'Dog: Kita',
+    description: 'Likes pettings',
+    image: true,
+    isHorizontal: true,
   }
 }
 

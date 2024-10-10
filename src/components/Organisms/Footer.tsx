@@ -38,6 +38,8 @@ const Footer = () => {
       <FooterDiv>
         <PaddingContainerSides>
           <p>
+            This webpage is made mostly with custom components.
+            <br />
             If you want to see where I&apos;m using <b>grid</b> and{' '}
             <b>spacer</b> click below to toggle visualization
           </p>

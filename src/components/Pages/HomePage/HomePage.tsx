@@ -2,7 +2,6 @@ import React from 'react'
 import { Spacer } from 'src/components/Atoms/Spacer'
 import GridWrapper from 'src/components/Molecules/GridContainer/GridWrapper'
 import CapsuleImage from 'src/components/Atoms/CapsuleImage'
-import PlaceholderComponent from 'src/components/Atoms/PlaceholderComponent'
 import { useTheme } from 'styled-components'
 import { Button } from 'src/components/Atoms/Button'
 import useResponsiveValue from '@hooks/useResponsiveValue'
@@ -10,6 +9,7 @@ import CardListOnGrid from 'src/components/Organisms/CardListOnGrid'
 import { useCardDataCv } from './cardDataCv'
 import { useCardDataProjects } from './cardDataProjects'
 import { Mail } from 'react-feather'
+import Logo from '../../../assets/logo.svg?react'
 
 const HomePage: React.FC = () => {
   const theme = useTheme()
@@ -28,13 +28,20 @@ const HomePage: React.FC = () => {
         />
 
         <div style={{ gridColumn: introSpan }}>
-          <Spacer height={'048px'} />
-          <PlaceholderComponent />
-          <Spacer height={'012px'} />
+          <Spacer height={'024px'} />
+          <Logo width='150px' height='auto' />
+          <Spacer height={'024px'} />
           <h1>{"Hey there, I'm Roope"}</h1>
           <Spacer height={'012px'} />
           <p style={{ color: theme.colors.text.neutral.weak }}>
             Full Stack developer, architect and crafter
+            <br />
+            <br />
+            Shall we develop digital services together? I&apos;m an architect
+            transitioning to web development, studying full-stack. My passions
+            lie in user-centric design and design systems. In my free time, I
+            enjoy tennis, art, board games, and spending time with my boyfriend
+            and our dog, Kita 🐶.
           </p>
           <Spacer height={'024px'} />
           <Button
@@ -87,7 +94,7 @@ const HomePage: React.FC = () => {
         </p>
         <Spacer height={'048px'} />
         <Button
-          label="Let's get connected"
+          label="Let's keep in touch"
           icon={<Mail />}
           onClick={() =>
             (window.location.href = 'mailto:roopemaatta@gmail.com')

@@ -79,9 +79,9 @@ const ArchitectContent: React.FC = () => {
     <>
       <PBoldGrey>Worked with</PBoldGrey>
       <UlSimple>
-        <li>Kanttia2 (2017-2022)</li>
-        <li>City of Kajaani (2013, 2016)</li>
-        <li>Oulu University (2014-2015)</li>
+        <li>Kanttia2 (5 years)</li>
+        <li>City of Kajaani (2 years)</li>
+        <li>Oulu University (2 years)</li>
       </UlSimple>
       <br />
       <PBoldGrey>Tools</PBoldGrey>
@@ -89,7 +89,7 @@ const ArchitectContent: React.FC = () => {
         <li>Archicad</li>
         <li>SketchUp</li>
         <li>AutoCad</li>
-        <li>Adobe Apps</li>
+        <li>Adobe apps</li>
       </UlSimple>
       <br />
       <PBoldGrey>Projects</PBoldGrey>
@@ -99,7 +99,7 @@ const ArchitectContent: React.FC = () => {
         <li>Low-rise homes (2x)</li>
         <li>Urban Planning (1x)</li>
         <li>Repair construction (1x)</li>
-        <li>Architecture competitions(2x)</li>
+        <li>Architecture competitions (2x)</li>
       </UlSimple>
       <br />
       <Button
@@ -151,15 +151,24 @@ const EducationContent: React.FC = () => {
       </UlSimple>
       <br />
       <PBoldGrey>Online</PBoldGrey>
+      <PBoldGrey>Helsinki Full stack open</PBoldGrey>
       <UlSimple>
-        <li>Helsinki Full stack open:</li>
         <li>✅ Main courses (parts 0-5)</li>
         <li>✅ Advanced courses (parts 6-9)</li>
-        <li>Treehouse:</li>
-        <li>✅ +30 courses and 5700 points </li>
-        <li>Schoolism:</li>
+      </UlSimple>
+      <PBoldGrey>Schoolism</PBoldGrey>
+      <UlSimple>
         <li>✅ Multiple art courses</li>
       </UlSimple>
+      <PBoldGrey>Treehouse</PBoldGrey>
+      <UlSimple>
+        <li>✅ +30 courses and +5700 points </li>
+      </UlSimple>
+      <Button
+        size='small'
+        buttonStyle='clear'
+        label='See more about completed courses'
+      ></Button>
     </>
   )
 }
@@ -171,7 +180,8 @@ const BonusCard = () => {
     gridColumn: 'span 4',
     title: 'Dog: Kita',
     description: 'Likes pettings',
-    image: true,
+    image:
+      'https://res.cloudinary.com/dbm0udwcq/image/upload/v1728545710/IMG_3034_ajuytu.jpg',
     isHorizontal: true,
   }
 }
@@ -187,7 +197,7 @@ export const useCardDataCv = () => {
       gridColumn: 'span 4',
       gridRow: 'span 3',
       description:
-        'I enjoy crafting websites from scratch and implement latest technologies',
+        'I enjoy crafting websites from scratch and implementing the latest technologies',
       content: <FullStackContent />,
     },
     {
@@ -207,7 +217,7 @@ export const useCardDataCv = () => {
       gridColumn: 'span 4',
       gridRow: BonusCardSpacing ? 'span 2' : '',
       description:
-        'On my free time I enjoy immersing myself many kinds of creative artforms',
+        'On my free time I enjoy immersing myself into many kinds of creative art forms',
       content: <CraftingContent />,
     },
     BonusCard(),

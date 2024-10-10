@@ -11,7 +11,7 @@ interface CardData {
   route?: string
   isExternal?: boolean
   isHorizontal?: boolean
-  image?: boolean
+  image?: string | boolean
   content?: React.ReactNode | boolean
   description?: string
   title?: string

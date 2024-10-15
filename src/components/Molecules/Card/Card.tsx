@@ -1,6 +1,11 @@
 import React, { useMemo } from 'react'
 import H4TitleContentBlock from 'src/components/Molecules/H4TitleContentBlock'
-import { StyledCardOverlay, StyledCardRaised, CardImage } from './CardStyles'
+import {
+  StyledCard,
+  CardContentWrapper,
+  CardImage,
+  IconWrapper,
+} from './CardStyles'
 import PlaceholderComponent from 'src/components/Atoms/PlaceholderComponent'
 import { Compass } from 'react-feather'
 import { ButtonIcon } from 'src/components/Atoms/Button'
@@ -9,19 +14,13 @@ import { Spacer } from 'src/components/Atoms/Spacer'
 type CardVariant = 'overlay' | 'raised'
 
 type GridColumnValue =
-  | 'auto' // Default value
-  | `span ${number}` // "span n" format
-  | `${number} / ${number}` // "start / end" format
-  | `${number} / span ${number}` // "start / span n" format
-  | '1 / -1' // Common full-width usage
+  | 'auto'
+  | `span ${number}`
+  | `${number} / ${number}`
+  | `${number} / span ${number}`
+  | '1 / -1'
   | 'inherit'
 
-const variantMap = {
-  overlay: StyledCardOverlay,
-  raised: StyledCardRaised,
-}
-
-// Update the CardProps interface to allow image to accept a boolean or string
 interface CardProps {
   cardStyle?: CardVariant
   icon?: React.ReactNode | boolean
@@ -29,7 +28,7 @@ interface CardProps {
   description?: string | boolean
   content?: React.ReactNode | boolean
   style?: React.CSSProperties
-  image?: string | boolean // Image can be a string (URL) or a boolean
+  image?: string | boolean
   isHorizontal?: boolean
   gridColumn?: GridColumnValue
 }
@@ -41,12 +40,10 @@ const Card: React.FC<CardProps> = ({
   description = 'description: Placeholder. If not needed, set to {false}',
   content = false,
   style,
-  image = false, // Default to false
+  image = false,
   isHorizontal = false,
   gridColumn = '1 / -1',
 }) => {
-  const StyledCard = variantMap[cardStyle]
-
   // Memoizing the placeholder image URL
   const placeholderImage = useMemo(
     () =>
@@ -54,7 +51,7 @@ const Card: React.FC<CardProps> = ({
     []
   )
 
-  // Memoize the image to avoid recalculation on every render
+  // Memoize the icon
   const iconToShow = useMemo(() => {
     if (typeof icon === 'boolean' && icon === true) {
       return (
@@ -68,7 +65,7 @@ const Card: React.FC<CardProps> = ({
       )
     }
     return (
-      (
+      icon && (
         <ButtonIcon
           buttonStyle='tonal'
           shape='round'
@@ -76,7 +73,7 @@ const Card: React.FC<CardProps> = ({
           icon={icon}
           size='regular'
         />
-      ) || null
+      )
     )
   }, [icon])
 
@@ -89,16 +86,17 @@ const Card: React.FC<CardProps> = ({
 
   const contentToShow = useMemo(() => {
     if (typeof content === 'boolean' && content === true) {
-      return <PlaceholderComponent /> // Use PlaceholderComponent when content is true
+      return <PlaceholderComponent />
     }
-    return content || null // Otherwise, use the actual content
+    return content || null
   }, [content])
 
   return (
     <StyledCard
-      gridColumn={gridColumn}
+      cardStyle={cardStyle}
       style={style}
       isHorizontal={isHorizontal}
+      gridColumn={gridColumn}
     >
       {imageToShow && (
         <CardImage
@@ -107,25 +105,19 @@ const Card: React.FC<CardProps> = ({
           isHorizontal={isHorizontal}
         />
       )}
-      <div>
+      <CardContentWrapper isHorizontal={isHorizontal}>
         {icon && (
-          <div className='icon'>
+          <IconWrapper>
             {iconToShow}
             <Spacer height={'016px'} />
-          </div>
+          </IconWrapper>
         )}
         <H4TitleContentBlock
           title={title}
           description={description}
           content={contentToShow}
-          // customSpacingHeight={
-          //   (title !== false && (description !== false || contentToShow)) ||
-          //   (description !== false && contentToShow)
-          //     ? '016px'
-          //     : undefined
-          // }
         />
-      </div>
+      </CardContentWrapper>
     </StyledCard>
   )
 }

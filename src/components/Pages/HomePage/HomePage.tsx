@@ -9,7 +9,7 @@ import CardListOnGrid from 'src/components/Organisms/CardListOnGrid'
 import { useCardDataCv } from './cardDataCv'
 import { useCardDataProjects } from './cardDataProjects'
 import { Mail } from 'react-feather'
-import Logo from '../../../assets/logo.svg?react'
+// import Logo from '../../../assets/logo.svg?react'
 
 const HomePage: React.FC = () => {
   const theme = useTheme()
@@ -28,8 +28,8 @@ const HomePage: React.FC = () => {
         />
 
         <div style={{ gridColumn: introSpan }}>
-          <Spacer height={'024px'} />
-          <Logo width='150px' height='auto' />
+          {/* <Spacer height={'024px'} />
+          <Logo width='150px' height='auto' /> */}
           <Spacer height={'024px'} />
           <h1>{"Hey there, I'm Roope"}</h1>
           <Spacer height={'012px'} />

@@ -8,16 +8,26 @@ interface ImageProps {
   src: string
   alt: string
   description?: string
+  trigger?: React.ReactElement
 }
 
-const ImageComponent: React.FC<ImageProps> = ({ src, alt, description }) => {
+const ImageComponent: React.FC<ImageProps> = ({
+  src,
+  alt,
+  description,
+  trigger,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false)
-  const [imageRect, setImageRect] = useState<DOMRect | null>(null)
+  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null)
+  const triggerRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
 
-  const handleClick = () => {
-    if (imageRef.current) {
-      setImageRect(imageRef.current.getBoundingClientRect())
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (triggerRef.current) {
+      setTriggerRect(triggerRef.current.getBoundingClientRect())
+    } else if (imageRef.current) {
+      setTriggerRect(imageRef.current.getBoundingClientRect())
     }
     setIsExpanded(true)
   }
@@ -26,23 +36,40 @@ const ImageComponent: React.FC<ImageProps> = ({ src, alt, description }) => {
     setIsExpanded(false)
   }
 
+  const composeHandlers =
+    (...handlers: Array<((e: React.MouseEvent) => void) | undefined>) =>
+    (e: React.MouseEvent) => {
+      handlers.forEach(handler => {
+        if (handler) {
+          handler(e)
+        }
+      })
+    }
+
   return (
     <>
-      <ThumbnailWrapper>
-        <Thumbnail
-          onClick={handleClick}
-          cardStyle='raised'
-          hoverStyle='overlay'
-        >
-          <img ref={imageRef} src={src} alt={alt} />
-        </Thumbnail>
-      </ThumbnailWrapper>
-      {isExpanded && imageRect && (
+      {trigger ? (
+        React.cloneElement(trigger, {
+          ref: triggerRef,
+          onClick: composeHandlers(trigger.props.onClick, handleClick),
+        })
+      ) : (
+        <ThumbnailWrapper>
+          <Thumbnail
+            onClick={handleClick}
+            cardStyle='raised'
+            hoverStyle='overlay'
+          >
+            <img ref={imageRef} src={src} alt={alt} />
+          </Thumbnail>
+        </ThumbnailWrapper>
+      )}
+      {isExpanded && triggerRect && (
         <ExpandedView
           src={src}
           alt={alt}
           description={description}
-          initialRect={imageRect}
+          initialRect={triggerRect}
           onClose={handleClose}
         />
       )}

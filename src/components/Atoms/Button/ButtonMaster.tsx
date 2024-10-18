@@ -33,53 +33,65 @@ export interface ButtonProps {
   isInteractive?: boolean
 }
 
-// Functional component using styled button
-const ButtonMaster: React.FC<ButtonProps> = ({
-  label,
-  onClick = () => {},
-  buttonStyle = 'filled',
-  icon,
-  iconPosition = 'left',
-  fullWidth = false,
-  size = 'regular',
-  shape = 'regular',
-  style,
-  disabled = false,
-  children,
-  useAsContainer = false,
-  isInteractive = true,
-}) => {
-  const StyledButton = variantMap[buttonStyle]
-  const onlyIcon = !!(icon && !label)
-  const noPadding = !label
-  const noIconOrLabel = !(icon || label)
+// Functional component using styled button with forwarded ref
+const ButtonMaster = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      label,
+      onClick = () => {},
+      buttonStyle = 'filled',
+      icon,
+      iconPosition = 'left',
+      fullWidth = false,
+      size = 'regular',
+      shape = 'regular',
+      style,
+      disabled = false,
+      children,
+      useAsContainer = false,
+      isInteractive = true,
+    },
+    ref
+  ) => {
+    const StyledButton = variantMap[buttonStyle]
+    const onlyIcon = !!(icon && !label)
+    const noPadding = !label
+    const noIconOrLabel = !(icon || label)
 
-  return (
-    <StyledButton
-      onClick={onClick}
-      fullWidth={fullWidth}
-      onlyIcon={onlyIcon}
-      noPadding={noPadding}
-      noIconOrLabel={noIconOrLabel}
-      size={size}
-      shape={shape}
-      style={style}
-      tabIndex={0}
-      disabled={disabled}
-      useAsContainer={useAsContainer}
-      isInteractive={isInteractive}
-    >
-      {icon && iconPosition === 'left' && <span className='icon'>{icon}</span>}
-      {label && (
-        <span className='label'>
-          <strong>{label}</strong>
-        </span>
-      )}
-      {icon && iconPosition === 'right' && <span className='icon'>{icon}</span>}
-      {/* Render children if present */}
-      {children}
-    </StyledButton>
-  )
-}
+    return (
+      <StyledButton
+        ref={ref}
+        onClick={onClick}
+        fullWidth={fullWidth}
+        onlyIcon={onlyIcon}
+        noPadding={noPadding}
+        noIconOrLabel={noIconOrLabel}
+        size={size}
+        shape={shape}
+        style={style}
+        tabIndex={0}
+        disabled={disabled}
+        useAsContainer={useAsContainer}
+        isInteractive={isInteractive}
+      >
+        {icon && iconPosition === 'left' && (
+          <span className='icon'>{icon}</span>
+        )}
+        {label && (
+          <span className='label'>
+            <strong>{label}</strong>
+          </span>
+        )}
+        {icon && iconPosition === 'right' && (
+          <span className='icon'>{icon}</span>
+        )}
+        {/* Render children if present */}
+        {children}
+      </StyledButton>
+    )
+  }
+)
+
+ButtonMaster.displayName = 'ButtonMaster'
 
 export default ButtonMaster

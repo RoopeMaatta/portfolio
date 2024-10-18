@@ -2,16 +2,18 @@
 import React from 'react'
 import ButtonMaster, { ButtonProps } from './ButtonMaster'
 
-// Modify the HOC to accept an additional generic for excluded props
 const withButtonProps = <
   P extends Partial<ButtonProps>,
   ExcludedProps extends keyof ButtonProps = never,
 >(
   defaultProps: P
 ) => {
-  const WrappedButton = (props: Omit<ButtonProps, ExcludedProps> & P) => {
-    return <ButtonMaster {...defaultProps} {...props} />
-  }
+  const WrappedButton = React.forwardRef<
+    HTMLButtonElement,
+    Omit<ButtonProps, ExcludedProps> & P
+  >((props, ref) => {
+    return <ButtonMaster ref={ref} {...defaultProps} {...props} />
+  })
 
   // Set the display name for easier debugging
   WrappedButton.displayName = `withButtonProps(${ButtonMaster.displayName || 'Button'})`

@@ -18,8 +18,8 @@ const CardImage = styled.img<StyledCardProps>`
   ${({ isHorizontal, theme }) => {
     const { radius } = theme
     return css`
-      width: ${isHorizontal ? '150px' : '100%'};
-      height: ${isHorizontal ? '100%' : '150px'};
+      width: ${isHorizontal ? '150px' : 'auto'};
+      height: ${isHorizontal ? 'auto' : '150px'};
       object-fit: cover;
       border-top-left-radius: ${radius['12px']};
       border-top-right-radius: ${isHorizontal ? '0' : radius['12px']};

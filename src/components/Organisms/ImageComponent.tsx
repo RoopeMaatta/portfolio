@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { ButtonIcon } from 'src/components/Atoms/Button'
 import { X } from 'react-feather'
+import Paper from 'src/components/Atoms/Paper/Paper'
 
 interface ImageProps {
   src: string
@@ -27,9 +28,15 @@ const ImageComponent: React.FC<ImageProps> = ({ src, alt, description }) => {
 
   return (
     <>
-      <Thumbnail onClick={handleClick}>
-        <img ref={imageRef} src={src} alt={alt} />
-      </Thumbnail>
+      <ThumbnailWrapper>
+        <Thumbnail
+          onClick={handleClick}
+          cardStyle='raised'
+          hoverStyle='overlay'
+        >
+          <img ref={imageRef} src={src} alt={alt} />
+        </Thumbnail>
+      </ThumbnailWrapper>
       {isExpanded && imageRect && (
         <ExpandedView
           src={src}
@@ -111,8 +118,8 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
 
   if (naturalWidth && naturalHeight) {
     const aspectRatio = naturalWidth / naturalHeight
-    const maxWidth = window.innerWidth * 0.95 // 95% of viewport width
-    const maxHeight = window.innerHeight * 0.95 // 95% of viewport height
+    const maxWidth = window.innerWidth * 0.95 - 32 // 95% of viewport width minus padding
+    const maxHeight = window.innerHeight * 0.95 - 32 // 95% of viewport height minus padding
 
     if (aspectRatio > maxWidth / maxHeight) {
       // Image is wider relative to the viewport
@@ -125,6 +132,8 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
     }
   }
 
+  const padding = 16 // in pixels
+
   return (
     <>
       <Overlay onClick={onClose} />
@@ -132,15 +141,16 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
         ref={expandedImageRef}
         tabIndex={-1}
         onClick={e => e.stopPropagation()}
+        cardStyle='raised'
         style={{
           top: isAnimating
             ? initialRect.top
-            : `calc(50% - ${expandedHeight / 2}px)`,
+            : `calc(50% - ${(expandedHeight + padding * 2 + (description ? 60 : 0)) / 2}px)`,
           left: isAnimating
             ? initialRect.left
-            : `calc(50% - ${expandedWidth / 2}px)`,
-          width: isAnimating ? initialRect.width : expandedWidth,
-          height: isAnimating ? initialRect.height : expandedHeight,
+            : `calc(50% - ${(expandedWidth + padding * 2) / 2}px)`,
+          width: isAnimating ? initialRect.width : expandedWidth + padding * 2,
+          height: isAnimating ? initialRect.height : 'auto',
           transform: isAnimating ? 'translate(0, 0)' : 'none',
         }}
       >
@@ -154,25 +164,44 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
           />
         </CloseButton>
         <img src={src} alt={alt} />
-        {description && <Description>{description}</Description>}
+        {description && (
+          <Description>
+            <h4>{description}</h4>
+          </Description>
+        )}
       </ExpandedImage>
     </>
   )
 }
 
-const Thumbnail = styled.div`
-  display: inline-block;
+const ThumbnailWrapper = styled.div`
+  position: relative;
+`
+
+const Thumbnail = styled(Paper)`
   cursor: pointer;
+  position: relative;
+  box-shadow: ${({ theme }) => theme.shadow.raised};
+  z-index: 1;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: inherit;
+    display: block;
     transition: transform 0.3s ease;
   }
 
-  &:hover img {
+  /* Use increased specificity */
+  &&:hover {
+    z-index: 2;
+  }
+
+  /* Move the transform to the img:hover */
+  img:hover {
     transform: scale(1.05);
+    box-shadow: ${({ theme }) => theme.shadow.overlay};
   }
 `
 
@@ -186,36 +215,41 @@ const Overlay = styled.div`
   z-index: 999;
 `
 
-const ExpandedImage = styled.div`
+const ExpandedImage = styled(Paper)`
   position: fixed;
   z-index: 1000;
   transition: all 0.5s ease;
   cursor: default;
   overflow: auto;
   outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
+    border-radius: inherit;
+    box-shadow: ${({ theme }) => theme.shadow.raised};
   }
 `
 
 const CloseButton = styled.div`
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 18px;
+  left: 18px;
   z-index: 1001;
 `
 
 const Description = styled.div`
-  margin-top: 20px;
-  color: #fff;
-  font-size: 1rem;
+  margin-top: 8px;
+  margin-bottom: 8px;
   max-width: 80%;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 `
 
 export default ImageComponent

@@ -3,58 +3,29 @@ import React from 'react'
 
 type CardVariant = 'overlay' | 'raised'
 
-interface PaperProps {
+interface PaperProps extends React.HTMLAttributes<HTMLDivElement> {
   cardStyle?: CardVariant
-  style?: React.CSSProperties
-  className?: string
-  children?: React.ReactNode
+  hoverStyle?: CardVariant
 }
 
-const PaperBase = styled.div`
-  ${({ theme }) => {
-    const { radius } = theme
-    return css`
-      border-radius: ${radius['12px']};
-      position: relative;
-      flex-grow: 1;
-      max-width: auto;
-      height: auto;
-    `
-  }}
-`
+const Paper = styled.div<PaperProps>`
+  ${({ theme, cardStyle = 'raised', hoverStyle = cardStyle }) => css`
+    border-radius: ${theme.radius['12px']};
+    position: relative;
+    flex-grow: 1;
+    max-width: auto;
+    height: auto;
+    box-shadow: ${theme.shadow[cardStyle]};
+    background-color: ${theme.colors.fill.background[cardStyle]};
+    transition:
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
 
-const StyledPaperRaised = styled(PaperBase)`
-  ${({ theme }) => css`
-    box-shadow: ${theme.shadow.raised};
-    background-color: ${theme.colors.fill.background.raised};
+    &:hover {
+      box-shadow: ${theme.shadow[hoverStyle]};
+      background-color: ${theme.colors.fill.background[hoverStyle]};
+    }
   `}
 `
-
-const StyledPaperOverlay = styled(PaperBase)`
-  ${({ theme }) => css`
-    box-shadow: ${theme.shadow.overlay};
-    background-color: ${theme.colors.fill.background.overlay};
-  `}
-`
-
-const variantMap = {
-  overlay: StyledPaperOverlay,
-  raised: StyledPaperRaised,
-}
-
-const Paper: React.FC<PaperProps> = ({
-  cardStyle = 'raised',
-  style,
-  className,
-  children,
-}) => {
-  const StyledPaper = variantMap[cardStyle] || StyledPaperRaised
-
-  return (
-    <StyledPaper style={style} className={className}>
-      {children}
-    </StyledPaper>
-  )
-}
 
 export default Paper

@@ -9,6 +9,7 @@ interface ImageProps {
   alt: string
   description?: string
   trigger?: React.ReactElement
+  isScrollable?: boolean // New prop
 }
 
 const ImageComponent: React.FC<ImageProps> = ({
@@ -16,6 +17,7 @@ const ImageComponent: React.FC<ImageProps> = ({
   alt,
   description,
   trigger,
+  isScrollable, // Accept the new prop
 }) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null)
@@ -71,6 +73,7 @@ const ImageComponent: React.FC<ImageProps> = ({
           description={description}
           initialRect={triggerRect}
           onClose={handleClose}
+          isScrollable={isScrollable} // Pass the new prop
         />
       )}
     </>
@@ -83,6 +86,7 @@ interface ExpandedViewProps {
   description?: string
   initialRect: DOMRect
   onClose: () => void
+  isScrollable?: boolean // New prop
 }
 
 const ExpandedView: React.FC<ExpandedViewProps> = ({
@@ -91,6 +95,7 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
   description,
   initialRect,
   onClose,
+  isScrollable, // Accept the new prop
 }) => {
   const [isAnimating, setIsAnimating] = useState(true)
   const expandedImageRef = useRef<HTMLDivElement>(null)
@@ -124,8 +129,10 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
 
     document.addEventListener('keydown', handleKeyDown)
 
-    // Prevent body from scrolling when the image is expanded
-    document.body.style.overflow = 'hidden'
+    // Prevent body from scrolling when the image is expanded, unless isScrollable is true
+    if (!isScrollable) {
+      document.body.style.overflow = 'hidden'
+    }
 
     // Focus on the expanded image for accessibility
     if (expandedImageRef.current) {
@@ -137,7 +144,7 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [onClose])
+  }, [onClose, isScrollable])
 
   // Initialize expandedWidth and expandedHeight with initialRect dimensions
   let expandedWidth: number = initialRect.width
@@ -145,17 +152,23 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
 
   if (naturalWidth && naturalHeight) {
     const aspectRatio = naturalWidth / naturalHeight
-    const maxWidth = window.innerWidth * 0.95 - 32 // 95% of viewport width minus padding
-    const maxHeight = window.innerHeight * 0.95 - 32 // 95% of viewport height minus padding
 
-    if (aspectRatio > maxWidth / maxHeight) {
-      // Image is wider relative to the viewport
-      expandedWidth = maxWidth
-      expandedHeight = maxWidth / aspectRatio
+    if (isScrollable) {
+      expandedWidth = Math.min(naturalWidth, window.innerWidth * 0.95 - 32)
+      expandedHeight = expandedWidth / aspectRatio
     } else {
-      // Image is taller relative to the viewport
-      expandedWidth = maxHeight * aspectRatio
-      expandedHeight = maxHeight
+      const maxWidth = window.innerWidth * 0.95 - 32 // 95% of viewport width minus padding
+      const maxHeight = window.innerHeight * 0.95 - 32 // 95% of viewport height minus padding
+
+      if (aspectRatio > maxWidth / maxHeight) {
+        // Image is wider relative to the viewport
+        expandedWidth = maxWidth
+        expandedHeight = maxWidth / aspectRatio
+      } else {
+        // Image is taller relative to the viewport
+        expandedWidth = maxHeight * aspectRatio
+        expandedHeight = maxHeight
+      }
     }
   }
 
@@ -169,19 +182,26 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
         tabIndex={-1}
         onClick={e => e.stopPropagation()}
         cardStyle='raised'
+        isScrollable={isScrollable}
         style={{
           top: isAnimating
             ? initialRect.top
-            : `calc(50% - ${(expandedHeight + padding * 2 + (description ? 60 : 0)) / 2}px)`,
+            : isScrollable
+              ? '0px'
+              : `calc(50% - ${(expandedHeight + padding * 2 + (description ? 60 : 0)) / 2}px)`,
           left: isAnimating
             ? initialRect.left
             : `calc(50% - ${(expandedWidth + padding * 2) / 2}px)`,
           width: isAnimating ? initialRect.width : expandedWidth + padding * 2,
-          height: isAnimating ? initialRect.height : 'auto',
+          height: isAnimating
+            ? initialRect.height
+            : isScrollable
+              ? '100%'
+              : 'auto',
           transform: isAnimating ? 'translate(0, 0)' : 'none',
         }}
       >
-        <CloseButton>
+        <CloseButton isScrollable={isScrollable}>
           <ButtonIcon
             onClick={onClose}
             buttonStyle='tonal'
@@ -242,12 +262,12 @@ const Overlay = styled.div`
   z-index: 999;
 `
 
-const ExpandedImage = styled(Paper)`
+const ExpandedImage = styled(Paper)<{ isScrollable?: boolean }>`
   position: fixed;
   z-index: 1000;
   transition: all 0.5s ease;
   cursor: default;
-  overflow: auto;
+  overflow-y: ${props => (props.isScrollable ? 'auto' : 'hidden')};
   outline: none;
   padding: 8px;
   box-sizing: border-box;
@@ -255,6 +275,7 @@ const ExpandedImage = styled(Paper)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: ${props => (props.isScrollable ? '100%' : 'auto')};
 
   img {
     width: 100%;
@@ -265,8 +286,8 @@ const ExpandedImage = styled(Paper)`
   }
 `
 
-const CloseButton = styled.div`
-  position: absolute;
+const CloseButton = styled.div<{ isScrollable?: boolean }>`
+  position: ${props => (props.isScrollable ? 'sticky' : 'absolute')};
   top: 18px;
   left: 18px;
   z-index: 1001;

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import useResponsiveValue from '@hooks/useResponsiveValue'
 import { Button } from 'src/components/Atoms/Button'
 import { Home, Edit3, Code, BookOpen, Heart } from 'react-feather'
+import ImageComponent from 'src/components/Organisms/ImageComponent/ImageComponent'
 
 const PBoldGrey = styled.p`
   font-weight: bold;
@@ -102,12 +103,18 @@ const ArchitectContent: React.FC = () => {
         <li>Architecture competitions (2x)</li>
       </UlSimple>
       <br />
-      <Button
-        size='small'
-        buttonStyle='clear'
-        label='See all projects here'
-        fullWidth
-      ></Button>
+      <ImageComponent
+        src='https://res.cloudinary.com/dbm0udwcq/image/upload/v1729264461/CV_-_Vain_projektit_Roope_Määttä_gmtyka.pdf'
+        alt='Architecture works CV'
+        trigger={
+          <Button
+            size='small'
+            buttonStyle='clear'
+            label='See all projects here'
+            fullWidth
+          ></Button>
+        }
+      />
     </>
   )
 }
@@ -164,11 +171,19 @@ const EducationContent: React.FC = () => {
       <UlSimple>
         <li>✅ +30 courses and +5700 points </li>
       </UlSimple>
-      <Button
-        size='small'
-        buttonStyle='clear'
-        label='See more about completed courses'
-      ></Button>
+
+      <ImageComponent
+        src='https://res.cloudinary.com/dbm0udwcq/image/upload/v1729264359/Treehouse_Completed_syyftm.pdf'
+        alt='Compelted Treehouse Courses'
+        isScrollable={true}
+        trigger={
+          <Button
+            size='small'
+            buttonStyle='clear'
+            label='See more about completed courses'
+          ></Button>
+        }
+      />
     </>
   )
 }

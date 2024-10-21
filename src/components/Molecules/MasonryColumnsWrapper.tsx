@@ -62,9 +62,19 @@ const MasonryContainer = ({ children }: MasonryContainerProps) => {
 
   // Render the children invisibly to measure their heights
   return (
-    <>
+    <div
+      style={{
+        gridColumn: '1/-1',
+      }}
+    >
       {/* Invisible container to measure child heights */}
-      <div style={{ visibility: 'hidden', position: 'absolute', top: 0 }}>
+      <div
+        style={{
+          visibility: 'hidden',
+          position: 'absolute',
+          top: 0,
+        }}
+      >
         {React.Children.map(children, (child, index) => (
           <div ref={el => (childRefs.current[index] = el)}>{child}</div>
         ))}
@@ -78,7 +88,7 @@ const MasonryContainer = ({ children }: MasonryContainerProps) => {
           </Column>
         ))}
       </MasonryColumnsWrapper>
-    </>
+    </div>
   )
 }
 

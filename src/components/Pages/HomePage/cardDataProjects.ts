@@ -31,7 +31,7 @@ export const useCardDataProjects = () => {
       title: 'Wuf Jewellery',
       image: true,
       gridColumn: 'span 4',
-      route: '/style-guide/button-variations',
+      route: '/jewellery',
       description: 'This is a description underneath a title',
     },
     {
@@ -39,7 +39,7 @@ export const useCardDataProjects = () => {
       title: 'Digital Arts',
       image: true,
       gridColumn: 'span 4',
-      route: '/style-guide/button-variations',
+      route: '/digital-art',
       description: 'This is a description underneath a title',
     },
     {
@@ -47,7 +47,7 @@ export const useCardDataProjects = () => {
       title: 'Traditional Arts',
       image: true,
       gridColumn: 'span 4',
-      route: '/style-guide/button-variations',
+      route: '/traditional-art',
       description: 'This is a description underneath a title',
     },
   ]

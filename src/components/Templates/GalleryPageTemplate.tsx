@@ -4,6 +4,7 @@ import MasonryContainer from '../Molecules/MasonryColumnsWrapper'
 import ImageComponent from '../Organisms/ImageComponent/ImageComponent'
 import { Button } from '../Atoms/Button'
 import { ExternalLink } from 'react-feather'
+import GridWrapper from '../Molecules/GridContainer/GridWrapper'
 
 interface ImageData {
   key: string
@@ -46,16 +47,18 @@ const GalleryPageTemplate: React.FC<GalleryPageProps> = ({
         </>
       )}
       <Spacer height={'080px'} />
-      <MasonryContainer>
-        {imageData.map(({ key, src, alt, description }) => (
-          <ImageComponent
-            key={key}
-            src={src}
-            alt={alt}
-            description={description}
-          />
-        ))}
-      </MasonryContainer>
+      <GridWrapper>
+        <MasonryContainer>
+          {imageData.map(({ key, src, alt, description }) => (
+            <ImageComponent
+              key={key}
+              src={src}
+              alt={alt}
+              description={description}
+            />
+          ))}
+        </MasonryContainer>
+      </GridWrapper>
     </>
   )
 }

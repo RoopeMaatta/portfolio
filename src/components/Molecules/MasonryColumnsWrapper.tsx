@@ -3,12 +3,12 @@ import styled, { useTheme } from 'styled-components'
 import useResponsiveValue from '../../hooks/useResponsiveValue'
 import { ReactNode } from 'react'
 
-const MasonryColumnsWrapper = styled.div`
+const MasonryColumnsWrapper = styled.div<{ gapResponsive: string }>`
   display: flex;
   gap: ${props => props.gapResponsive};
 `
 
-const Column = styled.div`
+const Column = styled.div<{ gapResponsive: string }>`
   display: flex;
   flex-direction: column;
   gap: ${props => props.gapResponsive};
@@ -31,7 +31,7 @@ const MasonryContainer = ({ children }: MasonryContainerProps) => {
   const [columns, setColumns] = useState<ReactNode[][]>([])
 
   // Refs to store the heights of each child
-  const childRefs = useRef<HTMLDivElement[]>([])
+  const childRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     // Initialize columns and their heights
@@ -42,7 +42,9 @@ const MasonryContainer = ({ children }: MasonryContainerProps) => {
     const columnHeights = new Array(columnCount).fill(0)
 
     // Measure the heights of each child
-    const childHeights = childRefs.current.map(ref => ref.offsetHeight)
+    const childHeights = childRefs.current.map(ref =>
+      ref ? ref.offsetHeight : 0
+    )
 
     // Distribute children based on the measured heights
     children.forEach((child, index) => {

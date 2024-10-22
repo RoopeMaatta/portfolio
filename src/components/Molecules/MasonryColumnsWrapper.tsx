@@ -70,6 +70,8 @@ const MasonryContainer = ({ children }: MasonryContainerProps) => {
       {/* Invisible container to measure child heights */}
       <div
         style={{
+          height: '1%',
+          width: '1%',
           visibility: 'hidden',
           position: 'absolute',
           top: 0,

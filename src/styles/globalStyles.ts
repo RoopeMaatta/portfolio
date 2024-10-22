@@ -3,6 +3,13 @@ import { applyTypographyToCss } from '@utils/typographyUtils'
 
 const GlobalStyle = createGlobalStyle(
   ({ theme }) => `
+
+    html, body, #root {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       margin: 0;
       padding: 0;

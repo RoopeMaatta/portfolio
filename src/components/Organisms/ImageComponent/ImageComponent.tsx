@@ -86,7 +86,7 @@ interface ExpandedViewProps {
   description?: string
   initialRect: DOMRect
   onClose: () => void
-  isScrollable?: boolean // New prop
+  isScrollable?: boolean
 }
 
 const ExpandedView: React.FC<ExpandedViewProps> = ({
@@ -104,6 +104,10 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
   const [naturalWidth, setNaturalWidth] = useState<number | null>(null)
   const [naturalHeight, setNaturalHeight] = useState<number | null>(null)
 
+  // Ref and state to measure the description's height
+  const descriptionRef = useRef<HTMLDivElement>(null)
+  const [descriptionHeight, setDescriptionHeight] = useState(0)
+
   useEffect(() => {
     // Load the image to get its natural dimensions
     const img = new Image()
@@ -113,6 +117,15 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
       setNaturalHeight(img.naturalHeight)
     }
   }, [src])
+
+  useEffect(() => {
+    // Measure the description's height after it renders
+    if (descriptionRef.current) {
+      setDescriptionHeight(descriptionRef.current.clientHeight)
+    } else {
+      setDescriptionHeight(0)
+    }
+  }, [description])
 
   useEffect(() => {
     // Trigger reflow to ensure the transition starts correctly
@@ -150,15 +163,25 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
   let expandedWidth: number = initialRect.width
   let expandedHeight: number = initialRect.height
 
+  const padding = 16 // in pixels (per side, so total vertical padding is 32)
+
   if (naturalWidth && naturalHeight) {
     const aspectRatio = naturalWidth / naturalHeight
 
     if (isScrollable) {
-      expandedWidth = Math.min(naturalWidth, window.innerWidth * 0.95 - 32)
+      // When scrollable, do not constrain the height to the viewport height
+      expandedWidth = Math.min(
+        naturalWidth,
+        window.innerWidth * 0.95 - padding * 2
+      )
       expandedHeight = expandedWidth / aspectRatio
     } else {
-      const maxWidth = window.innerWidth * 0.95 - 32 // 95% of viewport width minus padding
-      const maxHeight = window.innerHeight * 0.95 - 32 // 95% of viewport height minus padding
+      // Calculate maximum available height for the image
+      const maxAvailableHeight =
+        window.innerHeight - padding * 2 - descriptionHeight
+
+      const maxWidth = window.innerWidth * 0.95 - padding * 2 // Adjusted for horizontal padding
+      const maxHeight = maxAvailableHeight // Use adjusted maxHeight when not scrollable
 
       if (aspectRatio > maxWidth / maxHeight) {
         // Image is wider relative to the viewport
@@ -166,13 +189,11 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
         expandedHeight = maxWidth / aspectRatio
       } else {
         // Image is taller relative to the viewport
-        expandedWidth = maxHeight * aspectRatio
         expandedHeight = maxHeight
+        expandedWidth = maxHeight * aspectRatio
       }
     }
   }
-
-  const padding = 16 // in pixels
 
   return (
     <>
@@ -188,7 +209,7 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
             ? initialRect.top
             : isScrollable
               ? '0px'
-              : `calc(50% - ${(expandedHeight + padding * 2 + (description ? 60 : 0)) / 2}px)`,
+              : `calc(50% - ${(expandedHeight + padding * 2 + descriptionHeight) / 2}px)`,
           left: isAnimating
             ? initialRect.left
             : `calc(50% - ${(expandedWidth + padding * 2) / 2}px)`,
@@ -212,7 +233,7 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
         </CloseButton>
         <img src={src} alt={alt} />
         {description && (
-          <Description>
+          <Description ref={descriptionRef}>
             <h4>{description}</h4>
           </Description>
         )}

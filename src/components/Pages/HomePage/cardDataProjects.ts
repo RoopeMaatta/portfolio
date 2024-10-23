@@ -28,10 +28,10 @@ export const useCardDataProjects = () => {
     },
     {
       key: 'Jewellery',
-      title: 'Wuf Jewellery',
+      title: 'Jewellery & Sculpture',
       image: true,
       gridColumn: 'span 4',
-      route: '/jewellery',
+      route: '/jewellery&sculpture',
       description: 'This is a description underneath a title',
     },
     {

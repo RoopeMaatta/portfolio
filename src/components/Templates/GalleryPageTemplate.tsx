@@ -30,8 +30,8 @@ const GalleryPageTemplate: React.FC<GalleryPageProps> = ({
 }) => {
   return (
     <>
-      <h1>{title}</h1>
-      <Spacer height={'040px'} />
+      <h1 style={{ textAlign: 'center' }}>{title}</h1>
+      <Spacer height={'048px'} />
       <p>{content}</p>
       <Spacer height={'016px'} />
       {routeLink && buttonLabelLink && (

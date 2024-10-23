@@ -4,6 +4,7 @@ import StyleGuideNavigationPage from '../components/Pages/StyleGuidePage/FrontPa
 import HomePage from '../components/Pages/HomePage/HomePage'
 import StyleGuideContent from './StyleGuideContent'
 import TraditionalArtsPage from '../components/Pages/TraditionalArtsGalleryPage/TraditionalArtsPage'
+import JewellerySculpturePage from '../components/Pages/JewellerySculptureGalleryPage/JewellerySculpturePage'
 
 const AppRoutes: React.FC = () => (
   <Routes>
@@ -11,7 +12,7 @@ const AppRoutes: React.FC = () => (
     <Route path='/style-guide/' element={<StyleGuideNavigationPage />} />
     <Route path='/style-guide/*' element={<StyleGuideContent />} />
 
-    <Route path='/jewellery' element={<StyleGuideContent />} />
+    <Route path='/jewellery&sculpture' element={<JewellerySculpturePage />} />
     <Route path='/traditional-art' element={<TraditionalArtsPage />} />
     <Route path='/digital-art' element={<StyleGuideContent />} />
 

@@ -7,7 +7,7 @@ const TraditionalArtsPage: React.FC = () => {
     <>
       <GalleryPageTemplate
         title='Traditional Arts'
-        content='I really enjoy working with watercolors and doing traditional art. I also like to experiment with combining different media. I enjoy live drawing, capturing things in the moment, and every now and then, I switch things up with a bit of clay sculpting when I have the opportunity.'
+        content='I really enjoy working with watercolors and doing traditional art. I also like to experiment with combining different media. I enjoy live drawing, capturing things in the moment.'
         imageData={imageData}
         routeLink='test'
         buttonLabelLink='For more you can look at my instargram'

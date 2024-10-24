@@ -5,6 +5,7 @@ import HomePage from '../components/Pages/HomePage/HomePage'
 import StyleGuideContent from './StyleGuideContent'
 import TraditionalArtsPage from '../components/Pages/TraditionalArtsGalleryPage/TraditionalArtsPage'
 import JewellerySculpturePage from '../components/Pages/JewellerySculptureGalleryPage/JewellerySculpturePage'
+import DigitalArtsPage from '../components/Pages/DigitalArtsGalleryPage/DigitalArtsPage'
 
 const AppRoutes: React.FC = () => (
   <Routes>
@@ -14,7 +15,7 @@ const AppRoutes: React.FC = () => (
 
     <Route path='/jewellery&sculpture' element={<JewellerySculpturePage />} />
     <Route path='/traditional-art' element={<TraditionalArtsPage />} />
-    <Route path='/digital-art' element={<StyleGuideContent />} />
+    <Route path='/digital-art' element={<DigitalArtsPage />} />
 
     {/* Add more routes here as your application grows */}
   </Routes>

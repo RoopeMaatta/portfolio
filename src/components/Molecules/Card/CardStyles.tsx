@@ -16,7 +16,7 @@ const StyledCard = styled(Paper)<StyledCardProps>`
 
 const CardImage = styled.img<StyledCardProps>`
   ${({ isHorizontal, theme }) => {
-    const { radius } = theme
+    const { radius, shadow } = theme
     return css`
       width: ${isHorizontal ? '150px' : 'auto'};
       height: ${isHorizontal ? 'auto' : '150px'};
@@ -24,8 +24,9 @@ const CardImage = styled.img<StyledCardProps>`
       border-top-left-radius: ${radius['12px']};
       border-top-right-radius: ${isHorizontal ? '0' : radius['12px']};
       border-bottom-left-radius: ${isHorizontal ? radius['12px'] : '0'};
-      border-bottom-right-radius: ${isHorizontal ? '0' : radius['12px']};
+      border-bottom-right-radius: '0';
       flex-shrink: 0;
+      box-shadow: ${shadow.raised};
     `
   }}
 `

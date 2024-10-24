@@ -22,8 +22,7 @@ export const useCardDataProjects = () => {
       title: 'Villa Auroras Cottages',
       image: true,
       gridColumn: 'span 4',
-      isExternal: true,
-      route: 'https://villaauroras.com/',
+      route: '/villa-auroras',
       description: 'This is a description underneath a title',
     },
     {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { ButtonIcon } from 'src/components/Atoms/Button'
 import Logo from '../../../assets/logo.svg?react'
-import { ArrowLeft, User } from 'react-feather'
+import { ButtonContainer } from 'src/components/Atoms/Button'
+import { useTheme } from 'styled-components'
 
 const Nav = styled.nav`
   position: sticky;
@@ -24,9 +24,6 @@ const LeftSection = styled.div`
 `
 
 const CenterSection = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   flex: 1;
   display: flex;
   justify-content: center;
@@ -41,19 +38,7 @@ const RightSection = styled.div`
 const NavigationBar: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
-
-  const handleBackClick = () => {
-    if (
-      document.referrer &&
-      new URL(document.referrer).origin !== window.location.origin
-    ) {
-      // If the referrer is an external URL, navigate to home
-      navigate('/')
-    } else {
-      // Otherwise, go back to the previous page
-      navigate(-1)
-    }
-  }
+  const theme = useTheme()
 
   const handleHomeClick = () => {
     if (location.pathname === '/') {
@@ -65,21 +50,19 @@ const NavigationBar: React.FC = () => {
 
   return (
     <Nav>
-      {location.pathname !== '/' && (
-        <LeftSection>
-          <ButtonIcon
-            onClick={handleBackClick}
-            shape='round'
-            icon={<ArrowLeft />}
-          />
-        </LeftSection>
-      )}
+      <LeftSection></LeftSection>
+
       <CenterSection>
-        <Logo style={{ width: 'auto', height: 'auto' }} />
+        <ButtonContainer
+          onClick={handleHomeClick}
+          style={{ padding: theme.spacing['012px'] }}
+          shape='round'
+        >
+          <Logo style={{ width: 'auto', height: 'auto' }} />
+        </ButtonContainer>
       </CenterSection>
-      <RightSection>
-        <ButtonIcon onClick={handleHomeClick} shape='round' icon={<User />} />
-      </RightSection>
+
+      <RightSection></RightSection>
     </Nav>
   )
 }

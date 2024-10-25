@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowDownCircle, CreditCard } from 'react-feather'
+import { ArrowDownCircle, CreditCard, Image } from 'react-feather'
 import TitleIconLeft from 'src/components/Molecules/TitleIconLeft'
 import { useTheme } from 'styled-components'
 
@@ -12,7 +12,7 @@ export const useCardDataComponents = () => {
       route: '/style-guide/button-variations',
       title: <TitleIconLeft icon={<ArrowDownCircle />} title='Button' />,
       description:
-        'Built using a single Higher-Order Component (HOC) that provides Button, ButtonIcon, and ButtonContainer exports.',
+        'Built using a single Higher-Order Component (HOC) that provides Button, ButtonIcon, and ButtonContainer exports',
     },
     {
       key: 'Card',
@@ -20,7 +20,16 @@ export const useCardDataComponents = () => {
       route: '',
       title: <TitleIconLeft icon={<CreditCard />} title='Card' />,
       description:
-        'Card showcase page still under construction. This custom Card component has been used in this website.',
+        'Card showcase page is in progress. This custom Card component is already live on this website',
+      style: { color: theme.colors.fill.state.disabled },
+    },
+    {
+      key: 'ImageContainer',
+      gridColumn: 'span 4',
+      route: '',
+      title: <TitleIconLeft icon={<Image />} title='ImageContainer' />,
+      description:
+        'ImageContainer showcase page is in progress. This custom ImageContainer component is already live on this website',
       style: { color: theme.colors.fill.state.disabled },
     },
   ]

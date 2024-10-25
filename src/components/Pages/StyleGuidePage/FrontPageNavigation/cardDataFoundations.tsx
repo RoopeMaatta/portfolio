@@ -10,10 +10,12 @@ import {
   Sidebar,
   Compass,
 } from 'react-feather'
+import { useTheme } from 'styled-components'
 
 export const useCardDataFoundations = () => {
   const gridColumnCard1 = useResponsiveValue(['span 4', 'span 8', 'span 8'])
   const isHorizontalCard1 = useResponsiveValue([false, true, true])
+  const theme = useTheme()
 
   const cardDataFoundations = [
     {
@@ -68,6 +70,7 @@ export const useCardDataFoundations = () => {
       title: <TitleIconLeft icon={<Compass />} title='Testing' />,
       description:
         'This is for dev testing purposses. try to remember to delete before shiping out xD',
+      style: { color: theme.colors.fill.state.disabled },
     },
   ]
 

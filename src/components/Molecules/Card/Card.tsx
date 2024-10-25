@@ -24,7 +24,7 @@ type GridColumnValue =
 interface CardProps {
   cardStyle?: CardVariant
   icon?: React.ReactNode | boolean
-  title?: string | boolean
+  title?: string | boolean | React.ReactElement
   description?: string | boolean
   content?: React.ReactNode | boolean
   style?: React.CSSProperties

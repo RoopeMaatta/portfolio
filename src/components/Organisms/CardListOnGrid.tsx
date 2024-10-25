@@ -6,6 +6,7 @@ import GridWrapper from 'src/components/Molecules/GridContainer/GridWrapper'
 
 interface CardData {
   key: string
+  style?: React.CSSProperties
   gridColumn?: string
   gridRow?: string
   route?: string
@@ -14,7 +15,7 @@ interface CardData {
   image?: string | boolean
   content?: React.ReactNode | boolean
   description?: string
-  title?: string
+  title?: string | React.ReactElement
   icon?: React.ReactNode | boolean
 }
 
@@ -43,6 +44,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
       {cardData.map(
         ({
           key,
+          style,
           gridColumn,
           gridRow,
           route,
@@ -61,6 +63,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
               onClick={() => handleCardClick(route!, isExternal)}
             >
               <Card
+                style={style}
                 isHorizontal={isHorizontal}
                 image={image}
                 content={content}
@@ -72,6 +75,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
           ) : (
             <div key={key} style={{ gridColumn, gridRow }}>
               <Card
+                style={style}
                 isHorizontal={isHorizontal}
                 image={image}
                 content={content}

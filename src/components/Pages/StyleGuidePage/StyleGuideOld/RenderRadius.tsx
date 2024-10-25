@@ -16,7 +16,7 @@ const RenderRadius: React.FC<RenderRadiusProps> = ({ radius }) => {
       style={{
         margin: '10px 0',
         display: 'grid',
-        gridTemplateColumns: '100px 75px auto',
+        gridTemplateColumns: '150px 25px auto',
         alignItems: 'center',
         textAlign: 'left',
         ...theme.typography.small,
@@ -25,8 +25,8 @@ const RenderRadius: React.FC<RenderRadiusProps> = ({ radius }) => {
       <span>Radius {key}:</span>
       <div
         style={{
-          width: '50px',
-          height: '50px',
+          width: '100px',
+          height: '100px',
           backgroundColor: 'white',
           borderRadius: value,
           border: '1px solid #000',

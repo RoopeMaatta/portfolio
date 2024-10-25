@@ -8,7 +8,7 @@ type CustomLength =
   `${number}${'px' | 'em' | 'rem' | '%' | 'vh' | 'vw' | 'vmin' | 'vmax'}`
 
 interface H4TitleContentBlockProps {
-  title?: string | boolean
+  title?: string | boolean | React.ReactElement
   description?: string | boolean
   content?: React.ReactNode | boolean
   style?: React.CSSProperties // Add this to accept inline styles

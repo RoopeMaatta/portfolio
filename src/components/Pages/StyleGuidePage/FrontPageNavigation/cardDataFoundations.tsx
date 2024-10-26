@@ -67,9 +67,8 @@ export const useCardDataFoundations = () => {
       key: 'Testing',
       gridColumn: 'span 4',
       route: '/style-guide/testing',
-      title: <TitleIconLeft icon={<Compass />} title='Testing' />,
-      description:
-        'This is for dev testing purposses. try to remember to delete before shiping out xD',
+      title: <TitleIconLeft icon={<Compass />} title='Dev playground' />,
+      description: 'This is a page for dev experimenting purposses.',
       style: { color: theme.colors.fill.state.disabled },
     },
   ]

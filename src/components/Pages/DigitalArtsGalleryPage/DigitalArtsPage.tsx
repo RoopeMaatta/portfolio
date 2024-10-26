@@ -9,8 +9,6 @@ const DigitalArtsPage: React.FC = () => {
         title='Digital Arts'
         content='I find digital painting interesting for its flexibility. It allows me to experiment with different techniques. Working from life in this medium is a unique experience, offering a fresh perspective.'
         imageData={imageData}
-        routeLink='test'
-        buttonLabelLink='For more you can look at my instargram'
       />
     </>
   )

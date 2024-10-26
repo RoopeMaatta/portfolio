@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, {
+  useState,
+  useRef,
+  useLayoutEffect,
+  useEffect,
+  useCallback,
+} from 'react'
 import styled, { useTheme } from 'styled-components'
 import useResponsiveValue from '../../hooks/useResponsiveValue'
 import { ReactNode } from 'react'
@@ -33,7 +39,7 @@ const MasonryContainer = ({ children }: MasonryContainerProps) => {
   // Refs to store the heights of each child
   const childRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  useEffect(() => {
+  const calculateColumns = useCallback(() => {
     // Initialize columns and their heights
     const newColumns: ReactNode[][] = Array.from(
       { length: columnCount },
@@ -59,6 +65,53 @@ const MasonryContainer = ({ children }: MasonryContainerProps) => {
 
     setColumns(newColumns)
   }, [children, columnCount])
+
+  useLayoutEffect(() => {
+    calculateColumns()
+  }, [calculateColumns])
+
+  // Debounce function with proper typing
+  const debounce = (func: () => void, wait: number) => {
+    let timeout: ReturnType<typeof setTimeout> | null = null
+    return () => {
+      const later = () => {
+        if (timeout) {
+          clearTimeout(timeout)
+          timeout = null
+        }
+        func()
+      }
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+      timeout = setTimeout(later, wait)
+    }
+  }
+
+  const debouncedRecalculateColumns = useCallback(
+    debounce(() => {
+      calculateColumns()
+    }, 100),
+    [calculateColumns]
+  )
+
+  useEffect(() => {
+    const observers = childRefs.current.map(ref => {
+      if (!ref) return null
+      const observer = new ResizeObserver(() => {
+        debouncedRecalculateColumns()
+      })
+      observer.observe(ref)
+      return observer
+    })
+
+    // Cleanup function
+    return () => {
+      observers.forEach(observer => {
+        if (observer) observer.disconnect()
+      })
+    }
+  }, [children, columnCount, debouncedRecalculateColumns])
 
   // Render the children invisibly to measure their heights
   return (

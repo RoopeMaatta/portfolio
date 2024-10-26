@@ -8,12 +8,14 @@ import { useDevVisualizationContext } from '../../../contexts/DevVisualizationCo
 interface GridWrapperProps {
   children: ReactNode
   rowGap?: boolean
+  style?: React.CSSProperties // Add style prop here
 }
 
 // Main content component for the GridWrapper
 const GridWrapperContent: React.FC<GridWrapperProps> = ({
   children,
   rowGap,
+  style, // Destructure the style prop
 }) => {
   const { showMainGridVisualization } = useDevVisualizationContext()
   const { columns, gridGap } = useGrid()
@@ -22,7 +24,12 @@ const GridWrapperContent: React.FC<GridWrapperProps> = ({
   const shouldShowGrid = showMainGridVisualization ?? false
 
   return (
-    <GridContainer gridGap={gridGap} columns={columns} rowGap={rowGap}>
+    <GridContainer
+      gridGap={gridGap}
+      columns={columns}
+      rowGap={rowGap}
+      style={style} // Pass the style prop to GridContainer
+    >
       {children}
       {shouldShowGrid && <GridVisualization columns={columns} />}
     </GridContainer>
@@ -30,9 +37,15 @@ const GridWrapperContent: React.FC<GridWrapperProps> = ({
 }
 
 // GridWrapper component to provide grid context to its children
-const GridWrapper: React.FC<GridWrapperProps> = ({ children, rowGap }) => (
+const GridWrapper: React.FC<GridWrapperProps> = ({
+  children,
+  rowGap,
+  style, // Destructure the style prop
+}) => (
   <GridProvider>
-    <GridWrapperContent rowGap={rowGap}>{children}</GridWrapperContent>
+    <GridWrapperContent rowGap={rowGap} style={style}>
+      {children}
+    </GridWrapperContent>
   </GridProvider>
 )
 

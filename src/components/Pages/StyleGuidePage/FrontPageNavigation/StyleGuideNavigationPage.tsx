@@ -16,13 +16,19 @@ const StyleGuideNavigationPage: React.FC = () => {
       <h2 style={{ textAlign: 'center' }}>Components</h2>
       <Spacer height={'018px'} />
 
-      <CardListOnGrid cardData={cardDataComponents} />
+      <CardListOnGrid
+        cardData={cardDataComponents}
+        cardStyle={{ textAlign: 'left' }}
+      />
       <Spacer height={'048px'} />
 
       <h2 style={{ textAlign: 'center' }}>Foundations</h2>
       <Spacer height={'018px'} />
 
-      <CardListOnGrid cardData={cardDataFoundations} />
+      <CardListOnGrid
+        cardData={cardDataFoundations}
+        cardStyle={{ textAlign: 'left' }}
+      />
     </>
   )
 }

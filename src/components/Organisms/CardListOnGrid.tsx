@@ -22,11 +22,15 @@ interface CardData {
 interface CardListOnGridProps {
   cardData: CardData[]
   isClickable?: boolean
+  style?: React.CSSProperties // Style for GridWrapper
+  cardStyle?: React.CSSProperties // Style for Card components
 }
 
 const CardListOnGrid: React.FC<CardListOnGridProps> = ({
   cardData,
   isClickable = true,
+  style,
+  cardStyle,
 }) => {
   const navigate = useNavigate()
 
@@ -40,11 +44,11 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
   }
 
   return (
-    <GridWrapper rowGap>
+    <GridWrapper rowGap style={style}>
       {cardData.map(
         ({
           key,
-          style,
+          style: cardDataStyle,
           gridColumn,
           gridRow,
           route,
@@ -63,7 +67,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
               onClick={() => handleCardClick(route!, isExternal)}
             >
               <Card
-                style={style}
+                style={{ ...cardStyle, ...cardDataStyle }}
                 isHorizontal={isHorizontal}
                 image={image}
                 content={content}
@@ -75,7 +79,7 @@ const CardListOnGrid: React.FC<CardListOnGridProps> = ({
           ) : (
             <div key={key} style={{ gridColumn, gridRow }}>
               <Card
-                style={style}
+                style={{ ...cardStyle, ...cardDataStyle }}
                 isHorizontal={isHorizontal}
                 image={image}
                 content={content}

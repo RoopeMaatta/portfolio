@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from '..'
+import { Button } from '../..'
 
 import { Check, ArrowRight } from 'react-feather'
 

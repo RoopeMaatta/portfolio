@@ -1,4 +1,3 @@
-// Import statements
 import React from 'react'
 import Button from '../../Atoms/Button/Button'
 import Table, { TableColumn } from 'src/components/Molecules/Table/Table'
@@ -27,176 +26,39 @@ const ButtonShowcaseTable: React.FC<ButtonShowcaseTableProps> = ({
 }) => {
   const theme = useTheme()
 
-  const data: ButtonTable[] = [
-    {
-      small: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='small'
-            icon={<Compass />}
-            shape='square'
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='small'
-            label='Button'
-            shape='square'
-            fullWidth={false}
-          />
-        </>
-      ),
-      regular: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='regular'
-            icon={<Compass />}
-            shape='square'
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='regular'
-            label='Button'
-            shape='square'
-            fullWidth={false}
-          />
-        </>
-      ),
-      large: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='large'
-            shape='square'
-            icon={<Compass />}
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='large'
-            shape='square'
-            label='Button'
-            fullWidth={false}
-          />
-        </>
-      ),
-    },
-    {
-      small: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='small'
-            icon={<Compass />}
-            shape='regular'
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='small'
-            label='Button'
-            shape='regular'
-            fullWidth={false}
-          />
-        </>
-      ),
-      regular: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='regular'
-            icon={<Compass />}
-            shape='regular'
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='regular'
-            label='Button'
-            shape='regular'
-            fullWidth={false}
-          />
-        </>
-      ),
-      large: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='large'
-            shape='regular'
-            icon={<Compass />}
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='large'
-            shape='regular'
-            label='Button'
-            fullWidth={false}
-          />
-        </>
-      ),
-    },
-    {
-      small: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='small'
-            icon={<Compass />}
-            shape='round'
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='small'
-            label='Button'
-            shape='round'
-            fullWidth={false}
-          />
-        </>
-      ),
-      regular: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='regular'
-            icon={<Compass />}
-            shape='round'
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='regular'
-            label='Button'
-            shape='round'
-            fullWidth={false}
-          />
-        </>
-      ),
-      large: (
-        <>
-          <ButtonIcon
-            buttonStyle={buttonStyle}
-            size='large'
-            shape='round'
-            icon={<Compass />}
-          />
-          <Spacer width={'008px'} />
-          <Button
-            buttonStyle={buttonStyle}
-            size='large'
-            shape='round'
-            label='Button'
-            fullWidth={false}
-          />
-        </>
-      ),
-    },
+  const shapes: Array<'square' | 'regular' | 'round'> = [
+    'square',
+    'regular',
+    'round',
   ]
+
+  const renderButtonComponents = (
+    size: 'small' | 'regular' | 'large',
+    shape: 'square' | 'regular' | 'round'
+  ) => (
+    <>
+      <ButtonIcon
+        buttonStyle={buttonStyle}
+        size={size}
+        icon={<Compass />}
+        shape={shape}
+      />
+      <Spacer width='008px' />
+      <Button
+        buttonStyle={buttonStyle}
+        size={size}
+        label='Button'
+        shape={shape}
+        fullWidth={false}
+      />
+    </>
+  )
+
+  const data: ButtonTable[] = shapes.map(shape => ({
+    small: renderButtonComponents('small', shape),
+    regular: renderButtonComponents('regular', shape),
+    large: renderButtonComponents('large', shape),
+  }))
 
   const columns: TableColumn<ButtonTable>[] = [
     {
@@ -216,9 +78,9 @@ const ButtonShowcaseTable: React.FC<ButtonShowcaseTableProps> = ({
   return (
     <TableStyle1Wrapper>
       <h2>{TableTitle}</h2>
-      <Spacer height={'008px'} />
+      <Spacer height='008px' />
       <p style={{ color: theme.colors.text.neutral.weak }}>{TableText}</p>
-      <Spacer height={'040px'} />
+      <Spacer height='040px' />
       <Table<ButtonTable> columns={columns} data={data} />
     </TableStyle1Wrapper>
   )

@@ -6,6 +6,13 @@ import { ButtonIcon } from '../../Atoms/Button/Button'
 import { Compass } from 'react-feather'
 import { Spacer } from 'src/components/Atoms/Spacer'
 import { useTheme } from 'styled-components'
+import styled from 'styled-components'
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`
 
 interface ButtonTable {
   small: React.ReactNode
@@ -17,12 +24,16 @@ interface ButtonShowcaseTableProps {
   buttonStyle: 'filled' | 'tonal' | 'outline' | 'clear'
   TableTitle: string
   TableText: string
+  iconPosition?: 'left' | 'right' | null
+  fullWidth?: boolean
 }
 
 const ButtonShowcaseTable: React.FC<ButtonShowcaseTableProps> = ({
   buttonStyle,
   TableTitle,
   TableText,
+  iconPosition,
+  fullWidth,
 }) => {
   const theme = useTheme()
 
@@ -36,22 +47,22 @@ const ButtonShowcaseTable: React.FC<ButtonShowcaseTableProps> = ({
     size: 'small' | 'regular' | 'large',
     shape: 'square' | 'regular' | 'round'
   ) => (
-    <>
+    <FlexContainer>
       <ButtonIcon
         buttonStyle={buttonStyle}
         size={size}
         icon={<Compass />}
         shape={shape}
       />
-      <Spacer width='008px' />
       <Button
         buttonStyle={buttonStyle}
         size={size}
         label='Button'
         shape={shape}
-        fullWidth={false}
+        fullWidth={fullWidth}
+        {...(iconPosition ? { icon: <Compass />, iconPosition } : {})}
       />
-    </>
+    </FlexContainer>
   )
 
   const data: ButtonTable[] = shapes.map(shape => ({

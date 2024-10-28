@@ -58,7 +58,7 @@ const ButtonVariationsPage: React.FC = () => {
         />
         <Button
           buttonStyle='tonal'
-          label='Toggle Button Full width'
+          label='Toggle Button full width'
           fullWidth={true}
           onClick={() => setFullWidth(prev => !prev)}
         />

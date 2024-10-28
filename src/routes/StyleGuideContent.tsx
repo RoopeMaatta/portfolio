@@ -8,7 +8,7 @@ import TestingPage from '../components/Pages/StyleGuidePage/TestingPage'
 import RenderSpacing from '../components/Pages/StyleGuidePage/StyleGuideOld/RenderSpacing'
 import RenderRadius from '../components/Pages/StyleGuidePage/StyleGuideOld/RenderRadius'
 import RenderBreakpoints from '../components/Pages/StyleGuidePage/StyleGuideOld/RenderBreakpoints'
-import ButtonVariationsPage from '../components/Pages/ButtonVariationsPage/ButtonVariationsPage'
+import ButtonVariationsPage from '../components/Pages/StyleGuidePage/ButtonVariationsPage/ButtonVariationsPage'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>

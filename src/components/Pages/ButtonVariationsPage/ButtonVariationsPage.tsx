@@ -1,6 +1,16 @@
 import React from 'react'
 import ButtonShowcaseTable from './ButtonShowcaseTable'
 import { Spacer } from 'src/components/Atoms/Spacer'
+import { Button } from 'src/components/Atoms/Button'
+import { Compass } from 'react-feather'
+import styled from 'styled-components'
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+`
 
 const ButtonVariationsPage: React.FC = () => {
   return (
@@ -9,10 +19,48 @@ const ButtonVariationsPage: React.FC = () => {
       <Spacer height={'016px'} />
       <p>
         Built with a single Higher-Order Component (HOC), this module provides
-        three exports: Button, ButtonIcon, and ButtonContainer. In this guide,
-        we explore the versatility of Button and ButtonIcon by showcasing
-        variations in shape, size, and style.
+        three exports: Button, ButtonIcon, and ButtonContainer. In this page, we
+        explore the variations of Button and ButtonIcon with the props: shape,
+        size, and buttonStyle.
       </p>
+      <Spacer height={'080px'} />
+      <h3> Button with icon and full width </h3>
+      <Spacer height={'016px'} />
+      <p>
+        The Button component can expand to full width and supports an icon
+        aligned to the left or right of the label.The Button component can
+        expand to full width and supports an icon aligned to the left or right
+        of the label.
+      </p>
+      <Spacer height={'016px'} />
+      <FlexContainer>
+        <Button
+          buttonStyle='tonal'
+          label='Show icon left'
+          icon={<Compass />}
+          iconPosition='left'
+          onClick={() => {}}
+        />
+        <Button
+          buttonStyle='tonal'
+          label='No Icon on Button'
+          onClick={() => {}}
+        />
+        <Button
+          buttonStyle='tonal'
+          label='Show icon right'
+          icon={<Compass />}
+          iconPosition='right'
+          onClick={() => {}}
+        />
+        <Button
+          buttonStyle='tonal'
+          label='Toggle Button Full width'
+          fullWidth={true}
+          onClick={() => {}}
+        />
+      </FlexContainer>
+
       <Spacer height={'080px'} />
       <ButtonShowcaseTable
         buttonStyle='filled'

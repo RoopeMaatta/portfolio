@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Logo from '../../../assets/logo.svg?react'
 import { ButtonContainer } from 'src/components/Atoms/Button'
 import { useTheme } from 'styled-components'
+import { Spacer } from 'src/components/Atoms/Spacer'
 
 const Nav = styled.nav`
   position: sticky;
@@ -12,9 +13,9 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   z-index: 1000;
-  margin-bottom: 1rem;
-  background-color: white;
-  border-bottom: 2px solid #ddd;
+  background-color: ${({ theme }) => theme.colors.fill.background.base};
+  border-bottom: ${({ theme }) => theme.stroke.strong} solid
+    ${({ theme }) => theme.colors.stroke.neutral.weak};
 `
 
 const LeftSection = styled.div`
@@ -49,21 +50,24 @@ const NavigationBar: React.FC = () => {
   }
 
   return (
-    <Nav>
-      <LeftSection></LeftSection>
+    <>
+      <Nav>
+        <LeftSection></LeftSection>
 
-      <CenterSection>
-        <ButtonContainer
-          onClick={handleHomeClick}
-          style={{ padding: theme.spacing['012px'] }}
-          shape='round'
-        >
-          <Logo style={{ width: 'auto', height: 'auto' }} />
-        </ButtonContainer>
-      </CenterSection>
+        <CenterSection>
+          <ButtonContainer
+            onClick={handleHomeClick}
+            style={{ padding: theme.spacing['012px'] }}
+            shape='round'
+          >
+            <Logo style={{ width: 'auto', height: 'auto' }} />
+          </ButtonContainer>
+        </CenterSection>
 
-      <RightSection></RightSection>
-    </Nav>
+        <RightSection></RightSection>
+      </Nav>
+      <Spacer height={'016px'} />
+    </>
   )
 }
 

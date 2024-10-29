@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { ButtonIcon } from 'src/components/Atoms/Button'
-import { X } from 'react-feather'
+import { FileText, X } from 'react-feather'
 import Paper from 'src/components/Atoms/Paper/Paper'
 
 interface ImageProps {
@@ -9,7 +9,17 @@ interface ImageProps {
   alt: string
   description?: string
   trigger?: React.ReactElement
-  isScrollable?: boolean // New prop
+  isScrollable?: boolean
+}
+
+// Utility function to check if the source is a PDF
+const isPdf = (url: string): boolean => {
+  try {
+    const parsedUrl = new URL(url, window.location.href) // Ensure relative URLs work
+    return parsedUrl.pathname.toLowerCase().endsWith('.pdf')
+  } catch {
+    return false
+  }
 }
 
 const ImageComponent: React.FC<ImageProps> = ({
@@ -17,7 +27,7 @@ const ImageComponent: React.FC<ImageProps> = ({
   alt,
   description,
   trigger,
-  isScrollable, // Accept the new prop
+  isScrollable,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null)
@@ -62,7 +72,13 @@ const ImageComponent: React.FC<ImageProps> = ({
             cardStyle='raised'
             hoverStyle='overlay'
           >
-            <img ref={imageRef} src={src} alt={alt} />
+            {isPdf(src) ? (
+              <PdfThumbnail ref={imageRef} aria-label={alt}>
+                <FileText size={64} />
+              </PdfThumbnail>
+            ) : (
+              <img ref={imageRef} src={src} alt={alt} />
+            )}
           </Thumbnail>
         </ThumbnailWrapper>
       )}
@@ -73,7 +89,7 @@ const ImageComponent: React.FC<ImageProps> = ({
           description={description}
           initialRect={triggerRect}
           onClose={handleClose}
-          isScrollable={isScrollable} // Pass the new prop
+          isScrollable={isScrollable}
         />
       )}
     </>
@@ -95,7 +111,7 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
   description,
   initialRect,
   onClose,
-  isScrollable, // Accept the new prop
+  isScrollable,
 }) => {
   const [isAnimating, setIsAnimating] = useState(true)
   const expandedImageRef = useRef<HTMLDivElement>(null)
@@ -108,15 +124,48 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
   const descriptionRef = useRef<HTMLDivElement>(null)
   const [descriptionHeight, setDescriptionHeight] = useState(0)
 
-  useEffect(() => {
-    // Load the image to get its natural dimensions
-    const img = new Image()
-    img.src = src
-    img.onload = () => {
-      setNaturalWidth(img.naturalWidth)
-      setNaturalHeight(img.naturalHeight)
+  // Utility function to append parameters to PDF URLs to control display
+  const appendPdfParameters = (urlString: string): string => {
+    try {
+      const url = new URL(urlString, window.location.href)
+
+      // Parameters to hide toolbar, navpanes, scrollbar and set zoom
+      const params = ['zoom=1500', 'view=Fit']
+
+      if (url.hash) {
+        params.forEach(param => {
+          if (!url.hash.includes(param.split('=')[0])) {
+            url.hash += `&${param}`
+          }
+        })
+      } else {
+        url.hash = `#${params.join('&')}`
+      }
+      return url.toString()
+    } catch {
+      return `${urlString}#toolbar=0&navpanes=0&scrollbar=0&zoom=100&view=Fit`
     }
-  }, [src])
+  }
+
+  useEffect(() => {
+    if (isPdf(src)) {
+      // Set dimensions for PDFs based on viewport
+      const padding = 16
+      const maxAvailableWidth = window.innerWidth * 0.95 - padding * 2
+      const maxAvailableHeight =
+        window.innerHeight - padding * 2 - descriptionHeight
+      setNaturalWidth(maxAvailableWidth)
+      setNaturalHeight(maxAvailableHeight)
+    } else {
+      // Load the image to get its natural dimensions
+      const img = new Image()
+      img.src = src
+      img.onload = () => {
+        setNaturalWidth(img.naturalWidth)
+        setNaturalHeight(img.naturalHeight)
+      }
+    }
+  }, [src, descriptionHeight])
 
   useEffect(() => {
     // Measure the description's height after it renders
@@ -209,7 +258,9 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
             ? initialRect.top
             : isScrollable
               ? '0px'
-              : `calc(50% - ${(expandedHeight + padding * 2 + descriptionHeight) / 2}px)`,
+              : `calc(50% - ${
+                  (expandedHeight + padding * 2 + descriptionHeight) / 2
+                }px)`,
           left: isAnimating
             ? initialRect.left
             : `calc(50% - ${(expandedWidth + padding * 2) / 2}px)`,
@@ -231,7 +282,11 @@ const ExpandedView: React.FC<ExpandedViewProps> = ({
             aria-label='Close image'
           />
         </CloseButton>
-        <img src={src} alt={alt} />
+        {isPdf(src) ? (
+          <PdfViewer src={appendPdfParameters(src)} title={alt} />
+        ) : (
+          <img src={src} alt={alt} />
+        )}
         {description && (
           <Description ref={descriptionRef}>
             <h4>{description}</h4>
@@ -273,6 +328,19 @@ const Thumbnail = styled(Paper)`
   }
 `
 
+// Styled component for PDF thumbnail
+const PdfThumbnail = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`
+
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -297,6 +365,7 @@ const ExpandedImage = styled(Paper)<{ isScrollable?: boolean }>`
   flex-direction: column;
   align-items: center;
   height: ${props => (props.isScrollable ? '100%' : 'auto')};
+  width: ${props => (props.isScrollable ? '100%' : 'auto')};
 
   img {
     width: 100%;
@@ -305,6 +374,13 @@ const ExpandedImage = styled(Paper)<{ isScrollable?: boolean }>`
     border-radius: inherit;
     box-shadow: ${({ theme }) => theme.shadow.raised};
   }
+`
+
+// Styled component for PDF viewer
+const PdfViewer = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: none;
 `
 
 const CloseButton = styled.div<{ isScrollable?: boolean }>`

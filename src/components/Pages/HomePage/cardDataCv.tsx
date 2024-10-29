@@ -106,6 +106,7 @@ const ArchitectContent: React.FC = () => {
       <ImageComponent
         src='https://res.cloudinary.com/dbm0udwcq/image/upload/v1729264461/CV_-_Vain_projektit_Roope_Määttä_gmtyka.pdf'
         alt='Architecture works CV'
+        isScrollable={true}
         trigger={
           <Button
             size='small'

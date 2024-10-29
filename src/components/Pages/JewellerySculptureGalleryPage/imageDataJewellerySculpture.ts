@@ -41,7 +41,7 @@ export const imageData = [
     key: '7',
     src: 'https://res.cloudinary.com/dbm0udwcq/image/upload/v1729621226/IMG_2726_ondtzw.jpg',
     alt: 'Silver clay blueberry leaf',
-    description: 'Sucha a simple thing, a leaf of a blueberry in silver',
+    description: 'Such a simple thing, a leaf of a blueberry in silver',
   },
 
   {

@@ -1,4 +1,4 @@
-# ComponentPlayground
+# Portfolio and ComponentPlayground
 
 This site serves as an introduction to who I am, showcasing my work, skills, and CV across full-stack development, architecture, and crafts.
 

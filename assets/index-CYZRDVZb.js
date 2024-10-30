@@ -660,4 +660,4 @@ function print() { __p += __j.call(arguments, '') }
     .overline {
       ${ir(e.typography.overline)};
     }
-  `);Lf.createRoot(document.getElementById("root")).render(f.jsx(U.StrictMode,{children:f.jsx(aP,{children:f.jsx(b6,{children:f.jsx(iO,{children:f.jsxs(Y5,{children:[f.jsx(N6,{}),f.jsx(z6,{})]})})})})}));
+  `);Lf.createRoot(document.getElementById("root")).render(f.jsx(U.StrictMode,{children:f.jsx(aP,{children:f.jsx(b6,{children:f.jsx(iO,{children:f.jsxs(Y5,{basename:"/portfolio",children:[f.jsx(N6,{}),f.jsx(z6,{})]})})})})}));

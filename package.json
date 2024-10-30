@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "test": "node eslint-custom-rules/enforce-useResponsiveValue-array.test.js"
   },
@@ -45,6 +48,7 @@
     "eslint-plugin-styled-components": "^0.0.0",
     "eslint-plugin-styled-components-a11y": "^2.1.35",
     "eslint-plugin-styled-components-config": "^0.0.2",
+    "gh-pages": "^6.2.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.2",
     "typescript-styled-plugin": "^0.18.3",

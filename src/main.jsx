@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <WindowSizeProvider>
       <ThemeProvider>
         <DevVisualizationProvider>
-          <Router>
+          <Router basename='/portfolio'>
             <GlobalStyle />
             <App />
           </Router>

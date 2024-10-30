@@ -107,7 +107,7 @@ const ButtonBase = styled.button.withConfig({
 
       border: none;
       border-radius: ${radiusButtonShapeDependant};
-      cursor: pointer;
+      cursor: ${isInteractive ? 'pointer' : ''};
 
       position: relative;
 

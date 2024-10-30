@@ -43,7 +43,11 @@ const Footer = () => {
             If you want to see where I&apos;m using <b>grid</b> and{' '}
             <b>spacer</b> click below to toggle visualization
           </p>
-          <BottomRightP>© Roope Määttä 2024. All rights reserved</BottomRightP>
+          <BottomRightP>
+            © Roope Määttä 2024. All rights reserved
+            <br />
+            roopemaatta(at)gmail.com
+          </BottomRightP>
           <Spacer height={'012px'} />
           <DevVisualizationButtons />
         </PaddingContainerSides>

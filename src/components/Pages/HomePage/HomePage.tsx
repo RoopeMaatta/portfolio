@@ -9,12 +9,11 @@ import CardListOnGrid from 'src/components/Organisms/CardListOnGrid'
 import { useCardDataCv } from './cardDataCv'
 import { useCardDataProjects } from './cardDataProjects'
 import { Mail } from 'react-feather'
-// import Logo from '../../../assets/logo.svg?react'
 
 const HomePage: React.FC = () => {
   const theme = useTheme()
-  const faceImageSpan = useResponsiveValue(['span 4', 'span 4', 'span 6'])
-  const introSpan = useResponsiveValue(['span 4', 'span 4', 'span 6'])
+  const faceImageSpan = useResponsiveValue(['span 4', 'span 4', 'span 4'])
+  const introSpan = useResponsiveValue(['span 4', 'span 4', 'span 8'])
   const cardDataCv = useCardDataCv()
   const cardDataProjects = useCardDataProjects()
   return (
@@ -41,7 +40,8 @@ const HomePage: React.FC = () => {
             transitioning to web development, studying full-stack. My passions
             lie in user-centric design and design systems. In my free time, I
             enjoy tennis, art, board games, and spending time with my boyfriend
-            and our dog, Kita 🐶.
+            and our dog, Kita 🐶. <br />
+            <strong>roopemaatta(at)gmail.com</strong>
           </p>
           <Spacer height={'024px'} />
           <Button
@@ -88,11 +88,12 @@ const HomePage: React.FC = () => {
           flexDirection: 'column',
         }}
       >
-        <h2>Contact</h2>
+        <h2>Contact</h2> <Spacer height={'018px'} />
         <p style={{ color: theme.colors.text.neutral.weak }}>
-          Was nice seeing you here
+          Was nice seeing you here <br />
+          roopemaatta(at)gmail.com
         </p>
-        <Spacer height={'048px'} />
+        <Spacer height={'024px'} />
         <Button
           label="Let's keep in touch"
           icon={<Mail />}

@@ -20,6 +20,7 @@ const CapsuleImageWrapper = styled.div.withConfig({
     return css`
       grid-column: ${gridColumn || 'auto'};
       width: 100%;
+      max-height: 600px;
       position: relative;
       overflow: hidden;
 

@@ -10,11 +10,11 @@ const FooterDiv = styled.div`
 
     return css`
       position: relative;
-      height: 300px;
+      height: 350px;
       background-color: ${colors.fill.brand.strong};
       color: ${colors.text.neutral.invert};
       display: flex;
-      align-items: center;
+      // align-items: center;
       justify-content: center;
     `
   }}
@@ -37,6 +37,7 @@ const Footer = () => {
       <Spacer height={'096px'} />
       <FooterDiv>
         <PaddingContainerSides>
+          <Spacer height={'096px'} />
           <p>
             This webpage is made mostly with custom components.
             <br />

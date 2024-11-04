@@ -11,6 +11,7 @@ const StyledCard = styled(Paper)<StyledCardProps>`
     grid-column: ${gridColumn || 'auto'};
   `}
   display: flex;
+  // color: ${({ theme }) => theme.colors.text.neutral.strong};
   flex-direction: ${({ isHorizontal }) => (isHorizontal ? 'row' : 'column')};
 `
 

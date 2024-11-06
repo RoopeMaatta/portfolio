@@ -59,6 +59,8 @@ Check out the live site here: [roopemaatta.github.io/portfolio](https://roopemaa
 
 - **Masonry Columns Rendering**: The masonry columns wrapper renders children twice—first hidden to calculate height, then again to place elements into proper columns. Seeking a more efficient solution.
 
+- **Subpage Navigation on GitHub Pages**: Due to GitHub Pages' static hosting nature, direct access to subpages (e.g., /digital-art/) may lead to a 404 error. This is because GitHub Pages expects each path to have a physical file. A possible workaround could be to have a  404.html file redirect these paths to the main page, allowing the SPA router to handle them correctly.
+
 ## Technologies Used
 
 - **React**: JavaScript library for building user interfaces.

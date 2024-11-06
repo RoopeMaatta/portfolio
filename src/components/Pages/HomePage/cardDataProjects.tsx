@@ -6,7 +6,7 @@ export const useCardDataProjects = () => {
   const cardDataProjects = [
     {
       key: 'SaanaDesignSystem',
-      title: <TitleIconLeft icon={<Code />} title='Saana Desing System' />,
+      title: <TitleIconLeft icon={<Code />} title='Saana Design System' />,
       image:
         'https://res.cloudinary.com/dbm0udwcq/image/upload/v1729932788/FullSizeRender_ntggmy.jpg',
       gridColumn: 'span 4',

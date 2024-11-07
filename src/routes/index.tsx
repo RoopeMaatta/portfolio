@@ -7,6 +7,7 @@ import TraditionalArtsPage from '../components/Pages/TraditionalArtsGalleryPage/
 import JewellerySculpturePage from '../components/Pages/JewellerySculptureGalleryPage/JewellerySculpturePage'
 import DigitalArtsPage from '../components/Pages/DigitalArtsGalleryPage/DigitalArtsPage'
 import VillaAurorasPage from 'src/components/Pages/VillaAurorasPage/VillaAurorasPage'
+import NotFoundPage from '../components/Pages/NotFoundPage'
 
 const AppRoutes: React.FC = () => (
   <Routes>
@@ -19,7 +20,7 @@ const AppRoutes: React.FC = () => (
     <Route path='/digital-art' element={<DigitalArtsPage />} />
     <Route path='/villa-auroras' element={<VillaAurorasPage />} />
 
-    {/* Add more routes here as your application grows */}
+    <Route path='*' element={<NotFoundPage />} />
   </Routes>
 )
 

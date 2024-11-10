@@ -9,6 +9,7 @@ import RenderSpacing from '../components/Pages/StyleGuidePage/StyleGuideOld/Rend
 import RenderRadius from '../components/Pages/StyleGuidePage/StyleGuideOld/RenderRadius'
 import RenderBreakpoints from '../components/Pages/StyleGuidePage/StyleGuideOld/RenderBreakpoints'
 import ButtonVariationsPage from '../components/Pages/StyleGuidePage/ButtonVariationsPage/ButtonVariationsPage'
+import NotFoundPage from 'src/components/Pages/NotFoundPage'
 
 interface Theme {
   colors: Record<string, string | Record<string, string>>
@@ -34,6 +35,8 @@ const StyleGuideContent: React.FC = () => {
       <Route path='breakpoints' element={<RenderBreakpoints />} />
       <Route path='testing' element={<TestingPage />} />
       <Route path='button-variations' element={<ButtonVariationsPage />} />
+
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   )
 }

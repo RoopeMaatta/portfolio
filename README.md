@@ -59,8 +59,6 @@ Check out the live site here: [roopemaatta.github.io/portfolio](https://roopemaa
 
 - **Masonry Columns Rendering**: The masonry columns wrapper renders children twice—first hidden to calculate height, then again to place elements into proper columns. Seeking a more efficient solution.
 
-- **Nested Unknown Routes Do Not Redirect Correctly**: Currently, unknown routes that are deeply nested redirect to a blank homepage instead of the intended custom 404 page. This is due to GitHub Pages' handling of non-existent paths in SPA deployments. A custom 404.html redirect setup was tested to resolve this, but I coundn't get it to work yet.
-
 ## Technologies Used
 
 - **React**: JavaScript library for building user interfaces.

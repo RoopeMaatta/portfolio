@@ -36,11 +36,12 @@ const HomePage: React.FC = () => {
             Full Stack developer, architect and crafter
             <br />
             <br />
-            Shall we develop digital services together? I&apos;m an architect
-            transitioning to web development, studying full-stack. My passions
-            lie in user-centric design and design systems. In my free time, I
-            enjoy tennis, art, board games, and spending time with my boyfriend
-            and our dog, Kita 🐶. <br />
+            Shall we develop services together? I&apos;m an architect with over
+            five years of work experience, a full-stack web developer, artist
+            and a member of Mensa. My expertise lies in user-centric solutions,
+            modularization and design systems. In my free time, I enjoy tennis,
+            art, board games, and spending time with my boyfriend and our dog,
+            Kita 🐶. <br />
             <strong>roopemaatta(at)gmail.com</strong>
           </p>
           <Spacer height={'024px'} />

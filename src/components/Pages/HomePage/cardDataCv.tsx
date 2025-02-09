@@ -68,6 +68,7 @@ const FullStackContent: React.FC = () => {
       <UlSimple>
         <li>Jest</li>
         <li>Mocha</li>
+        <li>Cypress</li>
         <li>ESLint</li>
         <li>Prettier</li>
       </UlSimple>
@@ -223,7 +224,7 @@ export const useCardDataCv = () => {
       gridColumn: 'span 4',
       gridRow: 'span 2',
       description:
-        'I design modular homes and prefabricated building modules ready to face the problems of tomorrow',
+        'I design modular solutions that prioritize efficiency, sustainability, and comfort—always with the people who live in them at the heart of the process. My approach ensures spaces are not only adaptable and intuitive but truly feel like home.',
       content: <ArchitectContent />,
     },
     {

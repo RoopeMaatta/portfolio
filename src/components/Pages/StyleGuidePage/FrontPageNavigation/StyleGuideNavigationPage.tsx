@@ -19,8 +19,7 @@ const StyleGuideNavigationPage: React.FC = () => {
         {' '}
         Using custom react components powered by styled-components, this site
         establishes the Saana Design System foundation. Explore the frontend and
-        Saana system code on GitHub through the link below. GitHub through the
-        link below.
+        Saana system code on GitHub through the link below.
       </p>
       <Spacer height={'016px'} />
       <Button
